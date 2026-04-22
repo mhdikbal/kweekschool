@@ -1,0 +1,17 @@
+function setLang(lang) {
+    document.body.classList.remove('en-mode', 'nl-mode', 'id-mode');
+    if (lang !== 'id') {
+        document.body.classList.add(lang + '-mode');
+    }
+    document.querySelectorAll('.nav-lang-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.opacity = '0.5';
+    });
+    const activeBtn = document.getElementById('btn-' + lang);
+    if(activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.style.opacity = '1';
+    }
+}
+
+// ─── I

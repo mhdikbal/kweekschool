@@ -6,74 +6,11 @@
 <title>Kweekschool Bukittinggi — Timeline & Network Mapping 1852–1912</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="Kweekschoollogo.png">
 <style>
-/* LANGUAGE ENGINE v2 */
-.lang-en, .lang-nl { display: none; }
-body.en-mode span.lang-en { display: inline !important; }
-body.nl-mode span.lang-nl { display: inline !important; }
-
-body.en-mode .lang-id, body.nl-mode .lang-id { display: none !important; }
-
-body.en-mode .lang-en { display: inline !important; }
-body.en-mode div.lang-en, body.en-mode p.lang-en, body.en-mode h1.lang-en, body.en-mode h2.lang-en { display: block !important; }
-
-body.nl-mode .lang-nl { display: inline !important; }
-body.nl-mode div.lang-nl, body.nl-mode p.lang-nl, body.nl-mode h1.lang-nl, body.nl-mode h2.lang-nl { display: block !important; }
-
-.nav-lang-btn.active { color: var(--rust2) !important; opacity: 1 !important; font-weight: bold !important; }
-
 :root{--ink:#1a1410;--ink2:#3d3228;--ink3:#7a6a5a;--paper:#f5f0e8;--paper2:#ede6d8;--paper3:#e4dccf;--rust:#8b3a1e;--rust2:#c0542a;--teal:#1a5c52;--teal2:#2a8c7e;--amber:#b07828;--amber2:#d4962e;--blue:#1a3d6e;--blue2:#2a5fa5;--border:rgba(26,20,16,.15);--shadow:rgba(26,20,16,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.75}
-/* GLOSSARY TOOLTIP SYSTEM */
-.glossary-term {
-    border-bottom: 1.5px dashed var(--amber2);
-    cursor: help;
-    position: relative;
-    transition: all 0.2s;
-}
-.glossary-term:hover {
-    color: var(--amber2);
-    background: rgba(212, 150, 46, 0.08);
-}
-#glossary-tooltip {
-    position: absolute;
-    z-index: 10000;
-    max-width: 250px;
-    background: rgba(26,20,16,.96);
-    backdrop-filter: blur(8px);
-    border: .5px solid var(--amber2);
-    border-radius: 4px;
-    padding: 1rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    color: var(--paper);
-    pointer-events: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    font-family: 'Source Serif 4', serif;
-}
-#glossary-tooltip.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-#gt-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--amber2);
-    margin-bottom: 6px;
-    border-bottom: 0.5px solid rgba(245,240,232,0.1);
-    padding-bottom: 4px;
-}
-#gt-desc {
-    font-size: 0.85rem;
-    color: rgba(245,240,232,0.7);
-    line-height: 1.5;
-}
-
+body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.75;overflow-x:hidden}
 /* NAV */
 .nav{position:sticky;top:0;z-index:200;background:rgba(26,20,16,.97);backdrop-filter:blur(10px);border-bottom:.5px solid rgba(245,240,232,.1);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
 .nav-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.4)}
@@ -128,7 +65,7 @@ main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
 .tl-date{padding-right:2rem;padding-top:14px;text-align:right}
 .tl-date .year{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink2);display:block;line-height:1}
 .tl-date .month{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-top:3px}
-.tl-card{transition:all 0.4s ease;background:var(--paper);border:.5px solid var(--border);border-radius:3px;padding:1.25rem 1.5rem;margin-left:1.5rem;transition:all .2s;position:relative;overflow:hidden}
+.tl-card{background:var(--paper);border:.5px solid var(--border);border-radius:3px;padding:1.25rem 1.5rem;margin-left:1.5rem;transition:all .2s;position:relative;overflow:hidden}
 .tl-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
 .tl-event.lahir .tl-card::before{background:var(--teal)}
 .tl-event.merosot .tl-card::before{background:var(--amber)}
@@ -362,42 +299,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 #trajektori::after{content:'';position:absolute;top:-20px;right:-20px;bottom:-20px;width:600px;background:url('murid2-kweekschool-fort-de-kock-1888-nawawi-kramer-1908-p-26.webp') center 20%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);pointer-events:none;filter:grayscale(1) sepia(0.2) contrast(1.2);z-index:0;}
 #trajektori > *{position:relative;z-index:1}
 
-
-/* SCROLL-TELLING LAYOUT */
-.scroll-telling-wrapper {
-  display: block;
-}
-@media (min-width: 1024px) {
-  .scroll-telling-wrapper {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-  .scroll-text-col {
-    flex: 0.8;
-  }
-  .scroll-visual-col {
-    flex: 1.2;
-    min-width: 55%;
-    position: sticky;
-    top: 5vh;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .scroll-visual-col .geo-section {
-    padding: 0;
-    margin: 0;
-    border-top: none;
-  }
-  /* Give the map a more aesthetic floating look */
-  .scroll-visual-col .geo-canvas-wrap {
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    background: var(--paper);
-  }
-}
-
 /* RESPONSIVE TEXT GRIDS */
 .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .grid-2col.gap-3 { gap: 3rem; }
@@ -424,16 +325,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 </head>
 <body>
 
-<!-- GLOSSARY TOOLTIP -->
-<div id="glossary-tooltip">
-    <div id="gt-title">Title</div>
-    <div id="gt-desc">Description</div>
-</div>
-
-
-
-
-
 <!-- INTRO SPLASH -->
 <div class="intro-splash" id="intro-splash">
   <div class="intro-dust"></div>
@@ -442,9 +333,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
     <div class="intro-line"><span>Kweekschool</span></div>
     <div class="intro-line"><span><em>Fort de Kock</em></span></div>
     <div class="intro-line"><span>Bukittinggi</span></div>
-    <div class="intro-sub"><span class="lang-id">Riset Sejarah Pendidikan Kolonial · Sumatera Barat · 1852–1912</span><span class="lang-en">Historical Research on Colonial Education · West Sumatra · 1852–1912</span><span class="lang-nl">Historisch Onderzoek naar Koloniaal Onderwijs · West-Sumatra · 1852–1912</span></div>
+    <div class="intro-sub">Riset Sejarah Pendidikan Kolonial · Sumatera Barat · 1852–1912</div>
     <div class="intro-divider"></div>
-    <button class="intro-enter" onclick="dismissIntro()"><span class="lang-id">Buka Arsip</span><span class="lang-en">Open Archive</span><span class="lang-nl">Archief Openen</span></button>
+    <button class="intro-enter" onclick="dismissIntro()">Buka Arsip</button>
   </div>
   <div class="intro-ink" id="intro-ink"></div>
 </div>
@@ -457,36 +348,29 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 
 <!-- COVER -->
 <section class="cover">
-  <div class="cover-eyebrow"><span class="lang-id">Riset Sejarah Pendidikan Kolonial · Bukittinggi · Sumatera Barat</span><span class="lang-en">History of Colonial Education · Bukittinggi · West Sumatra</span><span class="lang-nl">Geschiedenis van Koloniaal Onderwijs · Bukittinggi · West-Sumatra</span></div>
-  <h1>Kweekschool <em>Fort de Kock</em><br>& <span class="lang-id">Jejaring Nusantara</span><span class="lang-en">The Archipelago Network</span><span class="lang-nl">Het Archipelnetwerk</span></h1>
-  <p class="cover-subtitle"><span class="lang-id">Timeline beranotasi, peta karir tokoh, dan jejaring kweekschool Hindia Belanda — berbasis sumber primer 1852–1912</span><span class="lang-en">Annotated timeline, career maps, and the Dutch East Indies kweekschool network — based on primary sources 1852–1912</span><span class="lang-nl">Geannoteerde tijdlijn, loopbaankaarten en het netwerk van de kweekschool in Nederlands-Indië — gebaseerd op primaire bronnen 1852–1912</span></p>
+  <div class="cover-eyebrow">Riset Sejarah Pendidikan Kolonial · Bukittinggi · Sumatera Barat</div>
+  <h1>Kweekschool <em>Fort de Kock</em><br>& Jejaring Nusantara</h1>
+  <p class="cover-subtitle">Timeline beranotasi, peta karir tokoh, dan jejaring kweekschool Hindia Belanda — berbasis sumber primer 1852–1912</p>
   <div class="cover-meta">
-    <div class="cover-meta-item"><span class="num">1856</span><span class="label"><span class="lang-id">Berdiri</span><span class="lang-en">Established</span><span class="lang-nl">Opgericht</span></span></div>
-    <div class="cover-meta-item"><span class="num">11+</span><span class="label"><span class="lang-id">Kweekschool Nusantara</span><span class="lang-en">Archipelago Kweekschools</span><span class="lang-nl">Kweekscholen in de Archipel</span></span></div>
-    <div class="cover-meta-item"><span class="num">58+</span><span class="label"><span class="lang-id">Dokumen Sumber</span><span class="lang-en">Source Documents</span><span class="lang-nl">Brondocumenten</span></span></div>
+    <div class="cover-meta-item"><span class="num">1856</span><span class="label">Berdiri</span></div>
+    <div class="cover-meta-item"><span class="num">11+</span><span class="label">Kweekschool Nusantara</span></div>
+    <div class="cover-meta-item"><span class="num">58+</span><span class="label">Dokumen Sumber</span></div>
     <div class="cover-meta-item"><span class="num">1907</span><span class="label">Vereeniging Minangkabau</span></div>
   </div>
-  <div class="scroll-hint"><span class="lang-id">Gulir ke bawah</span><span class="lang-en">Scroll down</span><span class="lang-nl">Scroll naar beneden</span></div>
+  <div class="scroll-hint">Gulir ke bawah</div>
 </section>
 
 <!-- NAVIGATION -->
 <nav class="nav">
-  <div style="display:flex;align-items:center;gap:1.5rem">
-    <span class="nav-title">Kweekschool FdK</span>
-    <div style="display:flex;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(245,240,232,0.5)">
-      <span class="nav-lang-btn active" id="btn-id" onclick="setLang('id')" style="cursor:pointer;transition:all .2s">ID</span>
-      <span class="nav-lang-btn" id="btn-en" onclick="setLang('en')" style="cursor:pointer;opacity:0.5;transition:all .2s">EN</span>
-      <span class="nav-lang-btn" id="btn-nl" onclick="setLang('nl')" style="cursor:pointer;opacity:0.5;transition:all .2s">NL</span>
-    </div>
-  </div>
+  <span class="nav-title">Kweekschool FdK</span>
   <ul class="nav-links">
-    <li><a href="#kelahiran">I. <span class="lang-id">Kelahiran</span><span class="lang-en">Birth</span><span class="lang-nl">Oprichting</span></a></li>
-    <li><a href="#merosot">II. <span class="lang-id">Kemerosotan</span><span class="lang-en">Decline</span><span class="lang-nl">Achteruitgang</span></a></li>
-    <li><a href="#akses">III. <span class="lang-id">Akses Pendidikan</span><span class="lang-en">Access to Education</span><span class="lang-nl">Toegang tot Onderwijs</span></a></li>
+    <li><a href="#kelahiran">I. Kelahiran</a></li>
+    <li><a href="#merosot">II. Kemerosotan</a></li>
+    <li><a href="#akses">III. Akses Pendidikan</a></li>
     <li><a href="#nawawi">IV. Nawawi</a></li>
-    <li><a href="larashoofd_network.html" style="color:var(--amber2);font-weight:700">V. <span class="lang-id">Peta Jejaring</span><span class="lang-en">Network Map</span><span class="lang-nl">Netwerkkaart</span> &#x21B1;</a></li>
-    <li><a href="#kesimpulan">VI. <span class="lang-id">Kesimpulan</span><span class="lang-en">Conclusion</span><span class="lang-nl">Conclusie</span></a></li>
-    <li><a href="#sumber">VII. <span class="lang-id">Sumber</span><span class="lang-en">Sources</span><span class="lang-nl">Bronnen</span></a></li>
+    <li><a href="#network">V. Network</a></li>
+    <li><a href="#kesimpulan">VI. Kesimpulan</a></li>
+    <li><a href="#sumber">VII. Sumber</a></li>
   </ul>
 </nav>
 
@@ -497,8 +381,8 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 <!-- BAB I -->
 <section id="kelahiran">
   <div class="section-header fade-in">
-    <div><span class="eyebrow"><span class="lang-id">Bab I</span><span class="lang-en">Chapter I</span><span class="lang-nl">Hoofdstuk I</span> · 1852–1858</span><h2><span class="lang-id">Kelahiran<br><em>Sebuah Institusi</em></span><span class="lang-en">Birth of<br><em>An Institution</em></span><span class="lang-nl">Geboorte van<br><em>Een Instituut</em></span></h2></div>
-    <p class="section-desc"><span class="lang-id">Fort de Kock (Bukittinggi) menjadi titik temu ambisi kolonial dan kebutuhan administratif. Kweekschool yang lahir di sana bukan hanya sekolah guru — ia adalah mesin produksi kepala daerah yang melek baca-tulis dan tunduk pada sistem Belanda, dimulai dari satu orang visioner.</span><span class="lang-en">Fort de Kock (Bukittinggi) became the intersection of colonial ambition and administrative needs. The Kweekschool born there was not just a teachers' college — it was a production machine for literate regional heads subservient to the Dutch system, starting with one visionary.</span><span class="lang-nl">Fort de Kock (Bukittinggi) werd het knooppunt van koloniale ambitie en administratieve behoeften. De Kweekschool die daar ontstond, was niet zomaar een kweekschool — het was een productiemachine voor geletterde regionale leiders die ondergeschikt waren aan het Nederlandse systeem, beginnend met één visionair.</span></p>
+    <div><span class="eyebrow">Bab I · 1852–1858</span><h2>Kelahiran<br><em>Sebuah Institusi</em></h2></div>
+    <p class="section-desc">Fort de Kock (Bukittinggi) menjadi titik temu ambisi kolonial dan kebutuhan administratif. Kweekschool yang lahir di sana bukan hanya sekolah guru — ia adalah mesin produksi kepala daerah yang melek baca-tulis dan tunduk pada sistem Belanda, dimulai dari satu orang visioner.</p>
   </div>
 
   <div class="timeline">
@@ -559,8 +443,8 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 <!-- BAB II -->
 <section id="merosot">
   <div class="section-header fade-in">
-    <div><span class="eyebrow"><span class="lang-id">Bab II</span><span class="lang-en">Chapter II</span><span class="lang-nl">Hoofdstuk II</span> · ≈1858–1874</span><h2><span class="lang-id">Kemerosotan &<br><em>Reformasi</em></span><span class="lang-en">Decline &<br><em>Reform</em></span><span class="lang-nl">Achteruitgang &<br><em>Hervorming</em></span></h2></div>
-    <p class="section-desc"><span class="lang-id">Kepergian van Ophuysen — sekitar 1860–1862, bukan serta-merta 1858 — menandai runtuhnya masa emas yang rapuh. Artikel Tijdschrift 1869 merekam kondisi sesungguhnya pada akhir 1860an dengan kritik yang tajam. Pembenahan staf baru terjadi pada 1873–1874.</span><span class="lang-en">The departure of van Ophuysen — around 1860–1862, not necessarily 1858 — marked the collapse of a fragile golden era. A 1869 Tijdschrift article recorded the harsh realities of the late 1860s with sharp criticism. Staff reformation only occurred in 1873–1874.</span><span class="lang-nl">Het vertrek van van Ophuysen — rond 1860–1862, niet direct in 1858 — markeerde de ineenstorting van een fragiele gouden eeuw. Een Tijdschrift-artikel uit 1869 legde de werkelijke omstandigheden eind jaren 1860 vast met scherpe kritiek. Stafhervorming vond pas plaats in 1873–1874.</span></p>
+    <div><span class="eyebrow">Bab II · ≈1858–1874</span><h2>Kemerosotan &<br><em>Reformasi</em></h2></div>
+    <p class="section-desc">Kepergian van Ophuysen — sekitar 1860–1862, bukan serta-merta 1858 — menandai runtuhnya masa emas yang rapuh. Artikel Tijdschrift 1869 merekam kondisi sesungguhnya pada akhir 1860an dengan kritik yang tajam. Pembenahan staf baru terjadi pada 1873–1874.</p>
   </div>
 
   <div class="timeline">
@@ -641,25 +525,19 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 <section id="akses">
   <div class="section-header fade-in">
     <div><span class="eyebrow">Bab III · 1870an–1885</span><h2>Larashoofd &<br><em>Akses Pendidikan</em></h2></div>
-    <p class="section-desc"><span class="lang-id">Pendidikan di Dataran Tinggi Minangkabau tidak hadir dalam ruang hampa. Larashoofd (kepala laras), <span class="glossary-term" data-term="panghoeloe">panghoeloe</span>, dan <span class="glossary-term" data-term="mantri">mantri</span> adalah pemain utama. Kemampuan baca-tulis Melayu dan Belanda bukan sekadar bekal — ia adalah prasyarat jabatan dalam birokrasi kolonial.</span><span class="lang-en">Education in the Minangkabau Highlands did not exist in a vacuum. Larashoofd (district heads), <span class="glossary-term" data-term="panghoeloe">panghoeloe kapala</span>, and <span class="glossary-term" data-term="mantri">mantri</span> were the main players. Literacy in Malay and Dutch was not just a skill — it was a prerequisite for positions in the colonial bureaucracy.</span><span class="lang-nl">Onderwijs in de Minangkabause Hooglanden bestond niet in een vacuüm. Larashoofd (districtshoofden), <span class="glossary-term" data-term="panghoeloe">panghoeloe kapala</span>, en <span class="glossary-term" data-term="mantri">mantri</span> waren de belangrijkste spelers. Geletterdheid in het Maleis en Nederlands was niet zomaar een vaardigheid — het was een vereiste voor posities in de koloniale bureaucratie.</span></p>
+    <p class="section-desc">Pendidikan di Dataran Tinggi Minangkabau tidak hadir dalam ruang hampa. Larashoofd (kepala laras), panghoeloe, dan mantri adalah pemain utama. Kemampuan baca-tulis Melayu dan Belanda bukan sekadar bekal — ia adalah prasyarat jabatan dalam birokrasi kolonial.</p>
   </div>
 
   <div class="feature-box fade-in">
     <div class="feature-box-content">
       <span class="eyebrow">Konteks Struktural</span>
       <h3>Sekolah sebagai <em>Alat Administrasi</em> Kolonial</h3>
-      <p>Plaatselijke Inlandsche Schoolcommissie terdiri dari seorang kontrolir Eropa berpasangan dengan <span class="glossary-term" data-term="larashoofd">larashoofd</span> setempat. Larashoofd adalah produk sekaligus penjamin sistem — mereka diangkat ke komisie sekolah karena jabatannya, dan jabatan mereka tergantung pada kemampuan melek aksara yang diajarkan di sekolah yang mereka awasi.</p>
-      <div style="margin-top:2rem">
-        <a href="larashoofd_network.html" class="cta-button" style="display:inline-flex;align-items:center;padding:.85rem 1.5rem;background:var(--ink);color:var(--paper);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;border-radius:2px;gap:.75rem;transition:all .2s;box-shadow:4px 4px 0 var(--amber2)" onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='6px 6px 0 var(--amber2)'" onmouseout="this.style.transform='translate(0,0)';this.style.boxShadow='4px 4px 0 var(--amber2)'">
-          <span><span class="lang-id">Buka Peta Jejaring Interaktif</span><span class="lang-en">View Interactive Network Graph</span><span class="lang-nl">Bekijk Interactieve Netwerkkaart</span></span>
-          <span style="color:var(--amber2);font-size:14px">↱</span>
-        </a>
-      </div>
+      <p>Plaatselijke Inlandsche Schoolcommissie terdiri dari seorang kontrolir Eropa berpasangan dengan larashoofd setempat. Larashoofd adalah produk sekaligus penjamin sistem — mereka diangkat ke komisie sekolah karena jabatannya, dan jabatan mereka tergantung pada kemampuan melek aksara yang diajarkan di sekolah yang mereka awasi.</p>
     </div>
     <div class="feature-box-stats">
-      <div class="stat-item"><span class="num">1873</span><span class="desc">Schoolcommissie pertama di Fort van der Capellen dengan <span class="glossary-term" data-term="larashoofd">larashoofd</span> resmi</span></div>
-      <div class="stat-item"><span class="num">868</span><span class="desc">Entri dokumen menghubungkan <span class="glossary-term" data-term="larashoofd">larashoofd</span> dengan institusi sekolah (Delpher)</span></div>
-      <div class="stat-item"><span class="num">ƒ10</span><span class="desc">Tunjangan bulanan <span class="glossary-term" data-term="kweekeling">kweekeling</span> — dipotong ƒ1.50 untuk perlengkapan sekolah</span></div>
+      <div class="stat-item"><span class="num">1873</span><span class="desc">Schoolcommissie pertama di Fort van der Capellen dengan larashoofd resmi</span></div>
+      <div class="stat-item"><span class="num">868</span><span class="desc">Entri dokumen menghubungkan larashoofd dengan institusi sekolah (Delpher)</span></div>
+      <div class="stat-item"><span class="num">ƒ10</span><span class="desc">Tunjangan bulanan kweekeling — dipotong ƒ1.50 untuk perlengkapan sekolah</span></div>
       <div class="stat-item"><span class="num">49→12</span><span class="desc">Potensi lulusan vs realisasi tahun 1866 — cermin krisis mutu</span></div>
     </div>
   </div>
@@ -693,8 +571,8 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div class="tl-card">
         <span class="tbadge admin">Komisie Pertama</span>
         <h3><em>Larashoofd</em> masuk Schoolcommissie resmi — Fort van der Capellen</h3>
-        <div class="tl-card-body"><p><strong>Si Mohamad Chorib galar Datoe Bilang Sakotta</strong>, <span class="glossary-term" data-term="larashoofd">larashoofd</span> van Salimpawang, diangkat anggota <span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span> bersama J.C.P. Welffer (perwira militer Belanda). Pola ini — satu kontrolir Eropa + satu <span class="glossary-term" data-term="larashoofd">larashoofd</span> — menjadi standar pengawasan pendidikan di seluruh Dataran Tinggi.</p></div>
-        <div class="src-block"><span>Sumber</span>Sumatra-courant, 13 & 16 Des 1873 — "Tot leden der <span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span>n"</div>
+        <div class="tl-card-body"><p><strong>Si Mohamad Chorib galar Datoe Bilang Sakotta</strong>, larashoofd van Salimpawang, diangkat anggota Plaatselijke Inlandsche Schoolcommissie bersama J.C.P. Welffer (perwira militer Belanda). Pola ini — satu kontrolir Eropa + satu larashoofd — menjadi standar pengawasan pendidikan di seluruh Dataran Tinggi.</p></div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 13 & 16 Des 1873 — "Tot leden der Plaatselijke Inlandsche Schoolcommissien"</div>
       </div>
     </div>
 
@@ -703,7 +581,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div class="tl-card">
         <span class="tbadge admin">Ekspansi</span>
         <h3>Larashoofd VIII Kottas dan Bondjol masuk komisie — pola menyebar ke seluruh sub-divisi</h3>
-        <div class="tl-card-body"><p><strong>Si Marahoesien galar Toeankoe Maharadji</strong> (larashoofd der VIII Kottas) diangkat di Palembajan; <strong>Si Nailic</strong> di Bondjol. Di Boea: <strong>Si Djo Brahrim galar Datoe Noear Hamat</strong> (larashoofd van Lintoe). Ekspansi cepat — setiap sub-divisi kini memiliki <span class="glossary-term" data-term="larashoofd">larashoofd</span> resmi dalam komisie sekolah.</p></div>
+        <div class="tl-card-body"><p><strong>Si Marahoesien galar Toeankoe Maharadji</strong> (larashoofd der VIII Kottas) diangkat di Palembajan; <strong>Si Nailic</strong> di Bondjol. Di Boea: <strong>Si Djo Brahrim galar Datoe Noear Hamat</strong> (larashoofd van Lintoe). Ekspansi cepat — setiap sub-divisi kini memiliki larashoofd resmi dalam komisie sekolah.</p></div>
         <div class="src-block"><span>Sumber</span>Sumatra-courant, 14 & 17 Nov 1874 — "Inlandsch Onderwijs / Benoemingen"</div>
       </div>
     </div>
@@ -743,12 +621,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 
 <!-- BAB IV -->
 <section id="nawawi">
-  <div class="scroll-telling-wrapper">
-    <div class="scroll-text-col">
-
   <div class="section-header fade-in">
     <div><span class="eyebrow">Bab IV · 1899–1908</span><h2><em>Nawawi</em><br>Soetan Makmoer</h2></div>
-    <p class="section-desc"><span class="lang-id">Dari <span class="glossary-term" data-term="kweekeling">kweekeling</span> yang lulus ujian di Fort de Kock, menjadi guru kelas 1, guru bahasa Melayu di kweekschool — hingga ketua organisasi modern bumiputra pertama di Pantai Barat Sumatra. Nawawi Soetan Makmoer adalah produk sekaligus melampaui sistem yang melahirkannya.</span><span class="lang-en">From a <span class="glossary-term" data-term="kweekeling">kweekeling</span> who passed the exam in Fort de Kock, to a 1st class teacher, Malay language teacher at the kweekschool — to the chairman of the first native modern organization on the West Coast of Sumatra. Nawawi Soetan Makmoer was a product of, while also transcending, the system that birthed him.</span><span class="lang-nl">Van een <span class="glossary-term" data-term="kweekeling">kweekeling</span> die slaagde voor het examen in Fort de Kock, tot een leraar 1e klas, docent Maleis aan de kweekschool — tot de voorzitter van de eerste moderne inheemse organisatie aan de Westkust van Sumatra. Nawawi Soetan Makmoer was een product van het systeem dat hem voortbracht, maar oversteeg het tegelijkertijd.</span></p>
+    <p class="section-desc">Dari kweekeling yang lulus ujian di Fort de Kock, menjadi guru kelas 1, guru bahasa Melayu di kweekschool — hingga ketua organisasi modern bumiputra pertama di Pantai Barat Sumatra. Nawawi Soetan Makmoer adalah produk sekaligus melampaui sistem yang melahirkannya.</p>
   </div>
 
   <div class="timeline">
@@ -763,9 +638,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div class="tl-date"><span class="year">≈1880an</span></div>
       <div class="tl-card">
         <span class="tbadge tokoh">Kweekeling</span>
-        <h3>Nawawi Soetan Makmoer: <span class="glossary-term" data-term="kweekeling">kweekeling</span> di kweekschool Fort de Kock — lulus ujian di Padang</h3>
+        <h3>Nawawi Soetan Makmoer: kweekeling di kweekschool Fort de Kock — lulus ujian di Padang</h3>
         <div class="tl-card-body">
-          <p>Dokumen menyebut Nawawi Soetan Makmoer sebagai "gewezen <span class="glossary-term" data-term="kweekeling">kweekeling</span> aan de kweekschool voor inlandsche onderwijzers te Fort de Kock" — mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span>. Ia dan Si Hamzah (rekannya dari Pantai Barat Sumatra) lulus ujian hulponderwijzer untuk pendidikan Eropa di Padang — ujian bergengsi yang biasanya hanya ditempuh orang Eropa.</p>
+          <p>Dokumen menyebut Nawawi Soetan Makmoer sebagai "gewezen kweekeling aan de kweekschool voor inlandsche onderwijzers te Fort de Kock" — mantan kweekeling. Ia dan Si Hamzah (rekannya dari Pantai Barat Sumatra) lulus ujian hulponderwijzer untuk pendidikan Eropa di Padang — ujian bergengsi yang biasanya hanya ditempuh orang Eropa.</p>
           <div class="quote-block">"Aan Si Hamza en Nawawi Soetan Makmoer, beiden van Sumatra's Westkust, is ieder na (te Padang) afgelegd examen een acte van bekwaamheid uitgereikt als Hulponderwijzer bij het o.l. Onderwijs voor Europeanen." — Keduanya mendapat akta kecakapan sebagai asisten guru untuk pendidikan Eropa.</div>
         </div>
         <div class="src-block"><span>Sumber</span>Bataviaasch Handelsblad, 25 Sep 1883 — "Tijdelijk werkzaamgesteld aan de kweekschool"</div>
@@ -812,10 +687,10 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div class="tl-date"><span class="year">1906</span><span class="month">9–17 Juni</span></div>
       <div class="tl-card">
         <span class="tbadge tokoh">Peran Sosial</span>
-        <h3>"Goeroe Nawawi" hadir di Paken Malam — bersama <span class="glossary-term" data-term="larashoofd">larashoofd</span> IV Kotta's dan pejabat Eropa</h3>
+        <h3>"Goeroe Nawawi" hadir di Paken Malam — bersama larashoofd IV Kotta's dan pejabat Eropa</h3>
         <div class="tl-card-body">
-          <p>Dalam festival perdagangan besar Paken Malam di Fort de Kock, Goeroe Nawawi disebut bersama <span class="glossary-term" data-term="larashoofd">larashoofd</span> IV Kotta's sebagai bagian dari panitia. Kontrolir Barthélemy dan Westenenk — orang Eropa yang kemudian berperan dalam mendirikan Vereeniging — ada dalam jaringan yang sama.</p>
-          <div class="quote-block">"...benevens het <span class="glossary-term" data-term="larashoofd">larashoofd</span> van Benoe Nampcc, van IV kotta's, goeroe Nawawi en hunne vrouwen." — Larashoofd, Goeroe Nawawi, dan istri-istri mereka.</div>
+          <p>Dalam festival perdagangan besar Paken Malam di Fort de Kock, Goeroe Nawawi disebut bersama larashoofd IV Kotta's sebagai bagian dari panitia. Kontrolir Barthélemy dan Westenenk — orang Eropa yang kemudian berperan dalam mendirikan Vereeniging — ada dalam jaringan yang sama.</p>
+          <div class="quote-block">"...benevens het larashoofd van Benoe Nampcc, van IV kotta's, goeroe Nawawi en hunne vrouwen." — Larashoofd, Goeroe Nawawi, dan istri-istri mereka.</div>
         </div>
         <div class="src-block"><span>Sumber</span>Delpher: Sumatra-courant, 2 Juli 1906 — "De Paken Malam te Fort de Kock"</div>
       </div>
@@ -827,7 +702,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
         <span class="tbadge tokoh">Tonggak Sejarah</span>
         <h3>Vereeniging Minangkabau berdiri di Fort de Kock — Nawawi Ketua Pertama</h3>
         <div class="tl-card-body">
-          <p>Vereeniging voor Inlandsche Ambtenaren Sumatra's Westkust "Minangkabau" didirikan 17 Oktober 1907 di Fort de Kock. Inisiatif dari <span class="glossary-term" data-term="mantri">mantri</span> Soepajang + kontrolir Barthélemy → berkembang dengan keterlibatan kepala-kepala Agam dan kontrolir Westenenk. Susunan pengurus:</p>
+          <p>Vereeniging voor Inlandsche Ambtenaren Sumatra's Westkust "Minangkabau" didirikan 17 Oktober 1907 di Fort de Kock. Inisiatif dari mantri Soepajang + kontrolir Barthélemy → berkembang dengan keterlibatan kepala-kepala Agam dan kontrolir Westenenk. Susunan pengurus:</p>
           <ul style="margin:.5rem 0 .5rem 1.5rem;font-size:.88rem;color:var(--ink2)">
             <li><strong>Voorzitter:</strong> Goeroe Nawawi</li>
             <li><strong>Tweede voorzitter:</strong> Larashoofd Kota nan Sadang (Paje Koemboeh)</li>
@@ -888,18 +763,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   </div>
   </div>
 
-  
-    </div>
-    <div class="scroll-visual-col">
-<div class="geo-section fade-in">
+  <div class="geo-section fade-in">
     <div class="geo-title">Peta Dataran Tinggi Minangkabau</div>
     <div class="geo-subtitle">Lokasi-lokasi kunci dalam jaringan pendidikan kolonial 1856–1912</div>
     <div class="geo-canvas-wrap">
       <canvas id="canvas-geo" height="400"></canvas>
       <div class="geo-tooltip" id="tt-geo"></div>
-    </div>
-  </div>
-
     </div>
   </div>
 </section>
@@ -1150,7 +1019,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
           <div style="position:absolute;top:16px;left:-35px;width:85px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">Apr 1873<br>Gedung baru</div>
         </div>
 
-        <!-- 1873 schoolcommissie <span class="glossary-term" data-term="larashoofd">larashoofd</span> -->
+        <!-- 1873 schoolcommissie larashoofd -->
         <div style="position:absolute;left:39%;top:4px">
           <div style="width:10px;height:10px;border-radius:50%;background:var(--rust);margin-left:-5px"></div>
           <div style="position:absolute;top:16px;left:-35px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">1873<br>Schoolcommissie</div>
@@ -1168,7 +1037,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
           <div style="position:absolute;top:16px;left:-25px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">1885<br>Gedung baru lagi</div>
         </div>
 
-        <!-- ≈1890 Nawawi <span class="glossary-term" data-term="kweekeling">kweekeling</span> lulus -->
+        <!-- ≈1890 Nawawi kweekeling lulus -->
         <div style="position:absolute;left:60%;top:4px">
           <div style="width:12px;height:12px;border-radius:50%;background:var(--rust2);margin-left:-6px;border:2px solid var(--rust)"></div>
           <div style="position:absolute;top:16px;left:-25px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);line-height:1.4">≈1890<br>Nawawi lulus</div>
@@ -1233,7 +1102,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
         <div style="background:rgba(192,84,42,.1);border:.5px solid rgba(192,84,42,.3);border-radius:3px;padding:.85rem;border-top:2px solid var(--rust2)">
           <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1890 – 1907</div>
           <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Nawawi & Kebangkitan</div>
-          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Nawawi Soetan Makmoer: <span class="glossary-term" data-term="kweekeling">kweekeling</span> → onderwijzer → guru kweekschool. 1907: Vereeniging Minangkabau, 700 anggota. Sekolah melahirkan pemimpin organisasi modern.</p>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Nawawi Soetan Makmoer: kweekeling → onderwijzer → guru kweekschool. 1907: Vereeniging Minangkabau, 700 anggota. Sekolah melahirkan pemimpin organisasi modern.</p>
           <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--rust2);opacity:.7">Nawawi · Vereeniging · Larashoofd Agam</div>
         </div>
 
@@ -1254,10 +1123,10 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   <div class="fade-in grid-2col" style="margin-bottom:3rem">
     <div>
       <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300;margin-bottom:1.25rem">
-        <span class="lang-id">Eksistensi Kweekschool Fort de Kock tidak dapat dilepaskan dari dinamika kebijakan <em><span class="glossary-term" data-term="cultuurstelsel">Cultuurstelsel</span></em> yang diterapkan di Dataran Tinggi Minangkabau. Institusi pendidikan ini didirikan bukan sebagai manifestasi politik etis kolonial, melainkan sebagai instrumen birokratisasi guna mencetak aparatur lokal dengan kecakapan literasi dan numerasi. Kapasitas ini merupakan prasyarat esensial yang diperlukan untuk menunjang kelancaran tata kelola administrasi komoditas kopi dan ekosistem pemerintahan kolonial terbawah. Sebagai bagian dari rekayasa kontrol sosial ini, para patron adat seperti <em><span class="glossary-term" data-term="larashoofd">larashoofd</span></em>, <em><span class="glossary-term" data-term="panghoeloe">panghoeloe kapala</span></em>, dan <em>datuk-datuk</em> mulai diintegrasikan secara struktural. Mereka diberikan akses awal terhadap pendidikan Barat serta dilembagakan melalui keanggotaan dalam <em><span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span></em>. Melalui strategi kooptasi ini, figur elite bumiputra memikul fungsi ganda: bertransformasi menjadi pelumas birokrasi, sekaligus beroperasi sebagai mediator organik antara kontrolir Belanda dan masyarakat di sekelilingnya.</span><span class="lang-en">The existence of Kweekschool Fort de Kock cannot be separated from the dynamics of the <em><span class="glossary-term" data-term="cultuurstelsel">Cultuurstelsel</span></em> policy applied in the Minangkabau Highlands. This educational institution was established not as a manifestation of colonial ethical politics, but as an instrument of bureaucratization to produce a local apparatus with literacy and numeracy skills. This capacity was an essential prerequisite needed to support the smooth administration of coffee commodities and the lowest tier of the colonial government ecosystem. As part of this social engineering, indigenous elites like the <span class="glossary-term" data-term="larashoofd">larashoofd</span>, <span class="glossary-term" data-term="panghoeloe">panghoeloe kapala</span>, and datuks began to be structurally integrated. Through this co-optation strategy, indigenous elite figures bore a dual function: transforming into bureaucratic lubricants, while operating as organic mediators between Dutch controllers and the surrounding society.</span><span class="lang-nl">Het bestaan van Kweekschool Fort de Kock kan niet los worden gezien van de dynamiek van het <em><span class="glossary-term" data-term="cultuurstelsel">Cultuurstelsel</span></em>-beleid dat werd toegepast in de Minangkabause Hooglanden. Deze onderwijsinstelling werd niet opgericht als uiting van koloniale ethische politiek, maar als een instrument van bureaucratisering om een lokaal apparaat te creëren met lees- en rekenvaardigheden. Deze capaciteit was een essentiële voorwaarde om het soepele beheer van koffiegrondstoffen en het onderste niveau van het koloniale overheidsecosysteem te ondersteunen. Als onderdeel van deze sociale controle werden inheemse elites zoals de <span class="glossary-term" data-term="larashoofd">larashoofd</span>, <span class="glossary-term" data-term="panghoeloe">panghoeloe kapala</span> en datoeks structureel geïntegreerd. Via deze coöptatiestrategie droegen inheemse elitefiguren een dubbele functie: ze transformeerden tot bureaucratische smeermiddelen en fungeerden tegelijkertijd als organische bemiddelaars tussen Nederlandse controleurs en de omringende samenleving.</span>
+        Eksistensi Kweekschool Fort de Kock tidak dapat dilepaskan dari dinamika kebijakan <em>Cultuurstelsel</em> yang diterapkan di Dataran Tinggi Minangkabau. Institusi pendidikan ini didirikan bukan sebagai manifestasi politik etis kolonial, melainkan sebagai instrumen birokratisasi guna mencetak aparatur lokal dengan kecakapan literasi dan numerasi. Kapasitas ini merupakan prasyarat esensial yang diperlukan untuk menunjang kelancaran tata kelola administrasi komoditas kopi dan ekosistem pemerintahan kolonial terbawah. Sebagai bagian dari rekayasa kontrol sosial ini, para patron adat seperti <em>larashoofd</em>, <em>panghoeloe kapala</em>, dan <em>datuk-datuk</em> mulai diintegrasikan secara struktural. Mereka diberikan akses awal terhadap pendidikan Barat serta dilembagakan melalui keanggotaan dalam <em>Plaatselijke Inlandsche Schoolcommissie</em>. Melalui strategi kooptasi ini, figur elite bumiputra memikul fungsi ganda: bertransformasi menjadi pelumas birokrasi, sekaligus beroperasi sebagai mediator organik antara kontrolir Belanda dan masyarakat di sekelilingnya.
       </p>
       <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300;margin-bottom:1.25rem">
-        Data dari koran sezaman (1859–1915) memperlihatkan betapa terstrukturnya proses ini: <strong style="color:var(--rust)">86,7% entri</strong> — atau 1.222 dari 1.410 dokumen — menunjukkan afiliasi langsung antara pejabat pribumi dan sistem pendidikan. Di antaranya: <strong style="color:var(--rust)">421 entri</strong> menyebut datuk/datoe; <strong style="color:var(--rust)">401</strong> melibatkan penghulu; <strong style="color:var(--rust)">334</strong> menyebut <span class="glossary-term" data-term="mantri">mantri</span> terkait sekolah; dan <strong style="color:var(--rust)">30 entri</strong> menunjukkan <span class="glossary-term" data-term="larashoofd">larashoofd</span> dan datuk duduk langsung di schoolcommissie.
+        Data dari koran sezaman (1859–1915) memperlihatkan betapa terstrukturnya proses ini: <strong style="color:var(--rust)">86,7% entri</strong> — atau 1.222 dari 1.410 dokumen — menunjukkan afiliasi langsung antara pejabat pribumi dan sistem pendidikan. Di antaranya: <strong style="color:var(--rust)">421 entri</strong> menyebut datuk/datoe; <strong style="color:var(--rust)">401</strong> melibatkan penghulu; <strong style="color:var(--rust)">334</strong> menyebut mantri terkait sekolah; dan <strong style="color:var(--rust)">30 entri</strong> menunjukkan larashoofd dan datuk duduk langsung di schoolcommissie.
       </p>
       <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300">
         Nama-nama mereka berbunyi dalam bahasa adat: <em>Si Mohamad Chorib galar Datoe Bilang Sakotta</em>, <em>Si Marahoesien galar Toeankoe Maharadji</em>, <em>Si Tolang galar Datoe Besar</em>. Bukan nama-nama tanpa gelar. Gelar itu bukan sekadar ornamen — ia adalah posisi adat yang sudah lama berakar jauh sebelum Belanda datang.
@@ -1272,7 +1141,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-left:3px solid var(--teal)">
         <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--teal);line-height:1">421</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:4px">Entri datuk/datoe terkait sistem persekolahan</div>
-        <div style="font-size:.82rem;color:var(--ink3);margin-top:.4rem;line-height:1.5">Termasuk 30 <span class="glossary-term" data-term="larashoofd">larashoofd</span> & datuk yang duduk di schoolcommissie</div>
+        <div style="font-size:.82rem;color:var(--ink3);margin-top:.4rem;line-height:1.5">Termasuk 30 larashoofd & datuk yang duduk di schoolcommissie</div>
       </div>
       <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-left:3px solid var(--amber)">
         <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--amber);line-height:1">95%</div>
@@ -1287,12 +1156,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 70% 50%,rgba(139,58,30,.15) 0%,transparent 70%)"></div>
     <div class="grid-2col gap-3 align-center" style="position:relative;z-index:1;">
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--paper);line-height:1.5;margin-bottom:1rem"><span class="lang-id">"Iyokan nan diurang, laluan nan diawak"</span><span class="lang-en">"Agree to what others ask, but walk your own path"</span><span class="lang-nl">"Ga akkoord met wat anderen vragen, maar bewandel je eigen pad"</span></div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--paper);line-height:1.5;margin-bottom:1rem">"Iyokan nan diurang, laluan nan diawak"</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35);margin-bottom:1.25rem">Pepatah Minangkabau</div>
-        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300"><span class="lang-id">Setujui apa yang orang lain minta — tapi tempuh jalanmu sendiri. Inilah yang terbaca dari cara masyarakat Minangkabau merespons sistem pendidikan kolonial: mereka <em style="color:var(--amber2)">tidak menolak</em>, mereka <em style="color:var(--amber2)">masuk ke dalam sistem</em> dan memanfaatkannya sebaik-baiknya.</span><span class="lang-en">Agree to what others ask — but walk your own path. This is evident from how the Minangkabau society responded to the colonial education system: they <em style="color:var(--amber2)">did not reject it</em>, they <em style="color:var(--amber2)">entered the system</em> and made the best use of it.</span><span class="lang-nl">Stem in met wat anderen vragen — maar bewandel je eigen pad. Dit is duidelijk te zien aan hoe de Minangkabause samenleving reageerde op het koloniale onderwijssysteem: ze <em style="color:var(--amber2)">wezen het niet af</em>, ze <em style="color:var(--amber2)">traden het systeem binnen</em> en maakten er optimaal gebruik van.</span></p>
+        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300">Setujui apa yang orang lain minta — tapi tempuh jalanmu sendiri. Inilah yang terbaca dari cara masyarakat Minangkabau merespons sistem pendidikan kolonial: mereka <em style="color:var(--amber2)">tidak menolak</em>, mereka <em style="color:var(--amber2)">masuk ke dalam sistem</em> dan memanfaatkannya sebaik-baiknya.</p>
       </div>
       <div>
-        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300;margin-bottom:1rem">Belanda memberikan akses pendidikan kepada <span class="glossary-term" data-term="larashoofd">larashoofd</span> dan datuk-datuk sebagai alat kontrol sosial. Namun anak-kemenakan mereka menyerap lebih dari yang diharapkan: bahasa Belanda, ilmu hitung, peta dunia, dan — paling penting — <strong style="color:var(--amber2)">kesadaran bahwa dunia lebih luas dari kampung halaman</strong>.</p>
+        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300;margin-bottom:1rem">Belanda memberikan akses pendidikan kepada larashoofd dan datuk-datuk sebagai alat kontrol sosial. Namun anak-kemenakan mereka menyerap lebih dari yang diharapkan: bahasa Belanda, ilmu hitung, peta dunia, dan — paling penting — <strong style="color:var(--amber2)">kesadaran bahwa dunia lebih luas dari kampung halaman</strong>.</p>
         <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300">Kweekschool yang awalnya dirancang untuk mencetak juru tulis kolonial, justru menjadi persemaian: dari sana lahir guru-guru yang mengajar anak negeri, tokoh-tokoh yang mendirikan organisasi modern, dan pemikir-pemikir yang kelak mengguncang fondasi kolonialisme itu sendiri.</p>
       </div>
     </div>
@@ -1306,7 +1175,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-top:2px solid var(--teal)">
         <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Datuk → Anggota Komisie Sekolah</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">1873–1912 · 43 entri terdokumentasi</div>
-        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Larashoofd dan datuk dengan gelar adat — <em>galar Datoe</em>, <em>galar Toeankoe</em> — masuk dalam <span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span>. Akses formal pertama penguasa lokal ke sistem pendidikan kolonial.</p>
+        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Larashoofd dan datuk dengan gelar adat — <em>galar Datoe</em>, <em>galar Toeankoe</em> — masuk dalam Plaatselijke Inlandsche Schoolcommissie. Akses formal pertama penguasa lokal ke sistem pendidikan kolonial.</p>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border)">Sumatra-courant, 1873–1882 · KB C 47</div>
       </div>
 
@@ -1340,7 +1209,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       "Sekolah yang dirancang untuk menghasilkan juru tulis bagi Belanda, justru menghasilkan juru bicara bagi bangsa sendiri."
     </p>
     <p style="font-size:.88rem;color:var(--ink3);line-height:1.75;font-weight:300">
-      Masyarakat Minangkabau tidak sekadar <em>menerima</em> pendidikan kolonial — mereka <em>mengolahnya</em>. Setiap <span class="glossary-term" data-term="larashoofd">larashoofd</span> yang duduk dalam komisie sekolah, setiap <span class="glossary-term" data-term="kweekeling">kweekeling</span> yang lulus ujian di Padang, setiap guru yang mengajar anak negeri — mereka adalah agen perubahan yang tidak terdeteksi oleh radar kolonial. Merunduk, bukan tunduk.
+      Masyarakat Minangkabau tidak sekadar <em>menerima</em> pendidikan kolonial — mereka <em>mengolahnya</em>. Setiap larashoofd yang duduk dalam komisie sekolah, setiap kweekeling yang lulus ujian di Padang, setiap guru yang mengajar anak negeri — mereka adalah agen perubahan yang tidak terdeteksi oleh radar kolonial. Merunduk, bukan tunduk.
     </p>
   </div>
 
@@ -1359,7 +1228,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
     <div class="source-item"><div class="src-name">Vereeniging Minangkabau</div><div class="src-detail">17 Okt 1907: pendirian<br>Okt–Nov 1908: 4 koran besar meliput<br>700 anggota · Nawawi voorzitter<br>→ KB C 21, C 64, C 96, C 226</div></div>
     <div class="source-item"><div class="src-name">Schoolcommissie Besluiten</div><div class="src-detail">Des 1873: Fort van der Capellen<br>Nov 1874: Palembajan, Bondjol, Lintoe<br>Nov 1878: Loeboe Sikaping<br>→ KB C 47, KB 1640 C 1</div></div>
     <div class="source-item"><div class="src-name">Staatsblad & Besluiten</div><div class="src-detail">1 April 1856 No. 13: pendirian percobaan<br>8 Feb 1858 No. 85: penetapan permanen<br>1874: Tanah-Batoe → Padang Sidempoean<br>→ Tijdschrift jrg 3, 1869</div></div>
-    <div class="source-item"><div class="src-name">Delpher Dataset</div><div class="src-detail">1.410 entri koran sezaman (1870–1914)<br>58 entri: "kweekschool"<br>868 entri: <span class="glossary-term" data-term="larashoofd">larashoofd</span> + sekolah<br>→ delpher_larashoofd_processed_data.xls</div></div>
+    <div class="source-item"><div class="src-name">Delpher Dataset</div><div class="src-detail">1.410 entri koran sezaman (1870–1914)<br>58 entri: "kweekschool"<br>868 entri: larashoofd + sekolah<br>→ delpher_larashoofd_processed_data.xls</div></div>
     <div class="source-item"><div class="src-name">Paken Malam & Sosial</div><div class="src-detail">Juni 1906: Festival Fort de Kock<br>April 1899: Nawawi pemilik kuda balap<br>Kontrolir Barthélemy, Westenenk<br>→ Delpher KB C 64</div></div>
   </div>
 </section>
@@ -1385,24 +1254,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   </div>
 </footer>
 
-
 <script>
-function setLang(lang) {
-    document.body.classList.remove('en-mode', 'nl-mode', 'id-mode');
-    if (lang !== 'id') {
-        document.body.classList.add(lang + '-mode');
-    }
-    document.querySelectorAll('.nav-lang-btn').forEach(b => {
-        b.classList.remove('active');
-        b.style.opacity = '0.5';
-    });
-    const activeBtn = document.getElementById('btn-' + lang);
-    if(activeBtn) {
-        activeBtn.classList.add('active');
-        activeBtn.style.opacity = '1';
-    }
-}
-
 // ─── INTRO SPLASH ───
 let introTimeout;
 function dismissIntro(){
@@ -1485,19 +1337,19 @@ function switchTab(id){
 // ─── NETWORK DATA ───
 const PRIBUMI_NODES = [
   {id:'fdk',x:.5,y:.08,r:26,col:'#888780',label:'Kweekschool\nFort de Kock',role:'Institusi Pusat',body:'Kweekschool untuk guru-guru bumiputra di Bukittinggi. Berdiri 1856. Melahirkan generasi guru dan tokoh masyarakat Minangkabau.',career:[]},
-  {id:'nawawi',x:.5,y:.35,r:22,col:'#8b3a1e',label:'Nawawi\nSoetan Makmoer',role:'Kweekeling → Onderwijzer → Ketua Org.',body:'Dari <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock, lulus ujian hulponderwijzer di Padang, onderwijzer kelas 1, guru Melayu kweekschool. Ketua Vereeniging Minangkabau (1907).',career:['≈1880an: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> di FdK','≈1885: Lulus ujian hulponderwijzer Padang','≈1890an: Onderwijzer kelas 1, FdK','≈1895: Guru bahasa Melayu kweekschool FdK','1899: Figur sosial (pacuan kuda)','1906: Notabel Paken Malam','1907: Voorzitter Vereeniging Minangkabau']},
-  {id:'hamzah',x:.2,y:.35,r:16,col:'#d4962e',label:'Si Hamzah',role:'Kweekeling → Hulponderwijzer → Probolinggo',body:'Rekan seangkatan Nawawi dari Pantai Barat Sumatra. Lulus ujian hulponderwijzer bersama Nawawi di Padang. Ditempatkan di kweekschool Probolinggo — menghubungkan jaringan Sumatra-Jawa.',career:['≈1880an: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> FdK','Lulus ujian hulponderwijzer Padang','Hulponderwijzer kelas 1, Probolinggo']},
-  {id:'sakin',x:.75,y:.3,r:14,col:'#d4962e',label:'Sakin',role:'Kweekeling → Onderwijzer Koto Gadang',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Koto Gadang (Agam).',career:['Kweekeling FdK','Onderwijzer kelas 1, Koto Gadang (Agam)']},
-  {id:'rinding',x:.85,y:.45,r:13,col:'#d4962e',label:'Rinding',role:'Kweekeling → Onderwijzer Batahan',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Batahan (Tapanuli).',career:['Kweekeling FdK','Onderwijzer kelas 1, Batahan (Tapanuli)']},
-  {id:'salim',x:.65,y:.48,r:13,col:'#d4962e',label:'Salim',role:'Kweekeling → Onderwijzer Payakumbuh',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di Payakumbuh (Padangsche Bovenlanden).',career:['Kweekeling FdK','Onderwijzer kelas 1, Payakumbuh']},
-  {id:'chorib',x:.15,y:.55,r:16,col:'#c0542a',label:'Si Mohamad Chorib\n(Datoe Bilang Sakotta)',role:'Larashoofd van Salimpawang',body:'Larashoofd van Salimpawang. Anggota pertama <span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span> Fort van der Capellen (1873). Tanda formal pertama integrasi <span class="glossary-term" data-term="larashoofd">larashoofd</span> ke sistem pendidikan.',career:['Larashoofd van Salimpawang','1873: Anggota Schoolcommissie Fort van der Capellen']},
+  {id:'nawawi',x:.5,y:.35,r:22,col:'#8b3a1e',label:'Nawawi\nSoetan Makmoer',role:'Kweekeling → Onderwijzer → Ketua Org.',body:'Dari kweekeling Fort de Kock, lulus ujian hulponderwijzer di Padang, onderwijzer kelas 1, guru Melayu kweekschool. Ketua Vereeniging Minangkabau (1907).',career:['≈1880an: Kweekeling di FdK','≈1885: Lulus ujian hulponderwijzer Padang','≈1890an: Onderwijzer kelas 1, FdK','≈1895: Guru bahasa Melayu kweekschool FdK','1899: Figur sosial (pacuan kuda)','1906: Notabel Paken Malam','1907: Voorzitter Vereeniging Minangkabau']},
+  {id:'hamzah',x:.2,y:.35,r:16,col:'#d4962e',label:'Si Hamzah',role:'Kweekeling → Hulponderwijzer → Probolinggo',body:'Rekan seangkatan Nawawi dari Pantai Barat Sumatra. Lulus ujian hulponderwijzer bersama Nawawi di Padang. Ditempatkan di kweekschool Probolinggo — menghubungkan jaringan Sumatra-Jawa.',career:['≈1880an: Kweekeling FdK','Lulus ujian hulponderwijzer Padang','Hulponderwijzer kelas 1, Probolinggo']},
+  {id:'sakin',x:.75,y:.3,r:14,col:'#d4962e',label:'Sakin',role:'Kweekeling → Onderwijzer Koto Gadang',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Koto Gadang (Agam).',career:['Kweekeling FdK','Onderwijzer kelas 1, Koto Gadang (Agam)']},
+  {id:'rinding',x:.85,y:.45,r:13,col:'#d4962e',label:'Rinding',role:'Kweekeling → Onderwijzer Batahan',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Batahan (Tapanuli).',career:['Kweekeling FdK','Onderwijzer kelas 1, Batahan (Tapanuli)']},
+  {id:'salim',x:.65,y:.48,r:13,col:'#d4962e',label:'Salim',role:'Kweekeling → Onderwijzer Payakumbuh',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di Payakumbuh (Padangsche Bovenlanden).',career:['Kweekeling FdK','Onderwijzer kelas 1, Payakumbuh']},
+  {id:'chorib',x:.15,y:.55,r:16,col:'#c0542a',label:'Si Mohamad Chorib\n(Datoe Bilang Sakotta)',role:'Larashoofd van Salimpawang',body:'Larashoofd van Salimpawang. Anggota pertama Plaatselijke Inlandsche Schoolcommissie Fort van der Capellen (1873). Tanda formal pertama integrasi larashoofd ke sistem pendidikan.',career:['Larashoofd van Salimpawang','1873: Anggota Schoolcommissie Fort van der Capellen']},
   {id:'marahoesien',x:.38,y:.62,r:15,col:'#c0542a',label:'Si Marahoesien\n(Toekoe Maharadji)',role:'Larashoofd der VIII Kottas',body:'Larashoofd der VIII Kottas. Anggota Schoolkommissie Palembajan (1874). Mewakili ekspansi sistem ke sub-divisi lebih luas.',career:['Larashoofd der VIII Kottas','1874: Anggota Schoolkommissie Palembajan']},
   {id:'brahrim',x:.25,y:.72,r:14,col:'#c0542a',label:'Si Djo Brahrim\n(Datoe Noear Hamat)',role:'Larashoofd van Lintoe',body:'Larashoofd van Lintoe. Anggota Schoolcommissie Boea (1874). Berpasangan dengan kontrolir D.P. Jentink.',career:['Larashoofd van Lintoe','1874: Anggota Schoolcommissie Boea']},
-  {id:'kns',x:.6,y:.65,r:17,col:'#c0542a',label:'Larashoofd\nKota nan Sadang',role:'Wakil Ketua Vereeniging Minangkabau',body:'Larashoofd Kota nan Sadang (Paje Koemboeh). Tweede voorzitter Vereeniging Minangkabau (1907). Transisi dari <span class="glossary-term" data-term="larashoofd">larashoofd</span> sebagai alat kolonial menjadi agen gerakan intelektual.',career:['Larashoofd Kota nan Sadang (Paje Koemboeh)','1907: Tweede voorzitter Vereeniging Minangkabau']},
-  {id:'kiva',x:.78,y:.68,r:16,col:'#c0542a',label:'Larashoofd\nIV Kota (Agam)',role:'Sekretaris Vereeniging Minangkabau',body:'Larashoofd IV Kota, Agam. Secretaris Vereeniging Minangkabau. Bersama Nawawi dan <span class="glossary-term" data-term="larashoofd">larashoofd</span> Kota nan Sadang, membentuk pimpinan organisasi modern bumiputra pertama Pantai Barat Sumatra.',career:['Larashoofd IV Kota, Agam','1907: Secretaris Vereeniging Minangkabau']},
-  {id:'vma',x:.5,y:.82,r:18,col:'#8b3a1e',label:'Vereeniging\nMinangkabau',role:'Organisasi Modern 1907',body:'Berdiri 17 Okt 1907 di Fort de Kock. Nawawi sebagai voorzitter, dibantu dua <span class="glossary-term" data-term="larashoofd">larashoofd</span> dan dua guru kweekschool sebagai redaksi. 700 anggota. Majalah bulanan. Mendahului Budi Utomo di luar Jawa.',career:[]},
-  {id:'mantri',x:.3,y:.88,r:13,col:'#534AB7',label:'Mantri Soepajang',role:'Inisiator Vereeniging',body:'Para <span class="glossary-term" data-term="mantri">mantri</span> (pengawas kebun kopi/teh) dari Soepajang menjadi inisiator awal Vereeniging, bekerja sama dengan kontrolir Barthélemy. Menunjukkan bahwa gerakan lahir dari lapisan menengah birokrasi.',career:['Mantri cultures, Soepajang','Inisiator Vereeniging Minangkabau']},
-  {id:'ibrahim',x:.18,y:.22,r:17,col:'#2a8c7e',label:'Ibrahim\n(Tan Malaka)',role:'Kweekeling FdK \u2192 Tokoh Pergerakan',body:'Kweekeling di kweekschool Fort de Kock (\u00b11908\u20131912). Murid G.H. Horensma. Kelak bergelar Tan Malaka \u2014 salah satu pemikir dan tokoh pergerakan kemerdekaan Indonesia terpenting abad ke-20.',career:['\u00b11908\u20131912: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> di kweekschool Fort de Kock','Murid G.H. Horensma','Kelak dikenal sebagai Tan Malaka','Pemikir \u0026 tokoh pergerakan nasional']},
+  {id:'kns',x:.6,y:.65,r:17,col:'#c0542a',label:'Larashoofd\nKota nan Sadang',role:'Wakil Ketua Vereeniging Minangkabau',body:'Larashoofd Kota nan Sadang (Paje Koemboeh). Tweede voorzitter Vereeniging Minangkabau (1907). Transisi dari larashoofd sebagai alat kolonial menjadi agen gerakan intelektual.',career:['Larashoofd Kota nan Sadang (Paje Koemboeh)','1907: Tweede voorzitter Vereeniging Minangkabau']},
+  {id:'kiva',x:.78,y:.68,r:16,col:'#c0542a',label:'Larashoofd\nIV Kota (Agam)',role:'Sekretaris Vereeniging Minangkabau',body:'Larashoofd IV Kota, Agam. Secretaris Vereeniging Minangkabau. Bersama Nawawi dan larashoofd Kota nan Sadang, membentuk pimpinan organisasi modern bumiputra pertama Pantai Barat Sumatra.',career:['Larashoofd IV Kota, Agam','1907: Secretaris Vereeniging Minangkabau']},
+  {id:'vma',x:.5,y:.82,r:18,col:'#8b3a1e',label:'Vereeniging\nMinangkabau',role:'Organisasi Modern 1907',body:'Berdiri 17 Okt 1907 di Fort de Kock. Nawawi sebagai voorzitter, dibantu dua larashoofd dan dua guru kweekschool sebagai redaksi. 700 anggota. Majalah bulanan. Mendahului Budi Utomo di luar Jawa.',career:[]},
+  {id:'mantri',x:.3,y:.88,r:13,col:'#534AB7',label:'Mantri Soepajang',role:'Inisiator Vereeniging',body:'Para mantri (pengawas kebun kopi/teh) dari Soepajang menjadi inisiator awal Vereeniging, bekerja sama dengan kontrolir Barthélemy. Menunjukkan bahwa gerakan lahir dari lapisan menengah birokrasi.',career:['Mantri cultures, Soepajang','Inisiator Vereeniging Minangkabau']},
+  {id:'ibrahim',x:.18,y:.22,r:17,col:'#2a8c7e',label:'Ibrahim\n(Tan Malaka)',role:'Kweekeling FdK \u2192 Tokoh Pergerakan',body:'Kweekeling di kweekschool Fort de Kock (\u00b11908\u20131912). Murid G.H. Horensma. Kelak bergelar Tan Malaka \u2014 salah satu pemikir dan tokoh pergerakan kemerdekaan Indonesia terpenting abad ke-20.',career:['\u00b11908\u20131912: Kweekeling di kweekschool Fort de Kock','Murid G.H. Horensma','Kelak dikenal sebagai Tan Malaka','Pemikir \u0026 tokoh pergerakan nasional']},
 ];
 
 const BELANDA_NODES = [
@@ -1512,7 +1364,7 @@ const BELANDA_NODES = [
   {id:'laats',x:.5,y:.52,r:16,col:'#d4962e',label:'J.H.J. Laats',role:'Hoofdonderwijzer FdK (1874)',body:'Diangkat kepala sekolah Fort de Kock menggantikan Spönhoff (Feb 1874). Memimpin pada era pembenahan pascakemerosotan.',career:['Onderwijzer','Feb 1874: Hoofdonderwijzer, Fort de Kock']},
   {id:'weide',x:.65,y:.5,r:14,col:'#c0542a',label:'W.F. Weide',role:'Guru Kedua FdK (1873)',body:'Asisten guru pertama dari sekolah dasar publik Batavia, ditugaskan sebagai guru kedua di kweekschool Fort de Kock (Nov 1873). Bagian dari pembenahan staf pasca-kemerosotan.',career:['Hulponderwijzer 1e kl., Sekolah dasar Batavia','Nov 1873: Guru kedua (waarneming), kweekschool FdK']},
   {id:'oostergetel',x:.8,y:.52,r:14,col:'#c0542a',label:'Oostergetel',role:'Guru FdK → Transfer ke Tondano',body:'Guru di kweekschool Fort de Kock yang diperbantukan ke kweekschool Tondano (Feb 1874). Transfer pertama yang terdokumentasi antar-kweekschool — tanda integrasi jaringan mulai berjalan.',career:['Guru, kweekschool Fort de Kock','Feb 1874: Diperbantukan ke kweekschool Tondano']},
-  {id:'barthelemy',x:.2,y:.72,r:15,col:'#639922',label:'Kontrolir Barthélemy',role:'Kontrolir · Co-inisiator Vereeniging',body:'Kontrolir yang bekerja sama dengan para <span class="glossary-term" data-term="mantri">mantri</span> Soepajang untuk menginisiasi Vereeniging Minangkabau. Hadir juga di Paken Malam 1906 sebagai bagian panitia.',career:['Kontrolir, Dataran Tinggi Padang','1906: Anggota panitia Paken Malam FdK','1907: Co-inisiator Vereeniging Minangkabau']},
+  {id:'barthelemy',x:.2,y:.72,r:15,col:'#639922',label:'Kontrolir Barthélemy',role:'Kontrolir · Co-inisiator Vereeniging',body:'Kontrolir yang bekerja sama dengan para mantri Soepajang untuk menginisiasi Vereeniging Minangkabau. Hadir juga di Paken Malam 1906 sebagai bagian panitia.',career:['Kontrolir, Dataran Tinggi Padang','1906: Anggota panitia Paken Malam FdK','1907: Co-inisiator Vereeniging Minangkabau']},
   {id:'westenenk',x:.38,y:.75,r:15,col:'#639922',label:'Kontrolir Westenenk',role:'Kontrolir · Penggerak Vereeniging',body:'Kontrolir yang bersama Barthélemy menggerakkan kepala-kepala Agam untuk bergabung dalam Vereeniging Minangkabau. Tercatat hadir di Paken Malam 1906.',career:['Kontrolir, Dataran Tinggi Padang','1906: Hadir di Paken Malam FdK','1907: Mendorong pembentukan Vereeniging']},
   {id:'pruys',x:.6,y:.72,r:13,col:'#185FA5',label:'A. Pruys v. d. Hoeven',role:'Asisten Residen · Sponsor Iskander',body:'Asisten Residen yang memberi kesempatan kepada W. Iskander untuk membuka kweekschool Tanah-Batoe. Berkontribusi pada pembentukan jaringan kweekschool alternatif di Sumatra.',career:['Asisten Residen','Membuka peluang kweekschool Tanah-Batoe untuk Iskander']},
   {id:'iskander',x:.78,y:.7,r:16,col:'#2a8c7e',label:'W. Iskander',role:'Guru Pribumi Lulusan Belanda',body:'Pribumi yang dididik menjadi guru di Belanda — satu-satunya pada eranya. Memimpin kweekschool Tanah-Batoe dengan hasil luar biasa. Inspektur memujinya habis-habisan: hampir semua lulusannya berhasil.',career:['Dididik sebagai guru di Belanda','Kepala kweekschool Tanah-Batoe (Tapanuli)','Inspektur: "Een uitmuntende geest heerscht onder hen"']},
@@ -1896,7 +1748,7 @@ const GEO_PLACES = [
   {id:'sawahlunto',name:'Sawahlunto',x:.58,y:.58,r:7,col:'#888780',detail:'Tambang batu bara\nWilayah pendidikan'},
   {id:'palembajan',name:'Palembajan',x:.42,y:.42,r:7,col:'#c0542a',detail:'Schoolcommissie (1874)\nLarashoofd VIII Kottas'},
   {id:'bondjol',name:'Bondjol',x:.38,y:.22,r:7,col:'#c0542a',detail:'Schoolcommissie\nLarashoofd Si Nailic'},
-  {id:'soepajang',name:'Soepajang',x:.52,y:.68,r:7,col:'#534AB7',detail:'Asal <span class="glossary-term" data-term="mantri">mantri</span> inisiator\nVereeniging Minangkabau'},
+  {id:'soepajang',name:'Soepajang',x:.52,y:.68,r:7,col:'#534AB7',detail:'Asal mantri inisiator\nVereeniging Minangkabau'},
   {id:'boea',name:'Boea',x:.62,y:.48,r:7,col:'#c0542a',detail:'Schoolcommissie (1874)\nLarashoofd van Lintoe'},
 ];
 const GEO_CONNECTIONS = [
@@ -2019,91 +1871,7 @@ const geoCanvas = document.getElementById('canvas-geo');
 if(geoCanvas) geoObs.observe(geoCanvas.parentElement);
 window.addEventListener('resize',()=>{if(document.getElementById('canvas-geo'))drawGeoMap();});
 
-
-// SCROLL TELLING OBSERVER
-document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        root: null,
-        rootMargin: '-30% 0px -50% 0px', // Trigger when card is vertically centered
-        threshold: 0
-    };
-
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Dim all cards
-                document.querySelectorAll('.scroll-text-col .tl-card').forEach(c => {
-                    c.style.opacity = '0.3';
-                    c.style.transform = 'scale(0.98)';
-                });
-                
-                // Highlight the active card
-                const activeCard = entry.target.querySelector('.tl-card');
-                if (activeCard) {
-                    activeCard.style.opacity = '1';
-                    activeCard.style.transform = 'scale(1.02)';
-                    activeCard.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                }
-
-                // If this is Nawawi career cards, we can do map logic here later
-                if (window.drawGeoMap && document.getElementById('canvas-geo')) {
-                     // slight visual feedback on map optionally
-                }
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-text-col .tl-event').forEach(el => {
-        scrollObserver.observe(el);
-    });
-});
-
-
-// GLOSSARY DICTIONARY
-const glossaryDict = {
-    'kweekeling': 'Murid pribumi calon guru yang menempuh pendidikan berstandar Eropa di Kweekschool.',
-    'larashoofd': 'Kepala Laras, elit birokrasi pemerintahan pribumi bentukan Belanda di Minangkabau yang membawahi federasi nagari-nagari.',
-    'panghoeloe': 'Penghulu Kepala, pemuka adat yang diangkat kolonial sebagai perpanjangan tangan birokrasi formal di tingkat nagari.',
-    'cultuurstelsel': 'Kebijakan ekonomi kolonial administratif yang mewajibkan rakyat menanam komoditas ekspor (kopi) demi kepentingan Belanda.',
-    'schoolcommissie': 'Komisi Pengawas Sekolah Pribumi Lokal, lembaga kehormatan untuk mengawal pendidikan sekolah rendahan.',
-    'mantri': 'Pejabat teknis tingkat bawah dalam hierarki birokrasi Hindia Belanda (seperti mantri cacar).'
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    const tooltip = document.getElementById('glossary-tooltip');
-    const titleEl = document.getElementById('gt-title');
-    const descEl = document.getElementById('gt-desc');
-
-    document.querySelectorAll('.glossary-term').forEach(term => {
-        term.addEventListener('mouseenter', (e) => {
-            const key = term.getAttribute('data-term').toLowerCase();
-            const rect = term.getBoundingClientRect();
-            
-            if(glossaryDict[key]) {
-                titleEl.innerText = term.innerText;
-                descEl.innerText = glossaryDict[key];
-                
-                let top = rect.bottom + window.scrollY + 8;
-                let left = rect.left + window.scrollX;
-                
-                if (left + 260 > window.innerWidth) {
-                    left = window.innerWidth - 270;
-                }
-                
-                tooltip.style.top = top + 'px';
-                tooltip.style.left = left + 'px';
-                tooltip.classList.add('show');
-            }
-        });
-
-        term.addEventListener('mouseleave', () => {
-             tooltip.classList.remove('show');
-        });
-    });
-});
-
 </script>
 <div class="cite-toast" id="cite-toast">Sitasi disalin ke clipboard</div>
 </body>
 </html>
-
