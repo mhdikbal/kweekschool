@@ -299,6 +299,17 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 #trajektori::after{content:'';position:absolute;top:-20px;right:-20px;bottom:-20px;width:600px;background:url('murid2-kweekschool-fort-de-kock-1888-nawawi-kramer-1908-p-26.webp') center 20%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);pointer-events:none;filter:grayscale(1) sepia(0.2) contrast(1.2);z-index:0;}
 #trajektori > *{position:relative;z-index:1}
 
+/* RESPONSIVE TEXT GRIDS */
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.grid-2col.gap-3 { gap: 3rem; }
+.grid-2col.align-center { align-items: center; }
+.grid-5col { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-top: 1rem; }
+
+@media (max-width: 768px) {
+  .grid-2col { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .grid-5col { grid-template-columns: 1fr !important; gap: 1rem !important; }
+}
+
 /* HORIZONTAL TIMELINE SCROLL */
 .timeline-puncak-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:1rem;scrollbar-width:thin;scrollbar-color:var(--rust2) var(--paper3)}
 .timeline-puncak-scroll::-webkit-scrollbar{height:6px}
@@ -1065,7 +1076,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
       </div><!-- end track -->
 
       <!-- ERA DETAIL CARDS -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-top:1rem">
+      <div class="grid-5col">
 
         <div style="background:rgba(26,92,82,.08);border:.5px solid rgba(26,92,82,.25);border-radius:3px;padding:.85rem;border-top:2px solid var(--teal)">
           <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1856 – 1860</div>
@@ -1109,7 +1120,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   </div><!-- end timeline puncak -->
 
   <!-- STAT GRID -->
-  <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3rem">
+  <div class="fade-in grid-2col" style="margin-bottom:3rem">
     <div>
       <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300;margin-bottom:1.25rem">
         Eksistensi Kweekschool Fort de Kock tidak dapat dilepaskan dari dinamika kebijakan <em>Cultuurstelsel</em> yang diterapkan di Dataran Tinggi Minangkabau. Institusi pendidikan ini didirikan bukan sebagai manifestasi politik etis kolonial, melainkan sebagai instrumen birokratisasi guna mencetak aparatur lokal dengan kecakapan literasi dan numerasi. Kapasitas ini merupakan prasyarat esensial yang diperlukan untuk menunjang kelancaran tata kelola administrasi komoditas kopi dan ekosistem pemerintahan kolonial terbawah. Sebagai bagian dari rekayasa kontrol sosial ini, para patron adat seperti <em>larashoofd</em>, <em>panghoeloe kapala</em>, dan <em>datuk-datuk</em> mulai diintegrasikan secara struktural. Mereka diberikan akses awal terhadap pendidikan Barat serta dilembagakan melalui keanggotaan dalam <em>Plaatselijke Inlandsche Schoolcommissie</em>. Melalui strategi kooptasi ini, figur elite bumiputra memikul fungsi ganda: bertransformasi menjadi pelumas birokrasi, sekaligus beroperasi sebagai mediator organik antara kontrolir Belanda dan masyarakat di sekelilingnya.
@@ -1143,7 +1154,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   <!-- QUOTE BESAR -->
   <div class="fade-in" style="background:var(--ink);padding:2.5rem;border-radius:3px;margin:2.5rem 0;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 70% 50%,rgba(139,58,30,.15) 0%,transparent 70%)"></div>
-    <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+    <div class="grid-2col gap-3 align-center" style="position:relative;z-index:1;">
       <div>
         <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--paper);line-height:1.5;margin-bottom:1rem">"Iyokan nan diurang, laluan nan diawak"</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35);margin-bottom:1.25rem">Pepatah Minangkabau</div>
