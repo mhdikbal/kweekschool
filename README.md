@@ -23,6 +23,13 @@ Tidak diperlukan *build pipeline* atau *compile*!
 2. Temukan dan klik ganda (`double-click`) file `index.html` dan buka via sembarang peramban modern (Chrome/Safari/Edge/Firefox).
 3. Live Web-based Story dapat diakses otomatis via: **[https://mhdikbal.github.io/kweekschool](https://mhdikbal.github.io/kweekschool)**.
 
+### 🔄 Cara Pembaruan (Git Pull)
+Jika repositori ini diperbarui (misalnya revisi konten atau penambahan dataset baru), Anda bisa memperbarui *local branch* komputer Anda dengan cara membuka folder proyek di terminal / Git Bash dan mengetik:
+```bash
+git pull origin main
+```
+Ini akan otomatis menarik ekstensi / *update* teraktual langsung dari GitHub ke komputer Anda tanpa harus *download* ulang secara manual.
+
 ## 🗃️ Referensi Data & Arsip
 Penelitian ini ditunjang sepenuhnya oleh arsip dokumen historis berbahasa Belanda hasil ekstraksi *Koninklijke Bibliotheek, Den Haag*:
 - Laporan Inspektur Pendidikan Masyarakat Pribumi (*Tijdschrift voor Neerland's Indië*)
