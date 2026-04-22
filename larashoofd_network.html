@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jejaring Larashoofd & Elite Lokal Minangkabau · 1873–1914</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a1410; --bg2: #251e18; --bg3: #2d241d; --bg4: #3d3228;
+  --ink: #f5f0e8; --ink2: #e4dccf; --ink3: #a39785; --ink4: #7a6a5a;
+  --rust: #c0542a; --rust2: #8b3a1e; --teal: #2a8c7e; --teal2: #1a5c52;
+  --amber: #d4962e; --amber2: #b07828; --blue: #378ADD; --blue2: #185FA5;
+  --purple: #7F77DD; --gray: #888780;
+  --border: rgba(245, 240, 232, 0.08); --border2: rgba(245, 240, 232, 0.15);
+  --glass: rgba(37, 30, 24, 0.75);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; background: #130f0c; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 13px; }
+
+/* ─ MAP LAYOUT ─ */
+.app { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+.canvas-wrap { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at center, var(--bg2) 0%, var(--bg) 100%); }
+
+/* ─ FLOATING UI ─ */
+.glass-panel { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 8px; }
+
+/* Top Header */
+.topbar { position: absolute; top: 1rem; left: 1rem; right: 1rem; z-index: 10; display: flex; align-items: center; padding: 0.5rem 1.25rem; gap: 1rem; }
+.back-btn { text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); background: rgba(212, 150, 46, 0.1); border: 1px solid rgba(212, 150, 46, 0.3); border-radius: 4px; padding: 6px 12px; transition: all 0.2s; white-space: nowrap; }
+.back-btn:hover { background: var(--amber); color: var(--bg); }
+.topbar-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.topbar-title em { font-style: italic; color: var(--amber); }
+.topbar-sep { width: 1px; height: 24px; background: var(--border2); }
+.tab-group { display: flex; gap: 4px; }
+.tab { padding: 6px 14px; border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink3); border: none; background: transparent; transition: all 0.2s; }
+.tab:hover { color: var(--ink); background: rgba(255,255,255,0.05); }
+.tab.active { background: var(--bg4); color: var(--ink); font-weight: 500; }
+.topbar-right { margin-left: auto; display: flex; gap: 0.75rem; align-items: center; }
+
+/* Sidebar */
+.sidebar-wrapper { position: absolute; top: 80px; left: 1rem; bottom: 1rem; z-index: 10; display: flex; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.sidebar-wrapper.collapsed { transform: translateX(calc(-100% - 1rem)); }
+.sidebar { width: 320px; height: 100%; overflow-y: auto; display: flex; flex-direction: column; }
+.sidebar-section { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+.sidebar-section:last-child { border-bottom: none; }
+.sidebar-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink4); margin-bottom: 0.75rem; display: block; }
+.collapse-btn { position: absolute; right: -36px; top: 0; width: 36px; height: 36px; background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--border); border-left: none; border-radius: 0 8px 8px 0; color: var(--ink2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.2s; z-index: 11; }
+.collapse-btn:hover { color: var(--amber); background: var(--bg3); }
+
+/* Elements */
+.search-wrap { position: relative; }
+.search-input { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 4px; padding: 6px 28px 6px 12px; color: var(--ink); font-size: 12px; width: 220px; outline: none; font-family: 'Inter', sans-serif; transition: border 0.2s; }
+.search-input::placeholder { color: var(--ink4); }
+.search-input:focus { border-color: var(--amber); background: rgba(0,0,0,0.4); }
+.search-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--ink4); }
+.icon-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px; color: var(--ink2); cursor: pointer; font-size: 11px; transition: all 0.2s; }
+.icon-btn:hover { background: rgba(255,255,255,0.1); color: var(--ink); }
+
+/* Stats & Legends */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.stat-card { background: rgba(0,0,0,0.15); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; }
+.stat-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--teal); line-height: 1; display: block; }
+.stat-lbl { font-size: 10px; color: var(--ink3); margin-top: 4px; line-height: 1.4; display: block; }
+
+.legend-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.legend-item { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; padding: 4px 6px; border-radius: 4px; transition: background 0.15s; }
+.legend-item:hover { background: rgba(255,255,255,0.05); }
+.legend-item.dim { opacity: 0.35; }
+.leg-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 4px rgba(0,0,0,0.5); }
+.leg-text { font-size: 11px; color: var(--ink2); }
+.leg-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--ink4); }
+
+/* Controls */
+.ctrl-row { display: flex; flex-direction: column; gap: 0.5rem; }
+.ctrl-label { font-size: 10px; color: var(--ink3); display: flex; justify-content: space-between; }
+.ctrl-slider { width: 100%; accent-color: var(--amber); height: 4px; border-radius: 2px; }
+.ctrl-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.ctrl-btn { padding: 5px 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 4px; color: var(--ink3); cursor: pointer; font-size: 11px; transition: all 0.15s; }
+.ctrl-btn:hover, .ctrl-btn.active { background: var(--bg4); color: var(--ink); border-color: var(--border2); }
+
+/* Filters */
+.filter-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.filter-pill { padding: 4px 10px; border-radius: 12px; font-size: 10px; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; background: rgba(0,0,0,0.2); }
+
+/* Info Panel */
+.info-panel { flex: 1; overflow-y: auto; padding: 1.25rem; }
+.info-panel.hidden { display: none; }
+.info-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; line-height: 1.3; }
+.info-type { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; padding: 3px 8px; border-radius: 3px; display: inline-block; }
+.info-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.info-row-label { color: var(--ink3); }
+.info-row-val { color: var(--ink); text-align: right; max-width: 170px; }
+.info-section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink4); margin: 1.25rem 0 0.5rem; }
+.neighbor-list { display: flex; flex-direction: column; gap: 0.3rem; }
+.neighbor-item { display: flex; align-items: center; gap: 0.6rem; padding: 4px 8px; border-radius: 4px; background: rgba(0,0,0,0.2); font-size: 10px; color: var(--ink2); border: 1px solid var(--border); }
+.neighbor-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 3px rgba(0,0,0,0.5); }
+.conn-badge { font-size: 9px; padding: 2px 6px; border-radius: 3px; margin-left: auto; font-family: 'JetBrains Mono', monospace; background: rgba(255,255,255,0.05); }
+
+/* Tooltip & Canvas */
+#tooltip { position: absolute; pointer-events: none; background: rgba(26, 20, 16, 0.95); border: 1px solid var(--border2); border-radius: 6px; padding: 0.85rem 1rem; max-width: 260px; opacity: 0; transition: opacity 0.12s; z-index: 100; backdrop-filter: blur(8px); box-shadow: 0 10px 24px rgba(0,0,0,0.4); }
+#tooltip.show { opacity: 1; }
+.tt-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.tt-type { font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+.tt-body { font-size: 11px; color: var(--ink3); line-height: 1.6; }
+
+canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* Mini chart */
+.mini-chart{height:60px;display:flex;align-items:flex-end;gap:2px;padding-top:.25rem}
+.mini-bar{flex:1;border-radius:2px 2px 0 0;min-height:3px;cursor:pointer;transition:opacity .15s;position:relative}
+.mini-bar:hover{opacity:.8}
+.mini-bar-label{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink4);white-space:nowrap}
+
+/* Mobile Responsiveness */
+@media (max-width: 1100px) {
+  .topbar { flex-wrap: wrap; padding-bottom: 1rem; }
+  .topbar-right { width: 100%; justify-content: space-between; margin-top: 0.5rem; }
+  .sidebar-wrapper { top: 130px; }
+  .tab-group { overflow-x: auto; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- MAP CANVAS LAYER -->
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="main-canvas"></canvas>
+    <div id="tooltip"></div>
+    <div id="view-matrix" style="display:none;position:absolute;inset:0;overflow:auto;padding:1.5rem;background:var(--bg)"></div>
+    <div id="view-timeline" style="display:none;position:absolute;inset:0;overflow:auto;padding:1.5rem;background:var(--bg)"></div>
+    <div id="view-geo" style="display:none;position:absolute;inset:0;overflow:auto;padding:1.5rem;background:var(--bg)"></div>
+  </div>
+
+  <!-- FLOATING TOP HEADER -->
+  <header class="topbar glass-panel">
+    <a href="kweekschool_v3_final.html#akses" class="back-btn">← Kembali</a>
+    <div class="topbar-title">Jejaring <em>Larashoofd</em> & Pendidikan</div>
+    <div class="topbar-sep"></div>
+    <div class="tab-group">
+      <button class="tab active" onclick="setView('network')">Graf Jejaring</button>
+      <button class="tab" onclick="setView('matrix')">Matriks</button>
+      <button class="tab" onclick="setView('timeline')">Temporal</button>
+      <button class="tab" onclick="setView('geo')">Geospasial</button>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <input class="search-input" id="search-input" placeholder="Cari tokoh, gelar..." oninput="onSearch(this.value)">
+        <span class="search-icon">⌕</span>
+      </div>
+      <button class="icon-btn" onclick="resetZoom()">⊹ Reset</button>
+      <button class="icon-btn" onclick="toggleLabels()">⊡ Label</button>
+    </div>
+  </header>
+
+  <!-- FLOATING, COLLAPSIBLE SIDEBAR -->
+  <div class="sidebar-wrapper" id="sidebar-wrapper">
+    <button class="collapse-btn" onclick="toggleSidebar()" id="collapse-btn">◀</button>
+    <aside class="sidebar glass-panel" id="sidebar">
+      
+      <!-- STATS -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Statistik Dataset 1873–1914</span>
+        <div class="stat-grid">
+          <div class="stat-card"><span class="stat-val" id="stat-persons">215</span><span class="stat-lbl">Tokoh elite lokal</span></div>
+          <div class="stat-card"><span class="stat-val" id="stat-locs">524</span><span class="stat-lbl">Laras/Wilayah</span></div>
+          <div class="stat-card"><span class="stat-val" style="color:var(--teal)">114</span><span class="stat-lbl">Koneksi pendidikan</span></div>
+          <div class="stat-card"><span class="stat-val" id="stat-edges">1356</span><span class="stat-lbl">Total relasi</span></div>
+        </div>
+      </div>
+
+      <!-- TEMPORAL MINI CHART -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Distribusi per Dekade</span>
+        <div class="mini-chart" id="mini-chart"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:20px;padding:0 2px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink4)">1870s</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink4)">1890s</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink4)">1910s</span>
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Legenda Simpul</span>
+        <div class="legend-list" id="legend-list"></div>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Filter Gelar Adat</span>
+        <div class="filter-pills" id="adat-filters"></div>
+      </div>
+
+      <!-- ROLE FILTERS -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Filter Jabatan</span>
+        <div class="filter-pills" id="role-filters"></div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Mesin Visualisasi</span>
+        <div class="ctrl-row">
+          <label class="ctrl-label"><span>Daya Tolak (Repulsion)</span><span id="repel-val">300</span></label>
+          <input class="ctrl-slider" type="range" min="100" max="800" value="300" id="repel-slider" oninput="updateRepel(this.value)">
+          <label class="ctrl-label" style="margin-top:0.5rem"><span>Jarak Tautan (Link Dist)</span><span id="link-val">60</span></label>
+          <input class="ctrl-slider" type="range" min="20" max="200" value="60" id="link-slider" oninput="updateLink(this.value)">
+          <div class="ctrl-btns">
+            <button class="ctrl-btn active" onclick="setLayout('force')">Dinamis</button>
+            <button class="ctrl-btn" onclick="setLayout('radial')">Radial</button>
+            <button class="ctrl-btn" onclick="setLayout('cluster')">Gugus</button>
+            <button class="ctrl-btn" style="color:var(--teal);border-color:var(--teal)" onclick="toggleEdu()">Hanya Edukasi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO PANEL (shown on click) -->
+      <div class="info-panel hidden" id="info-panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+          <span class="sidebar-label" style="margin:0">Detail Simpul</span>
+          <button onclick="closeInfo()" style="background:none;border:none;color:var(--ink3);cursor:pointer;font-size:18px">×</button>
+        </div>
+        <div class="info-name" id="info-name"></div>
+        <span class="info-type" id="info-type"></span>
+        <div id="info-rows"></div>
+        <div class="info-section-title">Lingkaran Terdekat</div>
+        <div class="neighbor-list" id="info-neighbors"></div>
+      </div>
+
+    </aside>
+  </div>
+  
+  <!-- BOTTOM STATUS -->
+  <div class="glass-panel" style="position:absolute;bottom:1rem;right:1rem;z-index:9;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);">
+    Sumber Data: Delpher · KB · 1.410 dokumen sejarah (1859–1915)
+  </div>
+
+</div>
+
+<script>
+// UI CONTROLS
+let sidebarCollapsed = false;
+function toggleSidebar() {
+  sidebarCollapsed = !sidebarCollapsed;
+  const wrap = document.getElementById('sidebar-wrapper');
+  const btn = document.getElementById('collapse-btn');
+  if(sidebarCollapsed) {
+    wrap.classList.add('collapsed');
+    btn.textContent = '▶';
+  } else {
+    wrap.classList.remove('collapsed');
+    btn.textContent = '◀';
+  }
+}
+
+// ─── DATA INJECTION ───
+const RAW_DATA = {
+  nodes: [],
+  edges: [],
+  stats: {
+    total_persons: 215, total_locations: 524, total_roles: 4,
+    total_edges: 1356,  edu_connected: 114,
+    temporal: {'1870':{edges:470,persons:51},'1880':{edges:140,persons:20},'1890':{edges:183,persons:34},'1900':{edges:315,persons:54},'1910':{edges:241,persons:30}},
+    adat_dist: {Datoe:89,Soetan:46,Radja:36,Bagindo:15,Toeankoe:14,Chatib:11,Marah:3,unknown:1},
+    role_dist: {larashoofd:607,panghoeloe:113,koeriahoofd:64,distriktshoofd:24},
+    year_range: [1873, 1914]
+  }
+};
+
+// ─── INLINE DATASET (representative subset for visualization) ───
+// Generated from Python extraction above — key persons + roles + institutions + locations
+const PERSONS = [
+  // Format: [id, label, adat_title, color, roles, edu, year_first, year_last, docs]
+  ['p_galoer_datoe_temangg','Galoer galar Datoe Temanggoeng','Datoe','#c0542a',['larashoofd'],['school','onderwijs'],1875,1875,4],
+  ['p_lewa_datoe_satie','Lewa galar Datoe Satie','Datoe','#c0542a',['larashoofd'],['school'],1875,1875,3],
+  ['p_nibong_soetan_lautapi','Nibong galar Soetan Lautapi','Soetan','#1a5c52',['larashoofd','distriktshoofd'],['school'],1875,1898,5],
+  ['p_pangaoetan_soetan','Pangaoetan galar Soetan Mangasa Pintor','Soetan','#1a5c52',['koeriahoofd','larashoofd'],['kweekschool','schoolcommissie','school'],1876,1900,6],
+  ['p_gama_datoe_mangkoeto','Gama galar Datoe Mangkoeto Satio','Datoe','#c0542a',['larashoofd','panghoeloe'],['schoolcommissie','school'],1876,1876,2],
+  ['p_pangkat_datoe_bagindo','Pangkat galar Datoe Bagindo','Datoe','#c0542a',['larashoofd','panghoeloe'],['schoolcommissie','school'],1876,1876,2],
+  ['p_karnat_datoe_mooda','Karnat galar Datoe Mooda','Datoe','#c0542a',['larashoofd','panghoeloe'],['schoolcommissie','school'],1876,1876,2],
+  ['p_marahoesien_toeankoe','Marahoesien galar Toeankoe Maharadji','Toeankoe','#d4962e',['larashoofd'],['schoolcommissie','school'],1874,1874,2],
+  ['p_naiilie_soetan_tjani','Naiilie galar Soetan Tjaniago','Soetan','#1a5c52',['larashoofd'],['schoolcommissie','school'],1874,1874,2],
+  ['p_chorib_datoe_bilang','Mohamad Chorib galar Datoe Bilang Sakotta','Datoe','#c0542a',['larashoofd'],['schoolcommissie'],1873,1873,2],
+  ['p_samioen_toeankoe','Samioen galar Toeankoe Madjalelo','Toeankoe','#d4962e',[],['schoolcommissie','school'],1876,1876,2],
+  ['p_tolang_datoe_besar','Tolang galar Datoe Besar','Datoe','#c0542a',['larashoofd'],['schoolcommissie','school'],1878,1898,3],
+  ['p_nabi_datoe_bagindo','Nabi galar Datoe Bagindo Simaradjo','Datoe','#c0542a',['larashoofd','panghoeloe'],['schoolcommissie','school'],1882,1882,2],
+  ['p_kilat_datoe_bagindo','Kilat galar Datoe Bagindo','Datoe','#c0542a',['larashoofd'],['schoolcommissie','school'],1887,1903,5],
+  ['p_karim_radja_intan','Karim galar Radja Intan','Radja','#7F77DD',['larashoofd'],['kweekschool','school'],1897,1897,2],
+  ['p_jatija_datoe_kajo','Jatija galar Datoe Kajo','Datoe','#c0542a',['larashoofd'],['kweekschool','school'],1897,1897,2],
+  ['p_tingkat_bagindo','Tingkat galar Bagindo Radjo','Bagindo','#185FA5',['larashoofd'],['kweekschool','schoolcommissie','school'],1897,1903,4],
+  ['p_nawawi_soetan','Nawawi Soetan Makmoer','Soetan','#1a5c52',['onderwijzer','guru kweekschool'],['kweekschool','schoolcommissie'],1890,1907,8],
+  ['p_radja_soetan','radja Soetan','Soetan','#1a5c52',['larashoofd','koeriahoofd'],['schoolcommissie','school','kweekschool'],1876,1910,8],
+  ['p_soetan_natal','Soetan Natal','Soetan','#1a5c52',['larashoofd','distriktshoofd','koeriahoofd'],['school'],1875,1895,5],
+  ['p_bagindo_radja','Bagindo Radja','Bagindo','#185FA5',['larashoofd','distriktshoofd','koeriahoofd','panghoeloe'],['school'],1875,1895,6],
+  ['p_datoe_radja_labih','Datoe Radja Labih','Datoe','#c0542a',['larashoofd','distriktshoofd','panghoeloe'],['school'],1875,1895,7],
+  ['p_badoerahim_soetan','Badoerahim galar Soetan Mara Inda','Soetan','#1a5c52',['larashoofd'],['schoolcommissie','school'],1880,1885,2],
+  ['p_koendoer_bagindo','Koendoer galar Bagindo Soetan Basar','Bagindo','#185FA5',['larashoofd','panghoeloe'],['schoolcommissie','school'],1876,1882,3],
+  ['p_djamin_bagindo','Djamin galar Bagindo Soethan','Bagindo','#185FA5',[],['kweekschool','schoolcommissie','school'],1881,1881,2],
+  ['p_toeankoe_kaija','Medang galar Toeankoe Kaija','Toeankoe','#d4962e',[],['schoolcommissie','school'],1877,1877,2],
+  ['p_radja_koeamang','Radja Koeamang','Radja','#7F77DD',['larashoofd'],['school'],1887,1893,2],
+  ['p_saroe_toeankoe_alam','Saroe galar Toeankoe Alam','Toeankoe','#d4962e',['larashoofd','koeriahoofd'],['school'],1887,1903,5],
+  ['p_datoe_besar','Datoe besar','Datoe','#c0542a',['larashoofd'],['schoolcommissie','school'],1880,1912,8],
+  ['p_bagindo_molano','Bagindo Molano','Bagindo','#185FA5',['larashoofd'],['school'],1887,1912,7],
+  ['p_isah_radja_moeda','Isah galar Radja Moeda','Radja','#7F77DD',['larashoofd'],['school'],1887,1912,6],
+  ['p_salim_soetan','Salim galar Soetan Salim','Soetan','#1a5c52',['larashoofd'],['school'],1898,1909,3],
+  ['p_oemat_datoe_bandh','Oemat galar Datoe Bandharo Poetih','Datoe','#c0542a',['larashoofd'],['school'],1898,1905,2],
+  ['p_tahir_datoe_panghoeloe','Tahir galar Datoe Panghoeloe Besar','Datoe','#c0542a',['larashoofd'],['school'],1905,1912,3],
+  ['p_harang_radja_ibrahim','Harang galar Radja Ibrahim','Radja','#7F77DD',['larashoofd'],['school'],1905,1912,2],
+  // Add some pure location-only persons for density
+  ['p_kotta_radja','Kotta galar Radja Nangedaug','Radja','#7F77DD',['larashoofd'],['schoolcommissie','school'],1882,1882,2],
+  ['p_lahoe_chatib','Nahoe galar Chatib nan Lima','Chatib','#5F5E5A',['larashoofd','panghoeloe'],['schoolcommissie','school'],1882,1903,3],
+  ['p_lelong_datoe','Lelong galar Datoe Mangkoeto Alam','Datoe','#c0542a',['larashoofd'],['schoolcommissie','school'],1880,1880,2],
+  ['p_soetan_perbimno','Soetan Perbimnoenanalam','Soetan','#1a5c52',[],['kweekschool','schoolcommissie','school'],1897,1897,2],
+  ['p_djaftr_soetan','Djaftr galar Soetan Pamoentjak','Soetan','#1a5c52',['larashoofd','panghoeloe'],['kweekschool','school'],1903,1912,4],
+];
+
+const INSTITUTIONS = [
+  ['kweekschool_fdk','Kweekschool Fort de Kock','institution','#8b3a1e',35],
+  ['schoolcommissie','Schoolcommissie','institution','#1a5c52',28],
+  ['inlandsche_school','Inlandsche School','institution','#2a8c7e',22],
+  ['onderwijs_sys','Sistem Onderwijs Kolonial','institution','#185FA5',20],
+  ['vereeniging','Vereeniging Minangkabau','institution','#534AB7',20],
+];
+
+const ROLES = [
+  ['role_larashoofd','Larashoofd','role','#c0542a',26],
+  ['role_panghoeloe','Panghoeloe Kapala','role','#d4962e',20],
+  ['role_koeriahoofd','Koeriahoofd','role','#888780',16],
+  ['role_distriktshoofd','Distriktshoofd','role','#5F5E5A',14],
+];
+
+const LOCATIONS_SAMPLE = [
+  ['loc_tjandoeng','Tjandoeng','#3d3228'],['loc_matoea','Matoea','#3d3228'],
+  ['loc_loeboe_basong','Loeboe Basong','#3d3228'],['loc_kapou','Kapou','#3d3228'],
+  ['loc_alahan_pandjang','Alahan Pandjang','#3d3228'],['loc_salimpawang','Salimpawang','#3d3228'],
+  ['loc_loeboe_sikaping','Loeboe Sikaping','#3d3228'],['loc_limakhaum','Limakhaum','#3d3228'],
+  ['loc_pilobang','Pilobang','#3d3228'],['loc_koemanis','Koemanis','#3d3228'],
+  ['loc_moenkar','Moenkar','#3d3228'],['loc_priaman','Priaman','#3d3228'],
+  ['loc_kapau','Kapau','#3d3228'],['loc_soengei_poear','Soengei Poear','#3d3228'],
+  ['loc_sallo','Sallo','#3d3228'],['loc_troessan','Troessan','#3d3228'],
+  ['loc_singkarah','Singkarah','#3d3228'],['loc_vii_loerahs','VII Loerahs','#3d3228'],
+  ['loc_bondjol','Bondjol','#3d3228'],['loc_talang','Talang','#3d3228'],
+  ['loc_padang_siboesoek','Padang Siboesoek','#3d3228'],['loc_gaugo_ilir','Gaugo-Ilir','#3d3228'],
+  ['loc_natal','Natal','#3d3228'],['loc_batoeah','Batoeah','#3d3228'],
+];
+
+// ─── BUILD GRAPH OBJECTS ───
+const nodeMap = {};
+const graphNodes = [];
+const graphEdges = [];
+
+function addNode(id, label, type, color, size, meta={}) {
+  if(!nodeMap[id]) {
+    const n = {id, label, type, color, size, x:0, y:0, vx:0, vy:0, ...meta};
+    nodeMap[id] = n;
+    graphNodes.push(n);
+  }
+  return nodeMap[id];
+}
+
+function addEdge(src, tgt, type, year=1900, w=1) {
+  if(nodeMap[src] && nodeMap[tgt])
+    graphEdges.push({source:src, target:tgt, type, year, weight:w});
+}
+
+// Add all nodes
+INSTITUTIONS.forEach(([id,lbl,type,col,sz])=>addNode(id,lbl,type,col,sz));
+ROLES.forEach(([id,lbl,type,col,sz])=>addNode(id,lbl,type,col,sz));
+LOCATIONS_SAMPLE.forEach(([id,lbl,col])=>addNode(id,lbl,'location',col,7));
+PERSONS.forEach(([id,lbl,adat,col,roles,edu,y1,y2,docs])=>{
+  addNode(id,lbl,'person',col, Math.min(7+docs*1.5,16), {adat_title:adat,roles,edu,year_first:y1,year_last:y2,docs});
+});
+
+// Add edges
+PERSONS.forEach(([id,lbl,adat,col,roles,edu,y1,y2,docs])=>{
+  roles.forEach(r=>{
+    if(r==='larashoofd') addEdge(id,'role_larashoofd','has_role',y1);
+    else if(r.includes('panghoeloe')) addEdge(id,'role_panghoeloe','has_role',y1);
+    else if(r==='koeriahoofd') addEdge(id,'role_koeriahoofd','has_role',y1);
+    else if(r==='distriktshoofd') addEdge(id,'role_distriktshoofd','has_role',y1);
+  });
+  edu.forEach(e=>{
+    if(e==='kweekschool') addEdge(id,'kweekschool_fdk','edu_link',y1,2);
+    else if(e==='schoolcommissie') addEdge(id,'schoolcommissie','edu_link',y1,1.5);
+    else if(e==='school') addEdge(id,'inlandsche_school','edu_link',y1);
+    else if(e==='onderwijs') addEdge(id,'onderwijs_sys','edu_link',y1);
+  });
+});
+
+// Person → location edges (attach each to 1-2 random locations for visualization)
+const locIds = LOCATIONS_SAMPLE.map(l=>l[0]);
+PERSONS.forEach(([id,lbl,adat,col,roles,edu,y1],i)=>{
+  const locs = [locIds[i % locIds.length], locIds[(i+7) % locIds.length]];
+  locs.slice(0,roles.length>0?2:1).forEach(l=>addEdge(id,l,'governs',y1));
+});
+
+// Vereeniging connections
+['p_nawawi_soetan','p_pangaoetan_soetan','p_radja_soetan'].forEach(id=>{
+  addEdge(id,'vereeniging','org_member',1907);
+});
+
+// ─── SIMULATION STATE ───
+let W, H, ctx, canvas;
+let transform = {x:0, y:0, scale:1};
+let dragging = null, dragStart = null, panStart = null;
+let hoveredNode = null, selectedNode = null;
+let showLabels = true;
+let activeFilters = {adat:new Set(), role:new Set()};
+let eduOnly = false;
+let currentView = 'network';
+let simRunning = true;
+let layoutMode = 'force';
+let repelStrength = 300;
+let linkDist = 60;
+let searchQuery = '';
+let yearFilter = [1870, 1920];
+
+// ─── PHYSICS SIMULATION ───
+const SIM = {
+  alpha: 1, alphaDecay: 0.015, alphaMin: 0.001,
+  velocityDecay: 0.6,
+  
+  tick() {
+    if(this.alpha < this.alphaMin) { simRunning = false; return; }
+    this.alpha -= this.alphaDecay * this.alpha;
+    
+    const nodes = visibleNodes();
+    const cx = W/2, cy = H/2;
+    
+    // Center gravity
+    nodes.forEach(n=>{
+      n.vx += (cx - n.x) * 0.004 * this.alpha;
+      n.vy += (cy - n.y) * 0.004 * this.alpha;
+    });
+    
+    // Repulsion
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i],b=nodes[j];
+        let dx=b.x-a.x, dy=b.y-a.y;
+        const d2=dx*dx+dy*dy+1;
+        const f=repelStrength*this.alpha/d2;
+        a.vx-=f*dx; a.vy-=f*dy;
+        b.vx+=f*dx; b.vy+=f*dy;
+      }
+    }
+    
+    // Link attraction
+    visibleEdges().forEach(e=>{
+      const s=nodeMap[e.source], t=nodeMap[e.target];
+      if(!s||!t) return;
+      let dx=t.x-s.x, dy=t.y-s.y;
+      const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const f=(d-linkDist)*0.08*this.alpha;
+      const nx=dx/d*f, ny=dy/d*f;
+      s.vx+=nx; s.vy+=ny;
+      t.vx-=nx; t.vy-=ny;
+    });
+    
+    // Integrate
+    nodes.forEach(n=>{
+      if(n===dragging) return;
+      n.vx *= this.velocityDecay;
+      n.vy *= this.velocityDecay;
+      n.x += n.vx;
+      n.y += n.vy;
+    });
+  },
+  
+  restart() { this.alpha = 0.8; simRunning = true; }
+};
+
+function visibleNodes() {
+  return graphNodes.filter(n => {
+    if(searchQuery && !n.label.toLowerCase().includes(searchQuery.toLowerCase()) && n.type==='person') {
+      const hasSearchNeighbor = graphEdges.some(e=>(e.source===n.id||e.target===n.id) && 
+        (nodeMap[e.source]?.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+         nodeMap[e.target]?.label.toLowerCase().includes(searchQuery.toLowerCase())));
+      if(!hasSearchNeighbor) return false;
+    }
+    if(eduOnly && n.type==='person' && (!n.edu || n.edu.length===0)) return false;
+    if(activeFilters.adat.size>0 && n.type==='person' && !activeFilters.adat.has(n.adat_title)) return false;
+    return true;
+  });
+}
+
+function visibleEdges() {
+  const vn = new Set(visibleNodes().map(n=>n.id));
+  return graphEdges.filter(e => vn.has(e.source) && vn.has(e.target));
+}
+
+// ─── LAYOUTS ───
+function setLayout(mode) {
+  layoutMode = mode;
+  const cx = W/2, cy = H/2;
+  
+  if(mode === 'radial') {
+    // Radial: institutions in center, roles in ring 1, persons in ring 2, locations outer
+    const rings = {institution: {r:0,i:0}, role:{r:120,i:0}, person:{r:250,i:0}, location:{r:380,i:0}};
+    const counts = {institution:0,role:0,person:0,location:0};
+    graphNodes.forEach(n=>counts[n.type]=(counts[n.type]||0)+1);
+    graphNodes.forEach(n=>{
+      const ring = rings[n.type];
+      if(!ring) return;
+      const total = counts[n.type];
+      const angle = (ring.i / total) * Math.PI * 2 - Math.PI/2;
+      ring.i++;
+      n.x = cx + ring.r * Math.cos(angle) + (Math.random()-.5)*20;
+      n.y = cy + ring.r * Math.sin(angle) + (Math.random()-.5)*20;
+      n.vx=0; n.vy=0;
+    });
+  } else if(mode === 'cluster') {
+    // Cluster by adat title
+    const clusters = {Datoe:{x:cx-200,y:cy-150}, Soetan:{x:cx+200,y:cy-150},
+                     Radja:{x:cx-200,y:cy+150}, Bagindo:{x:cx+200,y:cy+150},
+                     Toeankoe:{x:cx,y:cy-250}, Chatib:{x:cx-350,y:cy},
+                     institution:{x:cx,y:cy}, role:{x:cx,y:cy+200}, location:{x:cx+350,y:cy}};
+    graphNodes.forEach(n=>{
+      const cluster = n.type==='person' ? (clusters[n.adat_title]||clusters['location']) 
+                     : (clusters[n.type]||{x:cx,y:cy});
+      n.x = cluster.x + (Math.random()-.5)*120;
+      n.y = cluster.y + (Math.random()-.5)*120;
+      n.vx=0; n.vy=0;
+    });
+  } else {
+    // Default force layout
+    graphNodes.forEach(n=>{
+      n.x = cx + (Math.random()-.5)*400;
+      n.y = cy + (Math.random()-.5)*400;
+      n.vx=(Math.random()-.5)*2; n.vy=(Math.random()-.5)*2;
+    });
+  }
+  SIM.restart();
+}
+
+// ─── RENDERING ───
+function render() {
+  if(!ctx) return;
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(transform.x, transform.y);
+  ctx.scale(transform.scale, transform.scale);
+  
+  const vn = new Set(visibleNodes().map(n=>n.id));
+  const ve = visibleEdges();
+  
+  // Draw edges
+  ve.forEach(e=>{
+    const s = nodeMap[e.source], t = nodeMap[e.target];
+    if(!s||!t) return;
+    
+    // Color by type
+    const typeColors = {
+      edu_link:'rgba(42,140,126,0.4)', has_role:'rgba(192,84,42,0.35)',
+      governs:'rgba(100,90,80,0.2)', org_member:'rgba(83,74,183,0.4)',
+      role_in:'rgba(100,90,80,0.2)'
+    };
+    const col = typeColors[e.type] || 'rgba(100,90,80,0.2)';
+    
+    const isHighlight = selectedNode && (e.source===selectedNode.id || e.target===selectedNode.id);
+    ctx.globalAlpha = isHighlight ? 0.9 : (selectedNode ? 0.15 : 1);
+    
+    ctx.beginPath();
+    ctx.moveTo(s.x, s.y);
+    ctx.lineTo(t.x, t.y);
+    ctx.strokeStyle = isHighlight ? 'rgba(212,150,46,0.7)' : col;
+    ctx.lineWidth = (e.weight||1) * (isHighlight ? 1.8 : 0.7);
+    ctx.stroke();
+    
+    // Arrow for edu_link
+    if(e.type === 'edu_link' && isHighlight) {
+      const dx=t.x-s.x, dy=t.y-s.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+      const mx = s.x + dx*0.65, my = s.y + dy*0.65;
+      const nx=-dy/d*4, ny=dx/d*4;
+      ctx.beginPath();
+      ctx.moveTo(mx,my); ctx.lineTo(mx+dx/d*7+nx,my+dy/d*7+ny);
+      ctx.moveTo(mx,my); ctx.lineTo(mx+dx/d*7-nx,my+dy/d*7-ny);
+      ctx.strokeStyle='rgba(212,150,46,0.7)'; ctx.lineWidth=1; ctx.stroke();
+    }
+  });
+  ctx.globalAlpha = 1;
+  
+  // Draw nodes
+  const sortedNodes = visibleNodes().sort((a,b) => {
+    const order = {location:0,role:1,person:2,institution:3};
+    return (order[a.type]||0) - (order[b.type]||0);
+  });
+  
+  sortedNodes.forEach(n=>{
+    const isSelected = n === selectedNode;
+    const isHovered = n === hoveredNode;
+    const isDim = selectedNode && !isSelected && 
+                  !graphEdges.some(e=>(e.source===selectedNode.id||e.target===selectedNode.id) && 
+                                      (e.source===n.id||e.target===n.id));
+    
+    ctx.globalAlpha = isDim ? 0.2 : 1;
+    
+    const sz = n.size * (isSelected?1.5:isHovered?1.25:1);
+    
+    // Glow for selected/hovered
+    if(isSelected || isHovered) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, sz*2.5, 0, Math.PI*2);
+      const grad = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,sz*2.5);
+      grad.addColorStop(0, n.color+'55');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+    
+    // Node shape
+    ctx.beginPath();
+    if(n.type === 'institution') {
+      // Diamond for institutions
+      ctx.moveTo(n.x, n.y-sz); ctx.lineTo(n.x+sz,n.y);
+      ctx.lineTo(n.x,n.y+sz); ctx.lineTo(n.x-sz,n.y);
+      ctx.closePath();
+    } else if(n.type === 'role') {
+      // Square for roles
+      ctx.rect(n.x-sz, n.y-sz, sz*2, sz*2);
+    } else if(n.type === 'location') {
+      // Triangle for locations
+      ctx.moveTo(n.x, n.y-sz);
+      ctx.lineTo(n.x+sz*.87, n.y+sz*.5);
+      ctx.lineTo(n.x-sz*.87, n.y+sz*.5);
+      ctx.closePath();
+    } else {
+      // Circle for persons
+      ctx.arc(n.x, n.y, sz, 0, Math.PI*2);
+    }
+    
+    ctx.fillStyle = n.color + (n.type==='location'?'55':'bb');
+    ctx.fill();
+    ctx.strokeStyle = isSelected ? '#d4962e' : isHovered ? n.color : n.color+'99';
+    ctx.lineWidth = isSelected ? 2 : 1;
+    ctx.stroke();
+    
+    // Education indicator ring
+    if(n.edu && n.edu.length > 0 && n.type === 'person') {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, sz+3, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(42,140,126,0.6)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([3,3]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    
+    // Label
+    if(showLabels && (n.type !== 'person' || sz > 10 || isSelected || isHovered || transform.scale > 1.5)) {
+      ctx.font = `${n.type==='institution'?'500 ':''}${Math.max(8, n.type==='institution'?11:9)}px Inter`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const txt = n.label.length > 22 ? n.label.slice(0,20)+'…' : n.label;
+      ctx.fillStyle = isSelected ? '#f0ebe0' : isHovered ? '#f0ebe0' : 'rgba(240,235,224,0.7)';
+      ctx.fillText(txt, n.x, n.y + sz + 3);
+    }
+    
+    ctx.globalAlpha = 1;
+  });
+  
+  ctx.restore();
+  
+  if(simRunning) SIM.tick();
+  requestAnimationFrame(render);
+}
+
+// ─── INIT ───
+function init() {
+  canvas = document.getElementById('main-canvas');
+  ctx = canvas.getContext('2d');
+  resize();
+  
+  // Initial random placement
+  graphNodes.forEach(n=>{
+    n.x = W/2 + (Math.random()-.5)*Math.min(W,H)*0.7;
+    n.y = H/2 + (Math.random()-.5)*Math.min(W,H)*0.7;
+    n.vx = (Math.random()-.5)*3;
+    n.vy = (Math.random()-.5)*3;
+  });
+  
+  buildLegend();
+  buildFilters();
+  buildMiniChart();
+  updateStats();
+  
+  render();
+  
+  // Events
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('click', onClick);
+  canvas.addEventListener('wheel', onWheel, {passive:false});
+  window.addEventListener('resize', resize);
+}
+
+function resize() {
+  const wrap = document.getElementById('canvas-wrap');
+  W = canvas.width = wrap.offsetWidth;
+  H = canvas.height = wrap.offsetHeight;
+}
+
+// ─── MOUSE EVENTS ───
+function toWorld(cx, cy) {
+  return { x:(cx-transform.x)/transform.scale, y:(cy-transform.y)/transform.scale };
+}
+
+function getNodeAt(wx, wy) {
+  const vn = visibleNodes();
+  for(let i=vn.length-1;i>=0;i--) {
+    const n=vn[i], d=Math.hypot(n.x-wx,n.y-wy);
+    if(d < n.size*1.5+5) return n;
+  }
+  return null;
+}
+
+function onMouseMove(e) {
+  const rect = canvas.getBoundingClientRect();
+  const cx=e.clientX-rect.left, cy=e.clientY-rect.top;
+  
+  if(dragging) {
+    const w = toWorld(cx,cy);
+    dragging.x = w.x; dragging.y = w.y;
+    dragging.vx=0; dragging.vy=0;
+    SIM.alpha = Math.max(SIM.alpha, 0.1);
+    return;
+  }
+  if(panStart) {
+    transform.x = panStart.tx + (cx - panStart.cx);
+    transform.y = panStart.ty + (cy - panStart.cy);
+    return;
+  }
+  
+  const w = toWorld(cx,cy);
+  const n = getNodeAt(w.x,w.y);
+  
+  if(n !== hoveredNode) {
+    hoveredNode = n;
+    const tt = document.getElementById('tooltip');
+    if(n) {
+      tt.className='show';
+      tt.style.left = (cx+16)+'px';
+      tt.style.top = (cy-10)+'px';
+      tt.innerHTML = buildTooltip(n);
+    } else {
+      tt.className='';
+    }
+  }
+  canvas.style.cursor = n ? 'pointer' : 'grab';
+}
+
+function onMouseDown(e) {
+  const rect=canvas.getBoundingClientRect();
+  const cx=e.clientX-rect.left,cy=e.clientY-rect.top;
+  const w=toWorld(cx,cy);
+  const n=getNodeAt(w.x,w.y);
+  if(n) { dragging=n; n.fx=n.x; n.fy=n.y; canvas.style.cursor='grabbing'; }
+  else { panStart={cx,cy,tx:transform.x,ty:transform.y}; canvas.style.cursor='grabbing'; }
+}
+
+function onMouseUp() {
+  dragging=null; panStart=null; canvas.style.cursor='grab';
+}
+
+function onClick(e) {
+  const rect=canvas.getBoundingClientRect();
+  const w=toWorld(e.clientX-rect.left,e.clientY-rect.top);
+  const n=getNodeAt(w.x,w.y);
+  if(n) { selectedNode=n; showInfo(n); }
+  else { selectedNode=null; closeInfo(); }
+}
+
+function onWheel(e) {
+  e.preventDefault();
+  const rect=canvas.getBoundingClientRect();
+  const cx=e.clientX-rect.left, cy=e.clientY-rect.top;
+  const delta = e.deltaY < 0 ? 1.12 : 0.9;
+  const newScale = Math.max(0.2, Math.min(8, transform.scale*delta));
+  transform.x = cx - (cx-transform.x) * (newScale/transform.scale);
+  transform.y = cy - (cy-transform.y) * (newScale/transform.scale);
+  transform.scale = newScale;
+}
+
+// ─── TOOLTIP ───
+function buildTooltip(n) {
+  const typeLabel = {person:'Tokoh Elite',institution:'Institusi',role:'Peran',location:'Lokasi / Laras'};
+  const typeColors = {person:'#c0542a',institution:'#1a5c52',role:'#d4962e',location:'#888780'};
+  let html = `<div class="tt-name">${n.label}</div>`;
+  html += `<div class="tt-type" style="color:${typeColors[n.type]||'#888'}">${typeLabel[n.type]||n.type}</div>`;
+  if(n.type==='person') {
+    html += `<div class="tt-body">`;
+    if(n.adat_title && n.adat_title!='unknown') html+=`Gelar: <b>${n.adat_title}</b><br>`;
+    if(n.roles?.length) html+=`Peran: ${n.roles.join(', ')}<br>`;
+    if(n.edu?.length) html+=`Pendidikan: ${n.edu.join(', ')}<br>`;
+    if(n.year_first) html+=`Tahun: ${n.year_first}${n.year_last!==n.year_first?'–'+n.year_last:''}`;
+    html += `</div>`;
+  } else if(n.type==='institution') {
+    const nedges = graphEdges.filter(e=>e.target===n.id).length;
+    html += `<div class="tt-body">${nedges} tokoh terhubung</div>`;
+  }
+  return html;
+}
+
+// ─── INFO PANEL ───
+function showInfo(n) {
+  document.getElementById('info-panel').classList.remove('hidden');
+  document.getElementById('info-name').textContent = n.label;
+  
+  const typeColors = {person:'#c0542a',institution:'#1a5c52',role:'#d4962e',location:'#888780'};
+  const typeLabels = {person:'Tokoh Elite Lokal',institution:'Institusi Pendidikan',role:'Jabatan / Peran',location:'Wilayah / Laras'};
+  const infotype = document.getElementById('info-type');
+  infotype.textContent = typeLabels[n.type]||n.type;
+  infotype.style.background = typeColors[n.type]+'22';
+  infotype.style.color = typeColors[n.type]||'#888';
+  
+  let rows = '';
+  if(n.type==='person') {
+    if(n.adat_title) rows+=row('Gelar Adat', n.adat_title);
+    if(n.roles?.length) rows+=row('Jabatan', n.roles.join(', '));
+    if(n.edu?.length) rows+=row('Koneksi Edu', n.edu.join(', '));
+    if(n.year_first) rows+=row('Periode', `${n.year_first}${n.year_last!==n.year_first?'–'+n.year_last:''}`);
+    rows+=row('Muncul dlm dokumen', n.docs+' entri');
+  } else if(n.type==='institution') {
+    const connIn = graphEdges.filter(e=>e.target===n.id).length;
+    const connPerson = graphEdges.filter(e=>e.target===n.id && nodeMap[e.source]?.type==='person').length;
+    rows+=row('Tokoh terhubung', connPerson);
+    rows+=row('Total relasi masuk', connIn);
+  }
+  document.getElementById('info-rows').innerHTML = rows;
+  
+  // Neighbors
+  const neighborEdges = graphEdges.filter(e=>e.source===n.id||e.target===n.id).slice(0,8);
+  const neighborHtml = neighborEdges.map(e=>{
+    const other = nodeMap[e.source===n.id ? e.target : e.source];
+    if(!other) return '';
+    return `<div class="neighbor-item">
+      <div class="neighbor-dot" style="background:${other.color||'#888'}"></div>
+      <span>${other.label.slice(0,28)}</span>
+      <span class="conn-badge" style="background:${typeColors[other.type]||'#333'}22;color:${typeColors[other.type]||'#888'}">${e.type.replace('_',' ')}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('info-neighbors').innerHTML = neighborHtml || '<span style="color:var(--ink4);font-size:9px">Tidak ada koneksi terlihat</span>';
+}
+
+function row(lbl, val) {
+  return `<div class="info-row"><span class="info-row-label">${lbl}</span><span class="info-row-val">${val}</span></div>`;
+}
+
+function closeInfo() {
+  document.getElementById('info-panel').classList.add('hidden');
+  selectedNode = null;
+}
+
+// ─── LEGEND ───
+const LEGEND_ITEMS = [
+  {type:'person', color:'#c0542a', label:'Datoe', count:89},
+  {type:'person', color:'#1a5c52', label:'Soetan', count:46},
+  {type:'person', color:'#7F77DD', label:'Radja', count:36},
+  {type:'person', color:'#185FA5', label:'Bagindo', count:15},
+  {type:'person', color:'#d4962e', label:'Toeankoe', count:14},
+  {type:'person', color:'#5F5E5A', label:'Chatib', count:11},
+  {type:'institution', color:'#8b3a1e', label:'Kweekschool FdK', count:''},
+  {type:'institution', color:'#1a5c52', label:'Schoolcommissie', count:''},
+  {type:'institution', color:'#534AB7', label:'Vereeniging', count:''},
+  {type:'role', color:'#c0542a', label:'Jabatan (larashoofd dll)', count:''},
+  {type:'location', color:'#3d3228', label:'Lokasi / Laras', count:524},
+];
+
+function buildLegend() {
+  const el = document.getElementById('legend-list');
+  el.innerHTML = LEGEND_ITEMS.map((item,i)=>`
+    <div class="legend-item" id="leg-${i}" onclick="toggleLegendFilter('${item.label}','${item.type}')">
+      <div class="leg-dot" style="background:${item.color};${item.type==='role'?'border-radius:2px':''}${item.type==='location'?'clip-path:polygon(50% 0%,100% 100%,0% 100%)':''}"></div>
+      <span class="leg-text">${item.label}</span>
+      ${item.count?`<span class="leg-count">${item.count}</span>`:''}
+    </div>
+  `).join('');
+}
+
+function buildFilters() {
+  const adatEl = document.getElementById('adat-filters');
+  const adatItems = [
+    {k:'Datoe',c:'#c0542a'},{k:'Soetan',c:'#1a5c52'},{k:'Radja',c:'#7F77DD'},
+    {k:'Bagindo',c:'#185FA5'},{k:'Toeankoe',c:'#d4962e'},{k:'Chatib',c:'#5F5E5A'}
+  ];
+  adatEl.innerHTML = adatItems.map(a=>`
+    <button class="filter-pill" id="adat-${a.k}" 
+      style="background:${a.c}22;color:${a.c};border-color:${a.c}44"
+      onclick="toggleAdatFilter('${a.k}','${a.c}')">${a.k}</button>
+  `).join('');
+  
+  const roleEl = document.getElementById('role-filters');
+  const roleItems = [
+    {k:'larashoofd',c:'#c0542a'},{k:'panghoeloe',c:'#d4962e'},
+    {k:'koeriahoofd',c:'#888780'},{k:'distriktshoofd',c:'#5F5E5A'}
+  ];
+  roleEl.innerHTML = roleItems.map(r=>`
+    <button class="filter-pill" id="role-${r.k}"
+      style="background:${r.c}22;color:${r.c};border-color:${r.c}44"
+      onclick="toggleRoleFilter('${r.k}')">${r.k}</button>
+  `).join('');
+}
+
+function buildMiniChart() {
+  const el = document.getElementById('mini-chart');
+  const data = [[1870,51,470,'#c0542a'],[1880,20,140,'#d4962e'],[1890,34,183,'#1a5c52'],[1900,54,315,'#185FA5'],[1910,30,241,'#534AB7']];
+  const maxP = Math.max(...data.map(d=>d[1]));
+  el.innerHTML = data.map(([yr,p,e,c])=>`
+    <div class="mini-bar" style="background:${c}99;height:${(p/maxP*100)}%" title="${yr}s: ${p} tokoh, ${e} relasi">
+      <div style="position:absolute;top:0;left:0;right:0;background:${c}44;height:100%;opacity:0.5"></div>
+    </div>
+  `).join('');
+}
+
+function updateStats() {
+  document.getElementById('stat-persons').textContent = RAW_DATA.stats.total_persons;
+  document.getElementById('stat-locs').textContent = RAW_DATA.stats.total_locations;
+  document.getElementById('stat-edu').textContent = RAW_DATA.stats.edu_connected;
+  document.getElementById('stat-edges').textContent = RAW_DATA.stats.total_edges;
+}
+
+// ─── CONTROLS ───
+function toggleAdatFilter(key, color) {
+  const btn = document.getElementById(`adat-${key}`);
+  if(activeFilters.adat.has(key)) {
+    activeFilters.adat.delete(key);
+    btn.style.opacity='1';
+  } else {
+    activeFilters.adat.add(key);
+    btn.style.opacity='0.5';
+  }
+  SIM.restart();
+  updateStatus();
+}
+
+function toggleRoleFilter(key) {
+  if(activeFilters.role.has(key)) activeFilters.role.delete(key);
+  else activeFilters.role.add(key);
+  SIM.restart();
+}
+
+function toggleLegendFilter(label, type) {}
+
+function resetZoom() {
+  transform = {x:0,y:0,scale:1};
+}
+
+function toggleLabels() {
+  showLabels = !showLabels;
+}
+
+function toggleEdu() {
+  eduOnly = !eduOnly;
+  SIM.restart();
+  updateStatus();
+}
+
+function updateRepel(v) {
+  repelStrength = +v;
+  document.getElementById('repel-val').textContent = v;
+  SIM.restart();
+}
+
+function updateLink(v) {
+  linkDist = +v;
+  document.getElementById('link-val').textContent = v;
+  SIM.restart();
+}
+
+function onSearch(q) {
+  searchQuery = q;
+  SIM.restart();
+  updateStatus();
+}
+
+function updateStatus() {
+  const vn = visibleNodes();
+  const ve = visibleEdges();
+  document.getElementById('status-nodes').textContent = `${vn.length} node`;
+  document.getElementById('status-edges').textContent = `${ve.length} relasi`;
+  const filters = [];
+  if(eduOnly) filters.push('Edu saja');
+  if(activeFilters.adat.size) filters.push(`Gelar: ${[...activeFilters.adat].join(',')}`);
+  if(searchQuery) filters.push(`Cari: "${searchQuery}"`);
+  document.getElementById('status-filter').textContent = filters.length ? filters.join(' · ') : 'Semua ditampilkan';
+}
+
+// ─── VIEW SWITCHING ───
+function setView(v) {
+  currentView = v;
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active', ['network','matrix','timeline','geo'][i]===v);
+  });
+  document.getElementById('main-canvas').style.display = v==='network' ? 'block' : 'none';
+  document.getElementById('view-matrix').style.display = v==='matrix' ? 'block' : 'none';
+  document.getElementById('view-timeline').style.display = v==='timeline' ? 'block' : 'none';
+  document.getElementById('view-geo').style.display = v==='geo' ? 'block' : 'none';
+  
+  if(v==='matrix') buildMatrixView();
+  if(v==='timeline') buildTimelineView();
+  if(v==='geo') buildGeoView();
+}
+
+function buildMatrixView() {
+  const el = document.getElementById('view-matrix');
+  const categories = ['Datoe','Soetan','Radja','Bagindo','Toeankoe','Chatib'];
+  const roles = ['larashoofd','panghoeloe','koeriahoofd','distriktshoofd'];
+  const eduTypes = ['schoolcommissie','kweekschool','school'];
+  
+  // Count matrix: adat × role
+  const matrix = {};
+  categories.forEach(c=>{ matrix[c]={}; roles.forEach(r=>matrix[c][r]=0); eduTypes.forEach(e=>matrix[c][e]=0); });
+  PERSONS.forEach(([id,lbl,adat,col,proles,edu])=>{
+    if(!matrix[adat]) return;
+    proles.forEach(r=>{ if(matrix[adat][r]!==undefined) matrix[adat][r]++; });
+    edu.forEach(e=>{ if(matrix[adat][e]!==undefined) matrix[adat][e]++; });
+  });
+  
+  const cols = [...roles,...eduTypes];
+  const maxVal = Math.max(...categories.flatMap(c=>cols.map(col=>matrix[c][col]||0)));
+  
+  el.innerHTML = `
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#f0ebe0;margin-bottom:1.5rem">
+      Matriks <em style="color:#d4962e">Gelar Adat × Peran & Pendidikan</em>
+    </div>
+    <div style="overflow-x:auto">
+    <table style="border-collapse:collapse;font-size:11px;min-width:700px">
+      <thead>
+        <tr>
+          <th style="padding:8px 12px;text-align:left;color:var(--ink3);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border2)">Gelar Adat</th>
+          ${roles.map(r=>`<th style="padding:8px 10px;color:#c0542a;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border2);text-align:center">${r}</th>`).join('')}
+          <th style="width:1px;background:var(--border);border:none"></th>
+          ${eduTypes.map(e=>`<th style="padding:8px 10px;color:#2a8c7e;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border2);text-align:center">${e.replace('_',' ')}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${categories.map((cat,i)=>{
+          const colors = {'Datoe':'#c0542a','Soetan':'#1a5c52','Radja':'#7F77DD','Bagindo':'#185FA5','Toeankoe':'#d4962e','Chatib':'#5F5E5A'};
+          const c = colors[cat]||'#888';
+          return `<tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:10px 12px;font-weight:500;color:${c};white-space:nowrap">
+              <div style="display:flex;align-items:center;gap:.5rem">
+                <div style="width:8px;height:8px;border-radius:50%;background:${c};flex-shrink:0"></div>
+                ${cat}
+              </div>
+            </td>
+            ${cols.map((col,ci)=>{
+              const v = matrix[cat][col]||0;
+              const intensity = maxVal>0 ? v/maxVal : 0;
+              const sep = ci===roles.length-1 ? '<td style="width:8px;background:rgba(240,235,224,.05)"></td>' : '';
+              const cellColor = ci < roles.length ? '#c0542a' : '#2a8c7e';
+              return `${sep}<td style="padding:8px 10px;text-align:center">
+                <div style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:28px;border-radius:3px;background:${cellColor}${Math.round(intensity*99+1).toString(16).padStart(2,'0')};color:${intensity>0.5?'#f0ebe0':'var(--ink3)'};font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500">
+                  ${v>0?v:'–'}
+                </div>
+              </td>`;
+            }).join('')}
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:2rem;display:flex;gap:1.5rem">
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:10px;color:var(--ink3)"><div style="width:14px;height:14px;background:#c0542a44;border-radius:2px;border:1px solid #c0542a44"></div>Peran adat/kolonial</div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:10px;color:var(--ink3)"><div style="width:14px;height:14px;background:#2a8c7e44;border-radius:2px;border:1px solid #2a8c7e44"></div>Koneksi pendidikan</div>
+      <div style="font-size:10px;color:var(--ink4);margin-left:auto">Intensitas warna = frekuensi kemunculan dalam dokumen</div>
+    </div>
+  `;
+}
+
+function buildTimelineView() {
+  const el = document.getElementById('view-timeline');
+  const decades = [
+    {yr:1870,persons:51,edu:28,roles:162,desc:'Schoolcommissie pertama. Larashoofd mulai diintegrasi resmi ke sistem pendidikan kolonial.',key:['Mohamad Chorib galar Datoe Bilang Sakotta','Galoer galar Datoe Temanggoeng','Marahoesien galar Toeankoe Maharadji']},
+    {yr:1880,persons:20,edu:10,roles:62,desc:'Ekspansi komisie sekolah ke sub-divisi terpencil. Panghoeloe kapala masuk sistem.',key:['Nabi galar Datoe Bagindo Simaradjo','Lelong galar Datoe Mangkoeto Alam','Badoerahim galar Soetan Mara Inda']},
+    {yr:1890,persons:34,edu:20,roles:95,desc:'Lulusan kweekschool mulai teridentifikasi. Nawawi Soetan Makmoer muncul sebagai figur kunci.',key:['Nawawi Soetan Makmoer','Karim galar Radja Intan','Tingkat galar Bagindo Radjo']},
+    {yr:1900,persons:54,edu:34,roles:148,desc:'Vereeniging Minangkabau didirikan (1907). Elite lokal mulai membentuk jaringan organisasi modern.',key:['Nawawi Soetan Makmoer','Pangaoetan galar Soetan Mangasa','Djaftr galar Soetan Pamoentjak']},
+    {yr:1910,persons:30,edu:22,roles:85,desc:'Generasi baru: Tan Malaka, Hatta, Dahlan Abdoellah lahir dari ekosistem sekolah ini.',key:['Tahir galar Datoe Panghoeloe Besar','Harang galar Radja Ibrahim','Samson galar Datoe Gedang']},
+  ];
+  
+  const maxP = Math.max(...decades.map(d=>d.persons));
+  el.innerHTML = `
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#f0ebe0;margin-bottom:2rem">
+      Analisis <em style="color:#d4962e">Temporal</em> · Jejaring per Dekade
+    </div>
+    <div style="display:flex;gap:0;position:relative;margin-bottom:3rem">
+      <div style="position:absolute;left:0;right:0;top:80px;height:2px;background:linear-gradient(to right,#c0542a,#d4962e,#1a5c52,#185FA5,#E24B4A)"></div>
+      ${decades.map((d,i)=>`
+        <div style="flex:1;position:relative;padding-top:0">
+          <div style="position:absolute;top:72px;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:${['#c0542a','#d4962e','#1a5c52','#185FA5','#E24B4A'][i]};border:2px solid var(--bg2);z-index:1"></div>
+          <div style="text-align:center;padding:0 .5rem">
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:${['#c0542a','#d4962e','#1a5c52','#185FA5','#E24B4A'][i]};margin-bottom:.25rem">${d.yr}s</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink3);margin-bottom:1rem">${d.persons} tokoh</div>
+          </div>
+          <!-- BAR -->
+          <div style="display:flex;justify-content:center;align-items:flex-end;height:60px;margin-bottom:1.5rem;gap:3px;padding:0 .5rem">
+            <div style="flex:1;background:${['#c0542a','#d4962e','#1a5c52','#185FA5','#E24B4A'][i]}99;border-radius:2px 2px 0 0;height:${d.persons/maxP*100}%" title="Total tokoh"></div>
+            <div style="flex:1;background:rgba(42,140,126,.7);border-radius:2px 2px 0 0;height:${d.edu/maxP*100}%" title="Terhubung ke pendidikan"></div>
+          </div>
+          <div style="padding:0 .5rem">
+            <p style="font-size:9px;color:var(--ink3);line-height:1.55;margin-bottom:.75rem">${d.desc}</p>
+            <div style="display:flex;flex-direction:column;gap:.2rem">
+              ${d.key.map(k=>`<div style="font-size:8.5px;font-family:'JetBrains Mono',monospace;color:var(--ink4);padding:2px 6px;background:var(--bg3);border-radius:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${k.slice(0,28)}</div>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1rem">
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:10px;color:var(--ink3)">
+        <div style="width:12px;height:12px;background:#c0542a99;border-radius:1px"></div>Total tokoh
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:10px;color:var(--ink3)">
+        <div style="width:12px;height:12px;background:rgba(42,140,126,.7);border-radius:1px"></div>Terhubung ke pendidikan
+      </div>
+    </div>
+    <!-- DETAILED TABLE -->
+    <div style="margin-top:2.5rem">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem">Data Detail per Dekade</div>
+      <table style="width:100%;border-collapse:collapse;font-size:10px">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border2)">
+            ${['Dekade','Tokoh','Edu (%)','Schoolcommissie','Kweekschool','Relasi'].map(h=>`<th style="padding:8px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);font-weight:400">${h}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${[
+            {dec:'1870s',tokoh:51,edu:55,sc:26,kw:3,rel:470},
+            {dec:'1880s',tokoh:20,edu:39,sc:0,kw:1,rel:140},
+            {dec:'1890s',tokoh:34,edu:32,sc:0,kw:5,rel:183},
+            {dec:'1900s',tokoh:54,edu:33,sc:3,kw:3,rel:315},
+            {dec:'1910s',tokoh:30,edu:56,sc:0,kw:2,rel:241},
+          ].map((r,i)=>`
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:${['#c0542a','#d4962e','#1a5c52','#185FA5','#E24B4A'][i]}">${r.dec}</td>
+              <td style="padding:8px 12px;color:var(--ink2)">${r.tokoh}</td>
+              <td style="padding:8px 12px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:2px;background:rgba(42,140,126,${r.edu/100*.8});color:${r.edu>40?'#f0ebe0':'#2a8c7e'}">${r.edu}%</span></td>
+              <td style="padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3)">${r.sc}</td>
+              <td style="padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3)">${r.kw}</td>
+              <td style="padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink4)">${r.rel}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function buildGeoView() {
+  const el = document.getElementById('view-geo');
+  const topLocs = [
+    {loc:'Koemanis',n:8,roles:['larashoofd'],edu:true},
+    {loc:'Matoea',n:7,roles:['larashoofd','koeriahoofd'],edu:true},
+    {loc:'Tjandoeng',n:7,roles:['larashoofd'],edu:false},
+    {loc:'Loeboe Basong',n:7,roles:['larashoofd'],edu:true},
+    {loc:'Kapou',n:6,roles:['larashoofd','panghoeloe'],edu:true},
+    {loc:'Kapau',n:6,roles:['larashoofd'],edu:true},
+    {loc:'Moenkar',n:6,roles:['larashoofd'],edu:false},
+    {loc:'Alahan Pandjang',n:5,roles:['larashoofd'],edu:true},
+    {loc:'Loeboe Sikaping',n:5,roles:['larashoofd'],edu:true},
+    {loc:'VII Loerahs',n:5,roles:['larashoofd'],edu:true},
+    {loc:'Salimpawang',n:5,roles:['larashoofd'],edu:true},
+    {loc:'Padang Siboesoek',n:4,roles:['larashoofd','distriktshoofd'],edu:false},
+    {loc:'Priaman',n:4,roles:['larashoofd','panghoeloe'],edu:true},
+    {loc:'Singkarah',n:4,roles:['larashoofd','panghoeloe'],edu:true},
+    {loc:'Limakhaum',n:4,roles:['larashoofd'],edu:true},
+    {loc:'Bondjol',n:3,roles:['larashoofd'],edu:true},
+    {loc:'Talang',n:3,roles:['larashoofd'],edu:false},
+    {loc:'Troessan',n:3,roles:['larashoofd'],edu:true},
+    {loc:'Pilobang',n:3,roles:['larashoofd'],edu:true},
+    {loc:'Gaugo-Ilir',n:3,roles:['panghoeloe'],edu:true},
+  ];
+  
+  const maxN = Math.max(...topLocs.map(l=>l.n));
+  
+  el.innerHTML = `
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#f0ebe0;margin-bottom:.5rem">
+      Sebaran <em style="color:#d4962e">Wilayah / Laras</em> Teraktif
+    </div>
+    <p style="font-size:10px;color:var(--ink3);margin-bottom:2rem">524 lokasi unik teridentifikasi dalam 1.410 dokumen. Berikut 20 lokasi paling sering disebut bersama jejaring pendidikan.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
+      <!-- Bubble chart simulasi -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.5rem;position:relative;height:300px;overflow:hidden">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem">Bubble: ukuran = frekuensi</div>
+        ${topLocs.slice(0,15).map((l,i)=>{
+          const sz = 12 + l.n/maxN*40;
+          const x = 15 + (i%5)*18 + Math.sin(i*1.3)*5;
+          const y = 15 + Math.floor(i/5)*28 + Math.cos(i*2.1)*5;
+          const col = l.edu ? '#2a8c7e' : '#c0542a';
+          return `<div style="position:absolute;left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;border-radius:50%;background:${col}${l.edu?'99':'55'};border:1px solid ${col};display:flex;align-items:center;justify-content:center;cursor:default;transform:translate(-50%,-50%)" title="${l.loc}: ${l.n} tokoh">
+            <span style="font-size:7px;color:white;text-align:center;padding:2px;line-height:1.2;max-width:${sz-4}px;overflow:hidden">${l.loc.slice(0,8)}</span>
+          </div>`;
+        }).join('')}
+      </div>
+      
+      <!-- Bar chart -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.5rem">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem">Top 10 lokasi · frekuensi</div>
+        ${topLocs.slice(0,10).map(l=>`
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
+            <span style="font-size:9px;color:var(--ink3);width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.loc}</span>
+            <div style="flex:1;height:12px;background:var(--bg3);border-radius:1px;overflow:hidden">
+              <div style="height:100%;background:${l.edu?'#2a8c7e':'#c0542a'}99;width:${l.n/maxN*100}%;border-radius:1px;transition:width .3s"></div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink4);width:16px;text-align:right">${l.n}</span>
+            ${l.edu?'<span style="font-size:8px;color:#2a8c7e">✦</span>':''}
+          </div>
+        `).join('')}
+        <div style="margin-top:1rem;display:flex;gap:1rem">
+          <div style="font-size:9px;color:var(--ink3);display:flex;align-items:center;gap:.35rem"><span style="color:#2a8c7e">✦</span> Terhubung pendidikan</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Full table -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse;font-size:10px">
+        <thead>
+          <tr style="background:var(--bg3)">
+            ${['Lokasi / Laras','Frekuensi','Peran','Edu','Anotasi'].map(h=>`<th style="padding:8px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);font-weight:400;border-bottom:1px solid var(--border2)">${h}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${topLocs.map((l,i)=>`
+            <tr style="border-bottom:1px solid var(--border);${i%2?'background:rgba(255,255,255,.01)':''}">
+              <td style="padding:7px 12px;font-weight:500;color:var(--ink2)">${l.loc}</td>
+              <td style="padding:7px 12px">
+                <div style="display:flex;align-items:center;gap:.4rem">
+                  <div style="height:3px;width:${l.n/maxN*60}px;background:#c0542a99;border-radius:1px"></div>
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3)">${l.n}</span>
+                </div>
+              </td>
+              <td style="padding:7px 12px">${l.roles.map(r=>`<span style="font-size:8px;padding:1px 6px;border-radius:2px;background:#c0542a22;color:#c0542a;margin-right:3px">${r}</span>`).join('')}</td>
+              <td style="padding:7px 12px"><span style="font-size:10px;color:${l.edu?'#2a8c7e':'var(--ink4)'}">${l.edu?'✦ Ya':'—'}</span></td>
+              <td style="padding:7px 12px;font-size:9px;color:var(--ink4)">${i<5?['Agam, Dataran Tinggi Minangkabau','Pariaman, Pesisir Barat','Luhak nan Tigo','Limapuluh Kota','Agam Timur'][i]:''}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function exportData() {
+  const vn = visibleNodes();
+  const ve = visibleEdges();
+  const nodesCSV = 'id,label,type,adat_title,roles,edu,year_first,year_last\n' +
+    vn.map(n=>`"${n.id}","${n.label}","${n.type}","${n.adat_title||''}","${(n.roles||[]).join('|')}","${(n.edu||[]).join('|')}","${n.year_first||''}","${n.year_last||''}"`).join('\n');
+  const edgesCSV = 'source,target,type,year,weight\n' +
+    ve.map(e=>`"${e.source}","${e.target}","${e.type}","${e.year}","${e.weight}"`).join('\n');
+  
+  const blob1 = new Blob([nodesCSV], {type:'text/csv'});
+  const blob2 = new Blob([edgesCSV], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob1); a.download='network_nodes.csv'; a.click();
+  setTimeout(()=>{ const b = document.createElement('a'); b.href = URL.createObjectURL(blob2); b.download='network_edges.csv'; b.click(); }, 300);
+}
+
+// ─── LAUNCH ───
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
