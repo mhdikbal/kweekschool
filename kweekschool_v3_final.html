@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kweekschool Bukittinggi — Timeline & Network Mapping 1852–1912</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1410;--ink2:#3d3228;--ink3:#7a6a5a;--paper:#f5f0e8;--paper2:#ede6d8;--paper3:#e4dccf;--rust:#8b3a1e;--rust2:#c0542a;--teal:#1a5c52;--teal2:#2a8c7e;--amber:#b07828;--amber2:#d4962e;--blue:#1a3d6e;--blue2:#2a5fa5;--border:rgba(26,20,16,.15);--shadow:rgba(26,20,16,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.75;overflow-x:hidden}
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:rgba(26,20,16,.97);backdrop-filter:blur(10px);border-bottom:.5px solid rgba(245,240,232,.1);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.4)}
+.nav-links{display:flex;gap:0;list-style:none;flex-wrap:wrap}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.35);text-decoration:none;padding:0 .85rem;height:52px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:rgba(245,240,232,.9);border-bottom-color:var(--rust2)}
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;background:var(--ink);overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(139,58,30,.2) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 20% 80%,rgba(26,92,82,.15) 0%,transparent 60%)}
+.cover-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1.5rem;position:relative}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;color:var(--paper);line-height:1.1;margin-bottom:1rem;position:relative;max-width:900px}
+.cover h1 em{font-style:italic;color:var(--amber2)}
+.cover-subtitle{font-family:'Source Serif 4',serif;font-size:clamp(1rem,2vw,1.2rem);font-weight:300;font-style:italic;color:rgba(245,240,232,.6);max-width:600px;margin:1.5rem auto 3rem;position:relative}
+.cover-meta{display:flex;gap:3rem;position:relative;flex-wrap:wrap;justify-content:center}
+.cover-meta-item .num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--amber2);display:block;line-height:1}
+.cover-meta-item .label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.4);display:block;margin-top:4px;font-family:'JetBrains Mono',monospace}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounce 2s ease-in-out infinite}
+.scroll-hint::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,rgba(245,240,232,.3),transparent)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+/* MAP BACKGROUND */
+.map-bg-wrap{position:relative;background-image:url('NL-HaNA_4.MIKO_1372.1-groot.jpg');background-attachment:fixed;background-position:55% 15%;background-size:130%;background-repeat:no-repeat}
+.map-bg-wrap>*{position:relative;z-index:2}
+.map-bg-wrap::before{content:'';position:absolute;inset:0;background:var(--paper);opacity:.93;z-index:1}
+.map-bg-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,var(--paper) 0%,transparent 5%,transparent 95%,var(--paper) 100%);z-index:1}
+/* SECTION HEADER */
+.section-header{padding:5rem 0 3rem;display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:end;border-bottom:.5px solid var(--border);margin-bottom:4rem}
+.section-header .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:.75rem;display:block}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.15;color:var(--ink)}
+.section-header h2 em{font-style:italic;color:var(--rust)}
+.section-desc{font-size:1rem;color:var(--ink3);font-style:italic;font-weight:300;line-height:1.8}
+/* TIMELINE */
+.timeline{position:relative;padding-bottom:4rem}
+.tl-line{position:absolute;left:140px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border) 5%,var(--border) 95%,transparent)}
+.tl-era{margin-bottom:1rem;margin-top:3.5rem}
+.tl-era:first-child{margin-top:0}
+.era-badge{display:inline-flex;align-items:center;gap:.75rem;margin-left:160px;padding:5px 14px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:1.5rem}
+.era-badge.lahir{background:rgba(26,92,82,.1);color:var(--teal);border:.5px solid rgba(26,92,82,.25)}
+.era-badge.merosot{background:rgba(176,120,40,.1);color:var(--amber);border:.5px solid rgba(176,120,40,.25)}
+.era-badge.reformasi{background:rgba(139,58,30,.1);color:var(--rust);border:.5px solid rgba(139,58,30,.25)}
+.era-badge.nawawi{background:rgba(192,84,42,.1);color:var(--rust2);border:.5px solid rgba(192,84,42,.3)}
+.era-badge.akses{background:rgba(61,50,40,.08);color:var(--ink2);border:.5px solid var(--border)}
+.tl-event{display:grid;grid-template-columns:140px 1fr;gap:0;margin-bottom:2rem;position:relative}
+.tl-event::before{content:'';position:absolute;left:134px;top:20px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:2px solid var(--border);z-index:1;transition:all .2s}
+.tl-event.lahir::before{border-color:var(--teal);background:rgba(26,92,82,.1)}
+.tl-event.merosot::before{border-color:var(--amber);background:rgba(176,120,40,.1)}
+.tl-event.reformasi::before{border-color:var(--rust);background:rgba(139,58,30,.1)}
+.tl-event.nawawi::before{border-color:var(--rust2);background:rgba(192,84,42,.1)}
+.tl-event.akses::before{border-color:var(--ink3);background:var(--paper2)}
+.tl-event:hover::before{transform:scale(1.4)}
+.tl-date{padding-right:2rem;padding-top:14px;text-align:right}
+.tl-date .year{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink2);display:block;line-height:1}
+.tl-date .month{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-top:3px}
+.tl-card{background:var(--paper);border:.5px solid var(--border);border-radius:3px;padding:1.25rem 1.5rem;margin-left:1.5rem;transition:all .2s;position:relative;overflow:hidden}
+.tl-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.tl-event.lahir .tl-card::before{background:var(--teal)}
+.tl-event.merosot .tl-card::before{background:var(--amber)}
+.tl-event.reformasi .tl-card::before{background:var(--rust)}
+.tl-event.nawawi .tl-card::before{background:var(--rust2)}
+.tl-event.akses .tl-card::before{background:var(--ink3)}
+.tl-card:hover{background:var(--paper2);border-color:rgba(26,20,16,.25);box-shadow:0 4px 20px var(--shadow);transform:translateX(2px)}
+.tl-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:.6rem}
+.tl-card h3 em{font-style:italic;color:var(--rust)}
+.tl-card-body{font-size:.9rem;color:var(--ink2);line-height:1.8;font-weight:300}
+.tl-card-body p+p{margin-top:.6rem}
+.quote-block{margin:.75rem 0;padding:.75rem 1rem;background:var(--paper2);border-left:2px solid var(--border);font-style:italic;font-size:.87rem;color:var(--ink2);line-height:1.7}
+.src-block{margin-top:1rem;padding:.6rem .9rem;background:var(--paper3);border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);line-height:1.6;letter-spacing:.02em}
+.src-block span{color:var(--rust);font-weight:500;margin-right:.5rem}
+/* BADGE */
+.tbadge{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:2px;float:right;margin:2px 0 4px 8px}
+.tbadge.fondasi{background:rgba(26,92,82,.1);color:var(--teal)}
+.tbadge.krisis{background:rgba(176,120,40,.12);color:var(--amber)}
+.tbadge.reformasi{background:rgba(139,58,30,.1);color:var(--rust)}
+.tbadge.tokoh{background:rgba(192,84,42,.1);color:var(--rust2)}
+.tbadge.admin{background:rgba(61,50,40,.08);color:var(--ink3)}
+.tbadge.beleid{background:rgba(26,92,82,.08);color:var(--teal2)}
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:1.5rem;margin:4rem 0;color:var(--border)}
+.divider::before,.divider::after{content:'';flex:1;height:.5px;background:var(--border)}
+.divider-symbol{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink3);opacity:.4}
+/* FEATURE BOX */
+.feature-box{background:var(--ink);color:var(--paper);padding:2.5rem;border-radius:3px;margin:3rem 0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;overflow:hidden}
+.feature-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 80% 50%,rgba(139,58,30,.2) 0%,transparent 70%)}
+.feature-box-content{position:relative}
+.feature-box .eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1rem;display:block}
+.feature-box h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;line-height:1.2;margin-bottom:1rem}
+.feature-box h3 em{font-style:italic;color:var(--amber2)}
+.feature-box p{font-size:.9rem;color:rgba(245,240,232,.7);line-height:1.8;font-weight:300}
+.feature-box-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;position:relative}
+.stat-item{border-left:2px solid rgba(245,240,232,.15);padding-left:1rem}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--amber2);display:block;line-height:1}
+.stat-item .desc{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:rgba(245,240,232,.4);display:block;margin-top:4px}
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+/* NETWORK PAGE */
+.network-page{background:var(--ink);min-height:100vh;padding:5rem 2rem;position:relative}
+.network-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 30% 30%,rgba(26,92,82,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 80% 70%,rgba(139,58,30,.1) 0%,transparent 60%)}
+.network-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.network-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--paper);margin-bottom:.5rem}
+.network-title em{font-style:italic;color:var(--amber2)}
+.network-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1rem;display:block}
+.network-desc{font-size:.95rem;color:rgba(245,240,232,.55);font-style:italic;line-height:1.75;max-width:640px;margin-bottom:3rem;font-weight:300}
+/* TAB SWITCHER */
+.tab-bar{display:flex;gap:0;margin-bottom:2.5rem;border-bottom:.5px solid rgba(245,240,232,.12);flex-wrap:wrap}
+.tab-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.25rem;cursor:pointer;border:none;background:none;color:rgba(245,240,232,.35);border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:rgba(245,240,232,.7)}
+.tab-btn.active{color:var(--amber2);border-bottom-color:var(--amber2)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+/* NETWORK CANVAS */
+.network-canvas-wrap{background:rgba(255,255,255,.03);border:.5px solid rgba(245,240,232,.08);border-radius:4px;padding:1.5rem;position:relative;overflow:hidden}
+.network-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.leg-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.4)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+canvas{display:block;width:100%;cursor:pointer}
+/* TOOLTIP */
+.net-tooltip{position:absolute;background:rgba(26,20,16,.95);border:.5px solid rgba(245,240,232,.15);border-radius:3px;padding:1rem 1.25rem;pointer-events:none;z-index:50;max-width:300px;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
+.net-tooltip.visible{opacity:1}
+.net-tooltip .tt-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--paper);margin-bottom:4px}
+.net-tooltip .tt-role{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust2);margin-bottom:.5rem}
+.net-tooltip .tt-body{font-size:.82rem;color:rgba(245,240,232,.65);line-height:1.6}
+.net-tooltip .tt-career{margin-top:.6rem;border-top:.5px solid rgba(245,240,232,.1);padding-top:.6rem}
+.net-tooltip .tt-career-title{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.3);margin-bottom:.4rem}
+.net-tooltip .career-step{font-size:.8rem;color:rgba(245,240,232,.55);line-height:1.6;padding-left:.75rem;border-left:1px solid rgba(245,240,232,.1);margin-bottom:3px}
+/* NUSANTARA MAP */
+.nusantara-wrap{position:relative;background:rgba(255,255,255,.02);border:.5px solid rgba(245,240,232,.08);border-radius:4px;padding:1.5rem}
+.kweek-node-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:2rem}
+.kweek-node-card{background:rgba(255,255,255,.04);border:.5px solid rgba(245,240,232,.1);border-radius:3px;padding:1.1rem 1.25rem;transition:all .2s;cursor:default}
+.kweek-node-card:hover{background:rgba(255,255,255,.07);border-color:rgba(245,240,232,.2)}
+.kn-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.5rem}
+.kn-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--paper)}
+.kn-year{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--amber2)}
+.kn-loc{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:rgba(245,240,232,.35);margin-bottom:.4rem}
+.kn-body{font-size:.83rem;color:rgba(245,240,232,.55);line-height:1.65}
+.kn-links{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:4px}
+.kn-link{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.kn-link.linked-fdk{background:rgba(26,92,82,.2);color:rgba(42,140,126,.9)}
+.kn-link.linked-gov{background:rgba(139,58,30,.15);color:rgba(192,84,42,.9)}
+.kn-link.linked-staf{background:rgba(176,120,40,.15);color:rgba(212,150,46,.9)}
+/* SOURCES */
+.sources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
+.source-item{padding:1rem 1.25rem;background:var(--paper2);border:.5px solid var(--border);border-radius:2px}
+.src-name{font-family:'Playfair Display',serif;font-weight:700;color:var(--ink);margin-bottom:3px;font-size:.9rem}
+.src-detail{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.03em;line-height:1.6}
+footer{background:var(--ink);color:rgba(245,240,232,.4);padding:4rem 2rem;text-align:center;position:relative;z-index:1}
+footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;line-height:2}
+@media(max-width:768px){.tl-line{left:70px}.tl-event{grid-template-columns:70px 1fr}.tl-event::before{left:64px}.era-badge{margin-left:90px}.section-header{grid-template-columns:1fr;gap:1rem}.feature-box{grid-template-columns:1fr}.nav-links{display:none}}
+/* NAWAWI BG */
+#nawawi .section-header{position:relative;overflow:hidden}
+#nawawi .section-header::after{content:'';position:absolute;top:-10px;right:-10px;bottom:-10px;width:340px;background:url('Engku-Nawawi--IST_ratio-16x9.jpg') center top/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);pointer-events:none;filter:sepia(.3) contrast(1.1)}
+/* KESIMPULAN */
+.kesimpulan-section{background:var(--ink);color:var(--paper);padding:5rem 2rem;position:relative;overflow:hidden}
+.kesimpulan-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(176,120,40,.12) 0%,transparent 70%)}
+.kesimpulan-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.kesimpulan-header{text-align:center;margin-bottom:2.5rem}
+/* HERO PHOTO */
+.kesimpulan-hero{position:relative;margin:0 auto 3.5rem;max-width:900px;transform:rotate(-.8deg);transition:transform .5s ease}
+.kesimpulan-hero:hover{transform:rotate(0deg)}
+.kesimpulan-hero-frame{background:rgba(245,240,232,.08);border:1px solid rgba(245,240,232,.1);border-radius:3px;padding:10px 10px 28px;box-shadow:0 8px 40px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.2);position:relative}
+.kesimpulan-hero-frame img{display:block;width:100%;height:auto;filter:sepia(.25) contrast(1.1) brightness(.88);border-radius:1px}
+.kesimpulan-hero-frame::after{content:'Het Jaar 1888';position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:.7rem;font-style:italic;color:rgba(245,240,232,.3);letter-spacing:.1em}
+.hero-caption{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;padding:0 .5rem}
+.hero-caption-text{max-width:500px}
+.hero-caption-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:rgba(245,240,232,.8);line-height:1.3;margin-bottom:.3rem}
+.hero-caption-detail{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.06em;color:rgba(245,240,232,.45);line-height:1.7}
+.hero-source{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.04em;color:rgba(245,240,232,.3);text-align:right;line-height:1.6;max-width:340px}
+@media(max-width:768px){.kesimpulan-hero{margin:0 -1rem 2.5rem}.hero-caption{flex-direction:column;padding:1rem}.hero-source{text-align:left}}
+.kesimpulan-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1rem;display:block}
+.kesimpulan-quote{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--paper);line-height:1.2;margin-bottom:.75rem}
+.kesimpulan-quote em{font-style:italic;color:var(--amber2)}
+.kesimpulan-sub{font-size:1.05rem;color:rgba(245,240,232,.5);font-style:italic;font-weight:300;max-width:640px;margin:0 auto}
+.kesimpulan-body{display:grid;grid-template-columns:3fr 2fr;gap:3rem;margin-bottom:3rem}
+.kesimpulan-text{font-size:.92rem;color:rgba(245,240,232,.72);line-height:1.9;font-weight:300}
+.kesimpulan-text p+p{margin-top:1.2rem}
+.kesimpulan-text strong{color:rgba(245,240,232,.9);font-weight:600}
+.kesimpulan-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-content:start}
+.kd-item{border-left:2px solid rgba(245,240,232,.15);padding-left:1rem;padding-top:.25rem;padding-bottom:.25rem}
+.kd-item .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--amber2);display:block;line-height:1}
+.kd-item .desc{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:rgba(245,240,232,.4);display:block;margin-top:4px;line-height:1.5}
+.pepatah-box{margin:2.5rem 0;padding:2rem;border:1px solid rgba(245,240,232,.12);border-radius:3px;text-align:center;background:rgba(255,255,255,.03);max-width:700px;margin-left:auto;margin-right:auto}
+.pepatah-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--amber2);margin-bottom:.5rem;line-height:1.4}
+.pepatah-meaning{font-size:.88rem;color:rgba(245,240,232,.5);font-weight:300;line-height:1.7}
+.kesimpulan-coda{text-align:center;font-size:.95rem;color:rgba(245,240,232,.6);font-style:italic;max-width:700px;margin:0 auto;line-height:1.8;font-weight:300}
+@media(max-width:768px){.kesimpulan-body{grid-template-columns:1fr}}
+
+/* COUNTER ANIMATION */
+@keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.kd-item.animated .num{animation:countUp .6s ease-out both}
+.kd-item:nth-child(2).animated .num{animation-delay:.15s}
+.kd-item:nth-child(3).animated .num{animation-delay:.3s}
+.kd-item:nth-child(4).animated .num{animation-delay:.45s}
+/* TIMELINE FILTER */
+.tl-filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;padding:.75rem 0}
+.tl-filter-btn{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:2px;cursor:pointer;border:.5px solid var(--border);background:transparent;color:var(--ink3);transition:all .25s}
+.tl-filter-btn:hover{border-color:var(--ink2);color:var(--ink2)}
+.tl-filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tl-event.tl-hidden{display:none}
+.tl-era.tl-hidden{display:none}
+/* CITE BUTTON */
+.cite-btn{position:absolute;top:.75rem;right:.75rem;width:28px;height:28px;border-radius:2px;border:.5px solid var(--border);background:var(--paper);color:var(--ink3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;opacity:0;z-index:2}
+.tl-card:hover .cite-btn{opacity:1}
+.cite-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cite-btn.copied{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cite-toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;padding:.6rem 1.5rem;border-radius:3px;opacity:0;transition:all .3s;z-index:999;pointer-events:none;border:.5px solid rgba(245,240,232,.15)}
+.cite-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* CAREER PATH */
+.career-path{margin:3rem 0;padding:2rem 0;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border)}
+.career-path-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1.5rem;text-align:center}
+.career-steps{display:flex;align-items:stretch;gap:0;position:relative;overflow-x:auto;padding-bottom:.5rem}
+.career-step-item{flex:1;min-width:130px;text-align:center;position:relative;padding:0 .5rem}
+.career-step-item::before{content:'';position:absolute;top:22px;left:0;right:0;height:2px;background:var(--border)}
+.career-step-item:first-child::before{left:50%}
+.career-step-item:last-child::before{right:50%}
+.cs-dot{width:14px;height:14px;border-radius:50%;margin:16px auto 12px;position:relative;z-index:1;transition:transform .3s}
+.career-step-item:hover .cs-dot{transform:scale(1.5)}
+.cs-year{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--amber);display:block;margin-bottom:4px}
+.cs-label{font-family:'Playfair Display',serif;font-size:.8rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:2px}
+.cs-detail{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:.03em;line-height:1.4}
+/* PINNED TOOLTIP */
+.net-tooltip.pinned{pointer-events:auto;opacity:1}
+.net-tooltip .tt-close{position:absolute;top:6px;right:8px;width:20px;height:20px;border:none;background:none;color:rgba(245,240,232,.4);font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;border-radius:2px}
+.net-tooltip .tt-close:hover{color:var(--paper);background:rgba(245,240,232,.1)}
+.net-tooltip.pinned .tt-close{display:flex}
+/* GEO MAP */
+.geo-section{padding:3rem 0;margin:3rem 0;border-top:.5px solid var(--border)}
+.geo-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:.5rem;text-align:center}
+.geo-subtitle{font-family:'Source Serif 4',serif;font-size:.9rem;color:var(--ink3);font-style:italic;text-align:center;margin-bottom:1.5rem;font-weight:300}
+.geo-canvas-wrap{position:relative;background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1rem;overflow:hidden}
+.geo-canvas-wrap canvas{display:block;width:100%}
+.geo-tooltip{position:absolute;background:rgba(26,20,16,.93);border:.5px solid rgba(245,240,232,.2);border-radius:3px;padding:.6rem .9rem;pointer-events:none;z-index:10;max-width:200px;opacity:0;transition:opacity .15s}
+.geo-tooltip.visible{opacity:1}
+.geo-tooltip .gt-name{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;color:var(--paper);margin-bottom:2px}
+.geo-tooltip .gt-detail{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(245,240,232,.5);letter-spacing:.03em;line-height:1.5}
+/* INTRO SPLASH */
+.intro-splash{position:fixed;inset:0;z-index:9999;background:#0d0a07;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s;overflow:hidden}
+.intro-splash.hiding{opacity:0;visibility:hidden}
+.intro-splash::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(139,58,30,.12) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 30% 70%,rgba(176,120,40,.08) 0%,transparent 50%)}
+.intro-dust{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.5}
+.intro-content{position:relative;text-align:center;z-index:2}
+.intro-year{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:700;color:rgba(212,150,46,.15);line-height:1;margin-bottom:1.5rem;letter-spacing:-.02em}
+.intro-line{display:block;overflow:hidden;margin-bottom:.5rem}
+.intro-line span{display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2.5rem);font-weight:700;color:var(--paper);transform:translateY(110%);animation:introSlideUp .7s cubic-bezier(.16,1,.3,1) forwards;opacity:0;white-space:nowrap}
+.intro-line:nth-child(2) span{animation-delay:.3s}
+.intro-line:nth-child(3) span{animation-delay:.6s}
+.intro-line span em{font-style:italic;color:var(--amber2)}
+@keyframes introSlideUp{to{transform:translateY(0);opacity:1}}
+.intro-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.25);margin-top:2rem;opacity:0;animation:introFadeIn .6s .9s forwards}
+.intro-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(212,150,46,.4),transparent);margin:1.5rem auto;opacity:0;animation:introFadeIn .6s 1.1s forwards}
+.intro-enter{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.5);background:none;border:1px solid rgba(245,240,232,.15);padding:.6rem 2rem;border-radius:2px;cursor:pointer;opacity:0;animation:introFadeIn .6s 1.4s forwards;transition:all .3s;margin-top:.5rem}
+.intro-enter:hover{color:var(--paper);border-color:var(--amber2);background:rgba(212,150,46,.1)}
+@keyframes introFadeIn{to{opacity:1}}
+.intro-ink{position:absolute;width:200vmax;height:200vmax;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);border-radius:50%;background:#0d0a07;z-index:10;pointer-events:none}
+@keyframes inkSpread{0%{transform:translate(-50%,-50%) scale(0);opacity:1}60%{opacity:1}100%{transform:translate(-50%,-50%) scale(1.5);opacity:0}}
+/* PROGRESS BAR */
+.reading-progress{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(to right,var(--rust2),var(--amber2));z-index:300;width:0;transition:width .1s linear;pointer-events:none}
+/* SCROLL TO TOP */
+.scroll-top-btn{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;border-radius:50%;background:rgba(26,20,16,.85);border:1px solid rgba(245,240,232,.12);color:rgba(245,240,232,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;z-index:150;opacity:0;transform:translateY(10px);transition:all .3s;backdrop-filter:blur(6px);pointer-events:none}
+.scroll-top-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.scroll-top-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--amber2);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+/* PRINT BTN */
+.footer-actions{display:flex;justify-content:center;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.footer-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.4);background:none;border:1px solid rgba(245,240,232,.1);padding:.5rem 1.5rem;border-radius:2px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.footer-btn:hover{color:var(--paper);border-color:var(--amber2);background:rgba(212,150,46,.08)}
+.footer-btn svg{width:14px;height:14px;fill:currentColor}
+@media print{.nav,.scroll-top-btn,.reading-progress,.footer-actions,.tl-filter-bar,.cite-btn{display:none!important}.cover{min-height:auto;padding:2rem}.network-page,.kesimpulan-section{break-inside:avoid}body{font-size:11pt}}
+
+
+
+
+
+/* NAWAWI PHOTO OVERLAY */
+#nawawi .section-header{position:relative;overflow:hidden}
+#nawawi .section-header::after{content:'';position:absolute;top:-10px;right:-10px;bottom:-10px;width:340px;background:url('Engku-Nawawi--IST_ratio-16x9.jpg') center top/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);pointer-events:none;filter:sepia(.3) contrast(1.1)}
+
+
+
+/* PENUTUP OVERLAY */
+#penutup-box{position:relative;overflow:hidden;z-index:1;}
+#penutup-box::after{content:'';position:absolute;top:0;right:0;bottom:0;width:350px;background:url('tokoh_pergerakan_collage.png') center center/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);pointer-events:none;filter:grayscale(100%) sepia(.2) contrast(1.1);z-index:0;}
+#penutup-box > *{position:relative;z-index:1}
+
+/* TRAJEKTORI PHOTO OVERLAY */
+#trajektori{position:relative;}
+#trajektori::after{content:'';position:absolute;top:-20px;right:-20px;bottom:-20px;width:600px;background:url('murid2-kweekschool-fort-de-kock-1888-nawawi-kramer-1908-p-26.webp') center 20%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);pointer-events:none;filter:grayscale(1) sepia(0.2) contrast(1.2);z-index:0;}
+#trajektori > *{position:relative;z-index:1}
+
+/* HORIZONTAL TIMELINE SCROLL */
+.timeline-puncak-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:1rem;scrollbar-width:thin;scrollbar-color:var(--rust2) var(--paper3)}
+.timeline-puncak-scroll::-webkit-scrollbar{height:6px}
+.timeline-puncak-scroll::-webkit-scrollbar-track{background:var(--paper3);border-radius:3px}
+.timeline-puncak-scroll::-webkit-scrollbar-thumb{background:var(--rust2);border-radius:3px}
+.timeline-puncak-inner{min-width:1150px;padding:0 0 .5rem}
+.drag-hint{display:none;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);text-align:center;margin-top:.5rem;opacity:.5}
+@media(max-width:900px){.drag-hint{display:block}}
+@media(max-width:768px){.timeline-puncak-inner{min-width:800px}}
+
+</style>
+
+</head>
+<body>
+
+<!-- INTRO SPLASH -->
+<div class="intro-splash" id="intro-splash">
+  <div class="intro-dust"></div>
+  <div class="intro-content">
+    <div class="intro-year">1856</div>
+    <div class="intro-line"><span>Kweekschool</span></div>
+    <div class="intro-line"><span><em>Fort de Kock</em></span></div>
+    <div class="intro-line"><span>Bukittinggi</span></div>
+    <div class="intro-sub">Riset Sejarah Pendidikan Kolonial · Sumatera Barat · 1852–1912</div>
+    <div class="intro-divider"></div>
+    <button class="intro-enter" onclick="dismissIntro()">Buka Arsip</button>
+  </div>
+  <div class="intro-ink" id="intro-ink"></div>
+</div>
+
+<!-- READING PROGRESS -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top-btn" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke atas">↑</button>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-eyebrow">Riset Sejarah Pendidikan Kolonial · Bukittinggi · Sumatera Barat</div>
+  <h1>Kweekschool <em>Fort de Kock</em><br>& Jejaring Nusantara</h1>
+  <p class="cover-subtitle">Timeline beranotasi, peta karir tokoh, dan jejaring kweekschool Hindia Belanda — berbasis sumber primer 1852–1912</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="num">1856</span><span class="label">Berdiri</span></div>
+    <div class="cover-meta-item"><span class="num">11+</span><span class="label">Kweekschool Nusantara</span></div>
+    <div class="cover-meta-item"><span class="num">58+</span><span class="label">Dokumen Sumber</span></div>
+    <div class="cover-meta-item"><span class="num">1907</span><span class="label">Vereeniging Minangkabau</span></div>
+  </div>
+  <div class="scroll-hint">Gulir ke bawah</div>
+</section>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <span class="nav-title">Kweekschool FdK</span>
+  <ul class="nav-links">
+    <li><a href="#kelahiran">I. Kelahiran</a></li>
+    <li><a href="#merosot">II. Kemerosotan</a></li>
+    <li><a href="#akses">III. Akses Pendidikan</a></li>
+    <li><a href="#nawawi">IV. Nawawi</a></li>
+    <li><a href="#network">V. Network</a></li>
+    <li><a href="#kesimpulan">VI. Kesimpulan</a></li>
+    <li><a href="#sumber">VII. Sumber</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<div class="map-bg-wrap" id="map-bg-wrap">
+
+<!-- BAB I -->
+<section id="kelahiran">
+  <div class="section-header fade-in">
+    <div><span class="eyebrow">Bab I · 1852–1858</span><h2>Kelahiran<br><em>Sebuah Institusi</em></h2></div>
+    <p class="section-desc">Fort de Kock (Bukittinggi) menjadi titik temu ambisi kolonial dan kebutuhan administratif. Kweekschool yang lahir di sana bukan hanya sekolah guru — ia adalah mesin produksi kepala daerah yang melek baca-tulis dan tunduk pada sistem Belanda, dimulai dari satu orang visioner.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-filter-bar" id="filter-kelahiran">
+      <button class="tl-filter-btn active" onclick="filterTimeline('kelahiran','all')">Semua</button>
+      <button class="tl-filter-btn" onclick="filterTimeline('kelahiran','lahir')">Pendirian</button>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-era fade-in"><div class="era-badge lahir">▸ Percobaan & Pendirian</div></div>
+
+    <div class="tl-event lahir fade-in">
+      <div class="tl-date"><span class="year">1852</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Fondasi</span>
+        <h3>Kweekschool pertama di Surakarta — model untuk Nusantara</h3>
+        <div class="tl-card-body"><p>Pemerintah Kolonial mendirikan kweekschool pertama untuk guru-guru bumiputra di Surakarta, Jawa. Institusi ini menjadi model yang kemudian diadopsi di Sumatra dan seluruh Nusantara. Lulusannya ditempatkan di sekolah-sekolah provinsi di berbagai karesidenan.</p></div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 2, 1864 — "Iets over het schoolonderwijs onder de inlanders"</div>
+      </div>
+    </div>
+
+    <div class="tl-event lahir fade-in">
+      <div class="tl-date"><span class="year">1855</span><span class="month">26 April</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Inisiatif</span>
+        <h3>Pendeta A. Buddingh: Fort de Kock adalah tempat yang tepat</h3>
+        <div class="tl-card-body"><p>Melalui surat dinas No. 149, pendeta A. Buddingh mengusulkan kweekschool pusat bagi Pantai Barat Sumatra di Karesidenan Dataran Tinggi Padang. Ia secara eksplisit menyebut Fort de Kock sebagai lokasi ideal — strategis di jantung Dataran Tinggi Minangkabau.</p></div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869 — § 3. Scholen op Sumatra</div>
+      </div>
+    </div>
+
+    <div class="tl-event lahir fade-in">
+      <div class="tl-date"><span class="year">1856</span><span class="month">1 April</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Resmi Berdiri</span>
+        <h3>Besluit No. 13: Percobaan kweekschool di Bukittinggi — van Ophuysen memimpin</h3>
+        <div class="tl-card-body">
+          <p>Setelah konsultasi dengan Gubernur Pantai Barat Sumatra (Letjen Van Swieten), Asisten Residen J.A.W. van Ophuysen, Residen Couperus dan Netscher — pemerintah menetapkan percobaan di dekat Fort de Kock. Van Ophuysen, "bij uitnemendheid geschikt" (sangat cakap), memimpin langsung.</p>
+          <div class="quote-block">"De proef gelukte volkomen. Zeer gunstig was het oordeel dat over de kweekelingen geveld werd." — Percobaan berhasil sepenuhnya.</div>
+        </div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869</div>
+      </div>
+    </div>
+
+    <div class="tl-event lahir fade-in">
+      <div class="tl-date"><span class="year">1858</span><span class="month">8 Feb</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Permanen</span>
+        <h3>Maklumat Kerajaan No. 85: sekolah ditetapkan permanen — anggaran ƒ 1.680/tahun</h3>
+        <div class="tl-card-body"><p>Koninklijk kabinet rescript 8 Februari 1858 menetapkan kweekschool secara permanen di Fort de Kock dengan anggaran ƒ 1.680 per tahun. Di bawah van Ophuysen, sekolah mencapai masa keemasannya — namun semuanya bergantung pada satu figur kepemimpinan.</p></div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider fade-in"><span class="divider-symbol">✦</span></div>
+
+<!-- BAB II -->
+<section id="merosot">
+  <div class="section-header fade-in">
+    <div><span class="eyebrow">Bab II · ≈1858–1874</span><h2>Kemerosotan &<br><em>Reformasi</em></h2></div>
+    <p class="section-desc">Kepergian van Ophuysen — sekitar 1860–1862, bukan serta-merta 1858 — menandai runtuhnya masa emas yang rapuh. Artikel Tijdschrift 1869 merekam kondisi sesungguhnya pada akhir 1860an dengan kritik yang tajam. Pembenahan staf baru terjadi pada 1873–1874.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-filter-bar" id="filter-merosot">
+      <button class="tl-filter-btn active" onclick="filterTimeline('merosot','all')">Semua</button>
+      <button class="tl-filter-btn" onclick="filterTimeline('merosot','merosot')">Kemerosotan</button>
+      <button class="tl-filter-btn" onclick="filterTimeline('merosot','reformasi')">Reformasi</button>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-era fade-in"><div class="era-badge merosot">▸ Masa Kemerosotan (≈1860–1869)</div></div>
+
+    <div class="tl-event merosot fade-in">
+      <div class="tl-date"><span class="year">≈1860</span><span class="month">–1862</span></div>
+      <div class="tl-card">
+        <span class="tbadge krisis">Kemerosotan</span>
+        <h3>Van Ophuysen meninggalkan jabatan — <em>kejayaan berakhir bersamanya</em></h3>
+        <div class="tl-card-body">
+          <p>Artikel 1869 menyebut kemerosotan terjadi sejak kepergian van Ophuysen. Karena sekolah berdiri 1856, permanen 1858, dan inspektur sudah mencatat kemunduran pada 1860an — kepergian van Ophuysen diperkirakan sekitar 1860–1862 (bukan langsung 1858). Ini menunjukkan bahwa seluruh institusi bergantung pada satu individu.</p>
+          <div class="quote-block">"Een ziekelijke Maleier, die niet bijzonder boven zijne landgenooten uitmunt, geeft, nagenoeg zonder contrôle, jaar in jaar uit les." — Seorang pria Melayu yang sakit-sakitan, tanpa pengawasan, mengajar dari tahun ke tahun.</div>
+        </div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869 — laporan Inspektur (kondisi akhir 1860an)</div>
+      </div>
+    </div>
+
+    <div class="tl-event merosot fade-in">
+      <div class="tl-date"><span class="year">1866</span></div>
+      <div class="tl-card">
+        <span class="tbadge krisis">Audit Kritis</span>
+        <h3>Hanya 12 dari 49 siswa lulus — "kweekschool hanya dalam nama"</h3>
+        <div class="tl-card-body">
+          <p>Inspektur merinci kegagalan secara kuantitatif: 49 kweekelingen berpotensi lulus, hanya 12 yang berhasil (kurang dari 1/tahun), biaya ±ƒ 1.400 per kepala. 16 lainnya meninggalkan sekolah untuk pekerjaan lain. Hanya 8 sekolah yang memperoleh guru lulusan kweekschool ini.</p>
+          <div class="quote-block">"Het is dan ook slechts eene kweekschool in naam, die dringend geheele hervorming noodig heeft." — Ini hanyalah kweekschool dalam nama saja.</div>
+          <p>Ruang kelas sempit, merangkap tempat rapat kepala daerah; para siswa tinggal terpencar, belajar judi dari tentara; tidak ada globe, hanya menyalin buku Belanda kuno.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869 — laporan Inspektur Pendidikan Pribumi</div>
+      </div>
+    </div>
+
+    <div class="tl-era" style="margin-top:3rem"><div class="era-badge reformasi">▸ Usulan Reformasi & Pembenahan Staf</div></div>
+
+    <div class="tl-event reformasi fade-in">
+      <div class="tl-date"><span class="year">1869</span></div>
+      <div class="tl-card">
+        <span class="tbadge reformasi">Debat Kebijakan</span>
+        <h3>Inspektur usulkan gabungkan kedua kweekschool ke satu pusat di Padang</h3>
+        <div class="tl-card-body">
+          <p>Inspektur mengusulkan membubarkan Fort de Kock dan Tanah-Batoe, menggabungkannya ke Padang (36 siswa, model Surakarta). Target: ±180 guru untuk setiap laras dan koeria. Penulis Tijdschrift skeptis: "Kami khawatir satu sekolah untuk seluruh wilayah ini tidak akan memadai, mengingat perbedaan bahasa dan karakter penduduknya."</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Tijdschrift voor Neerland's Indië, jrg 3, 1869</div>
+      </div>
+    </div>
+
+    <div class="tl-event reformasi fade-in">
+      <div class="tl-date"><span class="year">1873</span><span class="month">Nov</span></div>
+      <div class="tl-card">
+        <span class="tbadge admin">Staf Baru</span>
+        <h3>W.F. Weide (Batavia) ditugaskan sebagai guru kedua di Fort de Kock</h3>
+        <div class="tl-card-body"><p>W.F. Weide, asisten guru pertama dari sekolah dasar publik Batavia, memangku jabatan guru kedua di kweekschool Fort de Kock. Pada 1873, sekolah sudah memiliki dua posisi pengajar terisi — tanda pembenahan struktural mulai berjalan.</p></div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 15 Nov 1873 — "Bij het Departement van Financiën"</div>
+      </div>
+    </div>
+
+    <div class="tl-event reformasi fade-in">
+      <div class="tl-date"><span class="year">1874</span><span class="month">Feb</span></div>
+      <div class="tl-card">
+        <span class="tbadge admin">Pergantian Pimpinan</span>
+        <h3>Spönhoff pindah ke Mojokerto — J.H.J. Laats jadi kepala sekolah baru</h3>
+        <div class="tl-card-body"><p>Hoofdonderwijzer Spönhoff dipindahkan ke Mojokerto. J.H.J. Laats diangkat penggantinya di Fort de Kock. Bersamaan, guru Oostergetel dari Fort de Kock diperbantukan ke kweekschool Tondano — transfer SDM pertama yang terdokumentasi antar-kweekschool, menandai integrasi jaringan.</p></div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 14 Feb 1874 — "Verplaatsingen en Benoemingen"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider fade-in"><span class="divider-symbol">✦</span></div>
+
+<!-- BAB III -->
+<section id="akses">
+  <div class="section-header fade-in">
+    <div><span class="eyebrow">Bab III · 1870an–1885</span><h2>Larashoofd &<br><em>Akses Pendidikan</em></h2></div>
+    <p class="section-desc">Pendidikan di Dataran Tinggi Minangkabau tidak hadir dalam ruang hampa. Larashoofd (kepala laras), panghoeloe, dan mantri adalah pemain utama. Kemampuan baca-tulis Melayu dan Belanda bukan sekadar bekal — ia adalah prasyarat jabatan dalam birokrasi kolonial.</p>
+  </div>
+
+  <div class="feature-box fade-in">
+    <div class="feature-box-content">
+      <span class="eyebrow">Konteks Struktural</span>
+      <h3>Sekolah sebagai <em>Alat Administrasi</em> Kolonial</h3>
+      <p>Plaatselijke Inlandsche Schoolcommissie terdiri dari seorang kontrolir Eropa berpasangan dengan larashoofd setempat. Larashoofd adalah produk sekaligus penjamin sistem — mereka diangkat ke komisie sekolah karena jabatannya, dan jabatan mereka tergantung pada kemampuan melek aksara yang diajarkan di sekolah yang mereka awasi.</p>
+    </div>
+    <div class="feature-box-stats">
+      <div class="stat-item"><span class="num">1873</span><span class="desc">Schoolcommissie pertama di Fort van der Capellen dengan larashoofd resmi</span></div>
+      <div class="stat-item"><span class="num">868</span><span class="desc">Entri dokumen menghubungkan larashoofd dengan institusi sekolah (Delpher)</span></div>
+      <div class="stat-item"><span class="num">ƒ10</span><span class="desc">Tunjangan bulanan kweekeling — dipotong ƒ1.50 untuk perlengkapan sekolah</span></div>
+      <div class="stat-item"><span class="num">49→12</span><span class="desc">Potensi lulusan vs realisasi tahun 1866 — cermin krisis mutu</span></div>
+    </div>
+  </div>
+
+  <div class="timeline fade-in">
+    <div class="tl-filter-bar" id="filter-akses">
+      <button class="tl-filter-btn active" onclick="filterTimeline('akses','all')">Semua</button>
+      <button class="tl-filter-btn" onclick="filterTimeline('akses','akses')">Akses</button>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-era"><div class="era-badge akses">▸ Integrasi Larashoofd ke Sistem Pendidikan</div></div>
+
+    
+    <div class="tl-event akses fade-in">
+      <div class="tl-date"><span class="year">1873</span><span class="month">April</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Gedung Baru Dibuka</span>
+        <h3>Gedung kweekschool baru Fort de Kock resmi dibuka — <em>sieraad voor de plaats</em></h3>
+        <div class="tl-card-body">
+          <p>Setelah bertahun-tahun beroperasi di ruangan sempit yang merangkap tempat rapat kepala daerah, kweekschool Fort de Kock akhirnya menempati gedung baru yang megah. Gedung ini — lengkap dengan externe-school, rumah guru, dan asrama siswa — menelan biaya <strong>lebih dari ƒ 300.000</strong>, suatu jumlah yang luar biasa besar untuk masa itu.</p>
+          <div class="quote-block">"Van die kweekscholen zullen er twee op Sumatra zijn; die te Fort-de-Kock voor Midden-Sumatra is in april 1873 geopend." — Dari dua kweekschool di Sumatra, yang di Fort de Kock untuk Sumatra Tengah telah dibuka pada bulan April 1873.</div>
+          <div class="quote-block">"Het schoolgebouw, voor het onderwijs der kweekelingen bestemd, is een waar sieraad voor de plaats... Zij was de eerste op Sumatra." — Gedung sekolah ini benar-benar merupakan perhiasan bagi kota... Ia adalah yang pertama di Sumatra.</div>
+          <p>Namun ironi langsung terungkap: pada 1874, di Fort de Kock yang tak kekurangan toko dan pedagang, untuk 70 siswa tidak ada selembar kertas pun yang tersedia.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Docx melacak-kweekschool — teks asli: "in april 1873 geopend" &amp; deskripsi gedung "driemaal honderd duizend gulden"</div>
+      </div>
+    </div>
+
+<div class="tl-event akses fade-in">
+      <div class="tl-date"><span class="year">1873</span><span class="month">Des</span></div>
+      <div class="tl-card">
+        <span class="tbadge admin">Komisie Pertama</span>
+        <h3><em>Larashoofd</em> masuk Schoolcommissie resmi — Fort van der Capellen</h3>
+        <div class="tl-card-body"><p><strong>Si Mohamad Chorib galar Datoe Bilang Sakotta</strong>, larashoofd van Salimpawang, diangkat anggota Plaatselijke Inlandsche Schoolcommissie bersama J.C.P. Welffer (perwira militer Belanda). Pola ini — satu kontrolir Eropa + satu larashoofd — menjadi standar pengawasan pendidikan di seluruh Dataran Tinggi.</p></div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 13 & 16 Des 1873 — "Tot leden der Plaatselijke Inlandsche Schoolcommissien"</div>
+      </div>
+    </div>
+
+    <div class="tl-event akses fade-in">
+      <div class="tl-date"><span class="year">1874</span><span class="month">Nov</span></div>
+      <div class="tl-card">
+        <span class="tbadge admin">Ekspansi</span>
+        <h3>Larashoofd VIII Kottas dan Bondjol masuk komisie — pola menyebar ke seluruh sub-divisi</h3>
+        <div class="tl-card-body"><p><strong>Si Marahoesien galar Toeankoe Maharadji</strong> (larashoofd der VIII Kottas) diangkat di Palembajan; <strong>Si Nailic</strong> di Bondjol. Di Boea: <strong>Si Djo Brahrim galar Datoe Noear Hamat</strong> (larashoofd van Lintoe). Ekspansi cepat — setiap sub-divisi kini memiliki larashoofd resmi dalam komisie sekolah.</p></div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 14 & 17 Nov 1874 — "Inlandsch Onderwijs / Benoemingen"</div>
+      </div>
+    </div>
+
+    <div class="tl-event akses fade-in">
+      <div class="tl-date"><span class="year">1881</span><span class="month">Juli</span></div>
+      <div class="tl-card">
+        <span class="tbadge beleid">Perkembangan</span>
+        <h3>Ujian akhir kweekschool Fort de Kock — seorang siswa dari Aceh ikut serta</h3>
+        <div class="tl-card-body">
+          <p>Koresponden dari Padang melaporkan dimulainya ujian akhir kweekelingen di Fort de Kock. Yang penting: sekolah kini terbuka untuk siswa lintas etnis.</p>
+          <div class="quote-block">"Ik heb gehoord, dat men daar tegenwoordig ook een Atjeher onder de leerlingen telt." — Seorang siswa dari Aceh turut hadir di kweekschool.</div>
+          <p>Pesta sekolah tahunan menjadi tradisi yang melibatkan seluruh komisie dan masyarakat.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 19 Juli 1881 — "Uit Padang schrijft men ons dato 13 Juli"</div>
+      </div>
+    </div>
+
+    <div class="tl-event akses fade-in">
+      <div class="tl-date"><span class="year">1885</span><span class="month">Feb</span></div>
+      <div class="tl-card">
+        <span class="tbadge fondasi">Infrastruktur Baru</span>
+        <h3>Gedung kweekschool baru selesai dan ditempati</h3>
+        <div class="tl-card-body">
+          <div class="quote-block">"Maar reeds heden is de nieuw voltooide kweekschool betrokken. Ook de dokter woont bij de onderwijzers aan de kweekschool." — Gedung baru sudah ditempati. Dokter pun ikut tinggal bersama para guru.</div>
+          <p>Gedung kweekschool baru yang menelan biaya lebih dari ƒ300.000 adalah kebanggaan Fort de Kock — "een waar sieraad voor de plaats" (sebuah perhiasan bagi kota). Ini adalah gedung kweekschool pertama yang dibangun permanen di Sumatra.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Sumatra-courant, 18 Feb 1885; Tijdschrift jrg 3 — deskripsi gedung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider fade-in"><span class="divider-symbol">✦</span></div>
+
+</div><!-- end map-bg-wrap -->
+
+<!-- BAB IV -->
+<section id="nawawi">
+  <div class="section-header fade-in">
+    <div><span class="eyebrow">Bab IV · 1899–1908</span><h2><em>Nawawi</em><br>Soetan Makmoer</h2></div>
+    <p class="section-desc">Dari kweekeling yang lulus ujian di Fort de Kock, menjadi guru kelas 1, guru bahasa Melayu di kweekschool — hingga ketua organisasi modern bumiputra pertama di Pantai Barat Sumatra. Nawawi Soetan Makmoer adalah produk sekaligus melampaui sistem yang melahirkannya.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-filter-bar" id="filter-nawawi">
+      <button class="tl-filter-btn active" onclick="filterTimeline('nawawi','all')">Semua</button>
+      <button class="tl-filter-btn" onclick="filterTimeline('nawawi','nawawi')">Karir & Jejak</button>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-era fade-in"><div class="era-badge nawawi">▸ Karir & Jejak Nawawi</div></div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">≈1880an</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Kweekeling</span>
+        <h3>Nawawi Soetan Makmoer: kweekeling di kweekschool Fort de Kock — lulus ujian di Padang</h3>
+        <div class="tl-card-body">
+          <p>Dokumen menyebut Nawawi Soetan Makmoer sebagai "gewezen kweekeling aan de kweekschool voor inlandsche onderwijzers te Fort de Kock" — mantan kweekeling. Ia dan Si Hamzah (rekannya dari Pantai Barat Sumatra) lulus ujian hulponderwijzer untuk pendidikan Eropa di Padang — ujian bergengsi yang biasanya hanya ditempuh orang Eropa.</p>
+          <div class="quote-block">"Aan Si Hamza en Nawawi Soetan Makmoer, beiden van Sumatra's Westkust, is ieder na (te Padang) afgelegd examen een acte van bekwaamheid uitgereikt als Hulponderwijzer bij het o.l. Onderwijs voor Europeanen." — Keduanya mendapat akta kecakapan sebagai asisten guru untuk pendidikan Eropa.</div>
+        </div>
+        <div class="src-block"><span>Sumber</span>Bataviaasch Handelsblad, 25 Sep 1883 — "Tijdelijk werkzaamgesteld aan de kweekschool"</div>
+      </div>
+    </div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">≈1890an</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Guru Resmi</span>
+        <h3>Diangkat onderwijzer kelas 1 — ditempatkan kembali di Fort de Kock</h3>
+        <div class="tl-card-body">
+          <p>Nawawi diangkat secara resmi menjadi <em>onderwijzer der 1e klasse</em> di sekolah publik bumiputra Fort de Kock — jabatan guru kelas tertinggi pada saat itu. Rekan seangkatannya, Sakin ditempatkan di Koto Gadang (Agam), Rinding di Batahan (Tapanuli), dan Salim di Payakumbuh.</p>
+          <div class="quote-block">"Tot onderwijzer der 1e klasse: aan de openbare inlandsche school te Fort de Kock (Padangsche bovenlanden), Nawawi [...] allen gewezen kweekelingen aan de kweekschool voor inlandsche onderwijzers te Fort de Kock."</div>
+        </div>
+        <div class="src-block"><span>Sumber</span>Bataviaasch Handelsblad, 8 Agustus 1878 — "Benoemd: Tot onderwijzer der 1e klasse"</div>
+      </div>
+    </div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">≈1895</span><span class="month">–1905</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Guru Kweekschool</span>
+        <h3>Nawawi Soetan Makmoer — guru bahasa Melayu di kweekschool Fort de Kock</h3>
+        <div class="tl-card-body">
+          <p>Nawawi kembali ke kweekschool — kali ini bukan sebagai siswa, melainkan sebagai <em>onderwijzer in de maleische taal aan de kweekschool te Fort de Kock</em> (guru bahasa Melayu di kweekschool). Posisi ini adalah jabatan tertinggi yang bisa diraih seorang bumiputra di dalam institusi kweekschool pada era itu.</p>
+          <p>Gelarnya: <strong>Nawawi Soetan Makmoer</strong> — menunjukkan ia sudah menjadi figur yang diakui dalam struktur adat Minangkabau sekaligus birokrasi kolonial.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Java-bode, 3 Feb 1887 — "Inlandsch Onderwijs: Benoemd tot hulponderwijzer van den 1en rang"</div>
+      </div>
+    </div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">1899</span><span class="month">April</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Figur Sosial</span>
+        <h3>Nawawi tercatat sebagai pemilik kuda balap — figur terkemuka Fort de Kock</h3>
+        <div class="tl-card-body"><p>Dalam laporan Padangsche Wedloop-Societeit, <strong>Nawawi</strong> tercatat sebagai pemilik kuda "Roesa" dari Fort de Kock yang ikut Sumatra-Stakes. Ini dokumentasi tertua dari dataset Delpher tentang Nawawi — menunjukkan ia sudah cukup berpengaruh untuk berpartisipasi dalam kegiatan sosialita kolonial bersama pejabat Eropa.</p></div>
+        <div class="src-block"><span>Sumber</span>Delpher: Nederlandsch-Indie, 25 April 1899 — "Padangsche Wedloop-Societeit"</div>
+      </div>
+    </div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">1906</span><span class="month">9–17 Juni</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Peran Sosial</span>
+        <h3>"Goeroe Nawawi" hadir di Paken Malam — bersama larashoofd IV Kotta's dan pejabat Eropa</h3>
+        <div class="tl-card-body">
+          <p>Dalam festival perdagangan besar Paken Malam di Fort de Kock, Goeroe Nawawi disebut bersama larashoofd IV Kotta's sebagai bagian dari panitia. Kontrolir Barthélemy dan Westenenk — orang Eropa yang kemudian berperan dalam mendirikan Vereeniging — ada dalam jaringan yang sama.</p>
+          <div class="quote-block">"...benevens het larashoofd van Benoe Nampcc, van IV kotta's, goeroe Nawawi en hunne vrouwen." — Larashoofd, Goeroe Nawawi, dan istri-istri mereka.</div>
+        </div>
+        <div class="src-block"><span>Sumber</span>Delpher: Sumatra-courant, 2 Juli 1906 — "De Paken Malam te Fort de Kock"</div>
+      </div>
+    </div>
+
+    <div class="tl-event nawawi fade-in">
+      <div class="tl-date"><span class="year">1907</span><span class="month">17 Okt</span></div>
+      <div class="tl-card">
+        <span class="tbadge tokoh">Tonggak Sejarah</span>
+        <h3>Vereeniging Minangkabau berdiri di Fort de Kock — Nawawi Ketua Pertama</h3>
+        <div class="tl-card-body">
+          <p>Vereeniging voor Inlandsche Ambtenaren Sumatra's Westkust "Minangkabau" didirikan 17 Oktober 1907 di Fort de Kock. Inisiatif dari mantri Soepajang + kontrolir Barthélemy → berkembang dengan keterlibatan kepala-kepala Agam dan kontrolir Westenenk. Susunan pengurus:</p>
+          <ul style="margin:.5rem 0 .5rem 1.5rem;font-size:.88rem;color:var(--ink2)">
+            <li><strong>Voorzitter:</strong> Goeroe Nawawi</li>
+            <li><strong>Tweede voorzitter:</strong> Larashoofd Kota nan Sadang (Paje Koemboeh)</li>
+            <li><strong>Secretaris:</strong> Larashoofd IV Kota (Agam)</li>
+          </ul>
+          <p>Redaksi majalah bulanan dipegang <strong>dua guru kweekschool</strong> yang mahir bahasa Belanda. Anggota: 700 orang. Tujuan: kemajuan (vooruitgang) di bidang pertanian, kerajinan, pendidikan, kesehatan, dan peradilan.</p>
+        </div>
+        <div class="src-block"><span>Sumber</span>Delpher: Sumatra-courant 17 Nov 1908; Batavia 17 Okt 1908; Soerakarta 19 Okt 1908; Soerabaja 20 Okt 1908</div>
+      </div>
+    </div>
+
+  <div class="career-path fade-in">
+    <div class="career-path-title">Jalur Karir Nawawi Soetan Makmoer</div>
+    <div class="career-steps">
+      <div class="career-step-item">
+        <div class="cs-year">≈1880an</div>
+        <div class="cs-dot" style="background:var(--teal)"></div>
+        <div class="cs-label">Kweekeling</div>
+        <div class="cs-detail">Siswa kweekschool<br>Fort de Kock</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">≈1885</div>
+        <div class="cs-dot" style="background:var(--teal2)"></div>
+        <div class="cs-label">Lulus Ujian</div>
+        <div class="cs-detail">Hulponderwijzer<br>Padang</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">≈1890an</div>
+        <div class="cs-dot" style="background:var(--amber)"></div>
+        <div class="cs-label">Onderwijzer</div>
+        <div class="cs-detail">Guru kelas 1<br>Fort de Kock</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">≈1895</div>
+        <div class="cs-dot" style="background:var(--amber2)"></div>
+        <div class="cs-label">Guru Melayu</div>
+        <div class="cs-detail">Kweekschool<br>Fort de Kock</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">1899</div>
+        <div class="cs-dot" style="background:var(--rust2)"></div>
+        <div class="cs-label">Figur Sosial</div>
+        <div class="cs-detail">Pemilik kuda balap<br>Notabel kolonial</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">1906</div>
+        <div class="cs-dot" style="background:var(--rust)"></div>
+        <div class="cs-label">Paken Malam</div>
+        <div class="cs-detail">Panitia festival<br>bersama Kontrolir</div>
+      </div>
+      <div class="career-step-item">
+        <div class="cs-year">1907</div>
+        <div class="cs-dot" style="background:var(--ink)"></div>
+        <div class="cs-label">Voorzitter</div>
+        <div class="cs-detail">Vereeniging<br>Minangkabau</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="geo-section fade-in">
+    <div class="geo-title">Peta Dataran Tinggi Minangkabau</div>
+    <div class="geo-subtitle">Lokasi-lokasi kunci dalam jaringan pendidikan kolonial 1856–1912</div>
+    <div class="geo-canvas-wrap">
+      <canvas id="canvas-geo" height="400"></canvas>
+      <div class="geo-tooltip" id="tt-geo"></div>
+    </div>
+  </div>
+</section>
+
+</main><!-- end main -->
+
+<!-- NETWORK MAPPING (dark section) -->
+<section id="network" class="network-page">
+  <div class="network-inner">
+    <div class="fade-in" style="margin-bottom:3rem">
+      <span class="network-eyebrow">Bab V · Network Mapping</span>
+      <h2 class="network-title">Jejaring Orang &<br><em>Kweekschool Nusantara</em></h2>
+      <p class="network-desc">Tiga peta jaringan interaktif: (1) karir tokoh-tokoh pribumi yang terafiliasi Fort de Kock, (2) karir para pegawai Belanda, dan (3) jejaring kweekschool di seluruh Nusantara. Klik setiap node untuk detail.</p>
+    </div>
+
+    <div class="tab-bar fade-in">
+      <button class="tab-btn active" onclick="switchTab('pribumi')">Jaringan Pribumi</button>
+      <button class="tab-btn" onclick="switchTab('belanda')">Jaringan Belanda</button>
+      <button class="tab-btn" onclick="switchTab('nusantara')">Jejaring Kweekschool Nusantara</button>
+    </div>
+
+    <!-- TAB 1: PRIBUMI -->
+    <div id="tab-pribumi" class="tab-panel active fade-in">
+      <div class="network-canvas-wrap">
+        <div class="network-legend">
+          <div class="leg-item"><div class="leg-dot" style="background:#2a8c7e"></div>Kweekeling / Siswa</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#d4962e"></div>Onderwijzer / Guru</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#c0542a"></div>Larashoofd / Kepala Laras</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#8b3a1e"></div>Tokoh Organisasi</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#534AB7"></div>Panghoeloe / Mantri</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#888780"></div>Sekolah / Institusi</div>
+        </div>
+        <canvas id="canvas-pribumi" height="580"></canvas>
+        <div class="net-tooltip" id="tt-pribumi"></div>
+      </div>
+      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Klik node untuk detail · Seret untuk geser · Zoom dengan scroll mouse</p>
+    </div>
+
+    <!-- TAB 2: BELANDA -->
+    <div id="tab-belanda" class="tab-panel fade-in">
+      <div class="network-canvas-wrap">
+        <div class="network-legend">
+          <div class="leg-item"><div class="leg-dot" style="background:#185FA5"></div>Asisten Residen / Gubernur</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#2a8c7e"></div>Direktur / Inspektur Pendidikan</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#d4962e"></div>Hoofdonderwijzer / Kepala Guru</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#c0542a"></div>Onderwijzer / Guru</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#639922"></div>Kontrolir</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#888780"></div>Institusi</div>
+        </div>
+        <canvas id="canvas-belanda" height="580"></canvas>
+        <div class="net-tooltip" id="tt-belanda"></div>
+      </div>
+      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Klik node untuk detail karir</p>
+    </div>
+
+    <!-- TAB 3: NUSANTARA -->
+    <div id="tab-nusantara" class="tab-panel fade-in">
+      <div class="nusantara-wrap">
+        <div style="margin-bottom:1rem">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--paper);margin-bottom:.4rem">Kweekschool di Seluruh Hindia Belanda</h3>
+          <p style="font-size:.85rem;color:rgba(245,240,232,.45);font-style:italic">Jaringan 11+ kweekschool yang terhubung melalui transfer staf, lulusan, dan kebijakan — berbasis data primer 1852–1912</p>
+        </div>
+        <div class="network-canvas-wrap" style="padding:1rem">
+          <canvas id="canvas-nusantara" height="500"></canvas>
+          <div class="net-tooltip" id="tt-nusantara"></div>
+        </div>
+        <div class="kweek-node-list">
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Surakarta</div><div class="kn-year">est. 1852</div></div>
+            <div class="kn-loc">Jawa Tengah · Model Pertama</div>
+            <div class="kn-body">Kweekschool pertama untuk guru bumiputra di Hindia Belanda. Menjadi model yang diadopsi seluruh Nusantara. Kemudian dipindah ke Magelang (1874).</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Transfer staf ke FdK</span><span class="kn-link linked-gov">Model kebijakan</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Fort de Kock</div><div class="kn-year">est. 1856</div></div>
+            <div class="kn-loc">Bukittinggi · Sumatera Barat · Pusat Jaringan</div>
+            <div class="kn-body">Kweekschool pertama di Sumatera. Di bawah van Ophuysen mencapai masa emas. Merosot, dibenahi, dan akhirnya melahirkan Goeroe Nawawi — tokoh Vereeniging Minangkabau.</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Pusat jejaring</span><span class="kn-link linked-staf">Transfer ke Tondano</span><span class="kn-link linked-gov">Nawawi → Org.</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Tanah-Batoe</div><div class="kn-year">est. ≈1864</div></div>
+            <div class="kn-loc">Tapanuli · Sumatera Utara</div>
+            <div class="kn-body">Dipimpin W. Iskander (pribumi lulusan Belanda) — dinilai paling berhasil oleh inspektur. Kemudian dipindah ke Padang Sidempoean (1874) untuk menampung 25 kweekelingen dari Tapanuli.</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Bersama FdK diusulkan gabung</span><span class="kn-link linked-staf">→ Padang Sidempoean 1874</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Tondano</div><div class="kn-year">est. 1873</div></div>
+            <div class="kn-loc">Minahasa · Sulawesi Utara</div>
+            <div class="kn-body">Dibuka 8 April 1873 secara resmi. Menerima guru Oostergetel (ditransfer dari Fort de Kock 1874). Menjadi pusat pendidikan guru untuk kawasan Sulawesi dan Maluku.</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Oostergetel dari FdK</span><span class="kn-link linked-staf">Transfer staf terdokumentasi</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Magelang</div><div class="kn-year">est. 1874</div></div>
+            <div class="kn-loc">Jawa Tengah · Pengganti Surakarta</div>
+            <div class="kn-body">Menggantikan posisi kweekschool Surakarta setelah sekolah itu dipindahkan. Menjadi kweekschool utama Jawa Tengah untuk guru bumiputra etnis Jawa dan Madura.</div>
+            <div class="kn-links"><span class="kn-link linked-gov">Melanjutkan model Surakarta</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Bandjermasin</div><div class="kn-year">≈1870an</div></div>
+            <div class="kn-loc">Kalimantan Selatan</div>
+            <div class="kn-body">J.G.L. Dücker (1876) menjadi hoofdonderwijzer di sini setelah sebelumnya di Bandjermasin. Tempat pelatihan guru untuk wilayah Zuider en Oosterafdeeling van Borneo.</div>
+            <div class="kn-links"><span class="kn-link linked-gov">Gubernur menanggung biaya</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Bandoeng</div><div class="kn-year">≈1875</div></div>
+            <div class="kn-loc">Jawa Barat · Preanger Regentschappen</div>
+            <div class="kn-body">W. de Gelder menjadi hoofdonderwijzer (gaji ƒ800/bulan pada 1884 — gaji tertinggi). Mengirimkan lulusan ke berbagai sekolah Jawa Barat dan ke kweekschool Djokjakarta.</div>
+            <div class="kn-links"><span class="kn-link linked-staf">Lulusan → Djokjakarta</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Probolinggo</div><div class="kn-year">≈1875</div></div>
+            <div class="kn-loc">Jawa Timur · Residentie Probolinggo</div>
+            <div class="kn-body">Si Hamzah (rekan Nawawi dari Pantai Barat Sumatra) ditempatkan di sini sebagai hulponderwijzer kelas 1 setelah lulus ujian di Padang. Menghubungkan jaringan Sumatra–Jawa Timur.</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Si Hamzah dari FdK</span><span class="kn-link linked-staf">Transfer antar-pulau</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Padang Sidempoean</div><div class="kn-year">est. 1874</div></div>
+            <div class="kn-loc">Tapanuli · Sumatera Utara</div>
+            <div class="kn-body">Menggantikan kweekschool Tanah-Batoe (Tapanuli). Kapasitas 25 kweekelingen dari Tapanuli. Memiliki 1 hoofdonderwijzer Eropa, 1 hulponderwijzer, 2 guru pribumi (untuk Bahasa Batak dan Melayu).</div>
+            <div class="kn-links"><span class="kn-link linked-fdk">Melanjutkan Tanah-Batoe</span><span class="kn-link linked-gov">J.G. Dammerboer → direktur</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Opleiding Makassar</div><div class="kn-year">≈1905</div></div>
+            <div class="kn-loc">Sulawesi Selatan · Opleiding+Kweekschool</div>
+            <div class="kn-body">Opleidingsschool voor inlandsche ambtenaren yang berfungsi ganda sebagai kweekschool — disebut dalam perdebatan anggaran 1912. Menghubungkan pendidikan guru dengan pelatihan pejabat bumiputra.</div>
+            <div class="kn-links"><span class="kn-link linked-gov">Debat anggaran 1912</span><span class="kn-link linked-staf">Ooms, van der Woude</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Djokjakarta</div><div class="kn-year">≈1880an</div></div>
+            <div class="kn-loc">Yogyakarta · Jawa</div>
+            <div class="kn-body">Tempat Kweekschool untuk Inlandsche onderwijzers yang meluluskan guru-guru untuk wilayah Vorstenlanden. Hulponderwijzer dipindah dari Bandoeng (1897). Terhubung ke jaringan Jawa Tengah dan Jawa Timur.</div>
+            <div class="kn-links"><span class="kn-link linked-staf">Transfer dari Bandoeng</span></div>
+          </div>
+
+          <div class="kweek-node-card">
+            <div class="kn-header"><div class="kn-name">Kweekschool Oengaran</div><div class="kn-year">≈1905</div></div>
+            <div class="kn-loc">Semarang · Jawa Tengah</div>
+            <div class="kn-body">Muncul dalam dokumen mutasi 1912 — direktur sementara Wilmink ditugaskan di sini. Bagian dari ekspansi jaringan kweekschool Jawa Tengah memasuki abad ke-20.</div>
+            <div class="kn-links"><span class="kn-link linked-gov">Mutasi staf 1912</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<main>
+<!-- KESIMPULAN -->
+<section id="kesimpulan" style="padding:5rem 0;border-bottom:.5px solid var(--border)">
+
+  <div class="section-header fade-in">
+    <div>
+      <span class="eyebrow">Bab V · Analisis & Sintesis</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,3rem)"><em>Merunduk</em><br>Bukan Tunduk</h2>
+    </div>
+    <p class="section-desc" style="font-style:italic">"Iyokan nan diurang, laluan nan diawak" — setujui yang diminta orang, tapi jalankan caramu sendiri. Sebuah pembacaan tentang adaptasi masyarakat Minangkabau dalam menghadapi sistem pendidikan kolonial, 1856–1915.</p>
+  </div>
+
+  <!-- TIMELINE PUNCAK -->
+  <div class="fade-in" style="margin-bottom:4rem">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem">
+      <span style="display:block;width:24px;height:1px;background:var(--rust2)"></span>
+      Timeline Puncak · Perjalanan Kweekschool Fort de Kock 1856–1915
+      <span style="display:block;flex:1;height:1px;background:var(--border)"></span>
+    </div>
+
+    <div class="timeline-puncak-scroll">
+    <div class="timeline-puncak-inner">
+
+      <!-- Track line -->
+      <div style="position:relative;height:4px;background:var(--paper3);border-radius:2px;margin:80px 40px 60px">
+        <div style="position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(to right,var(--teal) 0%,var(--teal) 15%,var(--amber) 15%,var(--amber) 32%,var(--rust) 32%,var(--rust) 56%,var(--rust2) 56%,var(--rust2) 76%,#E24B4A 76%,#E24B4A 100%);border-radius:2px"></div>
+
+        <!-- ERA LABELS above line -->
+        <!-- 1856-1860 Perintisan -->
+        <div style="position:absolute;left:0;top:-68px;width:15%;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--teal);margin-bottom:3px">Perintisan</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--teal);opacity:.7">1856–1860</div>
+        </div>
+
+        <!-- 1860-1873 Kemunduran -->
+        <div style="position:absolute;left:15%;top:-68px;width:17%;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--amber);margin-bottom:3px">Kemunduran</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--amber);opacity:.7">1860–1873</div>
+        </div>
+
+        <!-- 1874-1888 Kebangkitan -->
+        <div style="position:absolute;left:32%;top:-68px;width:24%;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--rust);margin-bottom:3px">Kebangkitan</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--rust);opacity:.7">1874–1888</div>
+        </div>
+
+        <!-- 1890-1907 Nawawi -->
+        <div style="position:absolute;left:56%;top:-68px;width:20%;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--rust2);margin-bottom:3px">Nawawi</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--rust2);opacity:.7">1890–1907</div>
+        </div>
+
+        <!-- 1908-1915 Pergerakan -->
+        <div style="position:absolute;left:76%;top:-68px;width:24%;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#E24B4A;margin-bottom:3px">Pergerakan</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:#E24B4A;opacity:.7">1908–1915</div>
+        </div>
+
+        <!-- MILESTONE DOTS below line -->
+
+        <!-- 1856 -->
+        <div style="position:absolute;left:0%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--teal);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-30px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);line-height:1.4">1856<br>Besluit No.13</div>
+        </div>
+
+        <!-- 1858 -->
+        <div style="position:absolute;left:8%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--teal);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-20px;width:60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);line-height:1.4">1858<br>Permanen</div>
+        </div>
+
+        <!-- ~1860 van Ophuysen pergi -->
+        <div style="position:absolute;left:15%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);margin-left:-5px;border:2px solid var(--amber2)"></div>
+          <div style="position:absolute;top:16px;left:-30px;width:80px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--amber);line-height:1.4">≈1860<br>Ophuysen pergi</div>
+        </div>
+
+        <!-- 1866 audit -->
+        <div style="position:absolute;left:23%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-30px;width:80px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--amber);line-height:1.4">1866<br>49→12 lulusan</div>
+        </div>
+
+        <!-- 1873 gedung baru dibuka -->
+        <div style="position:absolute;left:32%;top:4px">
+          <div style="width:12px;height:12px;border-radius:50%;background:var(--rust);margin-left:-6px;border:2px solid var(--rust2)"></div>
+          <div style="position:absolute;top:16px;left:-35px;width:85px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">Apr 1873<br>Gedung baru</div>
+        </div>
+
+        <!-- 1873 schoolcommissie larashoofd -->
+        <div style="position:absolute;left:39%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--rust);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-35px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">1873<br>Schoolcommissie</div>
+        </div>
+
+        <!-- 1874 Laats+Weide pembenahan -->
+        <div style="position:absolute;left:46%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--rust);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-30px;width:75px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">1874<br>Pembenahan staf</div>
+        </div>
+
+        <!-- 1885 gedung baru lagi -->
+        <div style="position:absolute;left:54%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--rust);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-25px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);line-height:1.4">1885<br>Gedung baru lagi</div>
+        </div>
+
+        <!-- ≈1890 Nawawi kweekeling lulus -->
+        <div style="position:absolute;left:60%;top:4px">
+          <div style="width:12px;height:12px;border-radius:50%;background:var(--rust2);margin-left:-6px;border:2px solid var(--rust)"></div>
+          <div style="position:absolute;top:16px;left:-25px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);line-height:1.4">≈1890<br>Nawawi lulus</div>
+        </div>
+
+        <!-- 1899 Nawawi figur sosial -->
+        <div style="position:absolute;left:68%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--rust2);margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-35px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);line-height:1.4">1899<br>Nawawi: kuda balap</div>
+        </div>
+
+        <!-- 1907 Vereeniging -->
+        <div style="position:absolute;left:76%;top:4px">
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--rust2);margin-left:-7px;border:2px solid var(--amber2)"></div>
+          <div style="position:absolute;top:18px;left:-40px;width:80px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);line-height:1.4">1907<br>Vereeniging<br>Minangkabau</div>
+        </div>
+
+        <!-- 1908 Ibrahim / Tan Malaka masuk sekolah FdK -->
+        <div style="position:absolute;left:84%;top:4px">
+          <div style="width:12px;height:12px;border-radius:50%;background:#E24B4A;margin-left:-6px;border:2px solid #A32D2D"></div>
+          <div style="position:absolute;top:18px;left:-25px;width:70px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:#E24B4A;line-height:1.4">≈1908<br>Ibrahim (FdK)</div>
+        </div>
+
+        <!-- 1912 Hatta -->
+        <div style="position:absolute;left:92%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#E24B4A;margin-left:-5px"></div>
+          <div style="position:absolute;top:16px;left:-30px;width:60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:#E24B4A;line-height:1.4">≈1912<br>Hatta (FdK)</div>
+        </div>
+
+        <!-- 1915 -->
+        <div style="position:absolute;left:100%;top:4px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#E24B4A;margin-left:-10px"></div>
+          <div style="position:absolute;top:16px;left:-35px;width:55px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:#E24B4A;line-height:1.4">1915<br>Dahlan A.</div>
+        </div>
+
+      </div><!-- end track -->
+
+      <!-- ERA DETAIL CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-top:1rem">
+
+        <div style="background:rgba(26,92,82,.08);border:.5px solid rgba(26,92,82,.25);border-radius:3px;padding:.85rem;border-top:2px solid var(--teal)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1856 – 1860</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Perintisan</div>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Buddingh mengusulkan, van Ophuysen memimpin. Besluit 1856 → gedung sementara → sekolah permanen 1858. Era singkat tapi paling cemerlang.</p>
+          <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--teal);opacity:.7">Van Ophuysen · Buddingh · Besluit No.13</div>
+        </div>
+
+        <div style="background:rgba(176,120,40,.08);border:.5px solid rgba(176,120,40,.25);border-radius:3px;padding:.85rem;border-top:2px solid var(--amber)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1860 – 1873</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Kemunduran</div>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Van Ophuysen pergi, sekolah layu. Guru Melayu sakit-sakitan, tanpa pengawasan. 1866: 49 siswa → 12 lulus. Inspektur: "hanya kweekschool dalam nama saja."</p>
+          <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--amber);opacity:.7">Inspektur · Laporan kritis 1869</div>
+        </div>
+
+        <div style="background:rgba(139,58,30,.08);border:.5px solid rgba(139,58,30,.25);border-radius:3px;padding:.85rem;border-top:2px solid var(--rust)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1874 – 1888</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Kebangkitan</div>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Gedung baru dibuka April 1873 — ƒ300.000, "een waar sieraad." Laats &amp; Weide perbaiki staf. Larashoofd masuk schoolcommissie. 1881: siswa dari Aceh ikut.</p>
+          <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--rust);opacity:.7">Laats · Weide · Oostergetel · Larashoofd</div>
+        </div>
+
+        <div style="background:rgba(192,84,42,.1);border:.5px solid rgba(192,84,42,.3);border-radius:3px;padding:.85rem;border-top:2px solid var(--rust2)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1890 – 1907</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Nawawi & Kebangkitan</div>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Nawawi Soetan Makmoer: kweekeling → onderwijzer → guru kweekschool. 1907: Vereeniging Minangkabau, 700 anggota. Sekolah melahirkan pemimpin organisasi modern.</p>
+          <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--rust2);opacity:.7">Nawawi · Vereeniging · Larashoofd Agam</div>
+        </div>
+
+        <div style="background:rgba(226,75,74,.08);border:.5px solid rgba(226,75,74,.25);border-radius:3px;padding:.85rem;border-top:2px solid #E24B4A">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#E24B4A;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">1908 – 1915</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.35rem">Tokoh Pergerakan</div>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.55">Ibrahim (Tan Malaka) diajar Horensma di FdK. Hatta menempuh pendidikan di Fort de Kock. Dahlan Abdoellah lahir dari ekosistem ini. Pisau bermata dua sempurna.</p>
+          <div style="margin-top:.5rem;font-family:'JetBrains Mono',monospace;font-size:7.5px;color:#E24B4A;opacity:.7">Tan Malaka · Hatta · Dahlan Abdoellah</div>
+        </div>
+
+      </div><!-- end era cards -->
+    </div><!-- end timeline-puncak-inner -->
+    <div class="drag-hint">← Geser untuk melihat seluruh timeline →</div>
+    </div><!-- end timeline-puncak-scroll -->
+  </div><!-- end timeline puncak -->
+
+  <!-- STAT GRID -->
+  <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3rem">
+    <div>
+      <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300;margin-bottom:1.25rem">
+        Eksistensi Kweekschool Fort de Kock tidak dapat dilepaskan dari dinamika kebijakan <em>Cultuurstelsel</em> yang diterapkan di Dataran Tinggi Minangkabau. Institusi pendidikan ini didirikan bukan sebagai manifestasi politik etis kolonial, melainkan sebagai instrumen birokratisasi guna mencetak aparatur lokal dengan kecakapan literasi dan numerasi. Kapasitas ini merupakan prasyarat esensial yang diperlukan untuk menunjang kelancaran tata kelola administrasi komoditas kopi dan ekosistem pemerintahan kolonial terbawah. Sebagai bagian dari rekayasa kontrol sosial ini, para patron adat seperti <em>larashoofd</em>, <em>panghoeloe kapala</em>, dan <em>datuk-datuk</em> mulai diintegrasikan secara struktural. Mereka diberikan akses awal terhadap pendidikan Barat serta dilembagakan melalui keanggotaan dalam <em>Plaatselijke Inlandsche Schoolcommissie</em>. Melalui strategi kooptasi ini, figur elite bumiputra memikul fungsi ganda: bertransformasi menjadi pelumas birokrasi, sekaligus beroperasi sebagai mediator organik antara kontrolir Belanda dan masyarakat di sekelilingnya.
+      </p>
+      <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300;margin-bottom:1.25rem">
+        Data dari koran sezaman (1859–1915) memperlihatkan betapa terstrukturnya proses ini: <strong style="color:var(--rust)">86,7% entri</strong> — atau 1.222 dari 1.410 dokumen — menunjukkan afiliasi langsung antara pejabat pribumi dan sistem pendidikan. Di antaranya: <strong style="color:var(--rust)">421 entri</strong> menyebut datuk/datoe; <strong style="color:var(--rust)">401</strong> melibatkan penghulu; <strong style="color:var(--rust)">334</strong> menyebut mantri terkait sekolah; dan <strong style="color:var(--rust)">30 entri</strong> menunjukkan larashoofd dan datuk duduk langsung di schoolcommissie.
+      </p>
+      <p style="font-size:1rem;color:var(--ink2);line-height:1.85;font-weight:300">
+        Nama-nama mereka berbunyi dalam bahasa adat: <em>Si Mohamad Chorib galar Datoe Bilang Sakotta</em>, <em>Si Marahoesien galar Toeankoe Maharadji</em>, <em>Si Tolang galar Datoe Besar</em>. Bukan nama-nama tanpa gelar. Gelar itu bukan sekadar ornamen — ia adalah posisi adat yang sudah lama berakar jauh sebelum Belanda datang.
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-left:3px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--rust);line-height:1">86,7%</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:4px">Pejabat pribumi terafiliasi pendidikan</div>
+        <div style="font-size:.82rem;color:var(--ink3);margin-top:.4rem;line-height:1.5">1.222 dari 1.410 entri dataset Delpher 1859–1915</div>
+      </div>
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-left:3px solid var(--teal)">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--teal);line-height:1">421</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:4px">Entri datuk/datoe terkait sistem persekolahan</div>
+        <div style="font-size:.82rem;color:var(--ink3);margin-top:.4rem;line-height:1.5">Termasuk 30 larashoofd & datuk yang duduk di schoolcommissie</div>
+      </div>
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-left:3px solid var(--amber)">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--amber);line-height:1">95%</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:4px">Afiliasi Pendidikan di Payakumbuh — tertinggi</div>
+        <div style="font-size:.82rem;color:var(--ink3);margin-top:.4rem;line-height:1.5">Tanah Datar 92%, Agam 91%, Solok 90%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE BESAR -->
+  <div class="fade-in" style="background:var(--ink);padding:2.5rem;border-radius:3px;margin:2.5rem 0;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 70% 50%,rgba(139,58,30,.15) 0%,transparent 70%)"></div>
+    <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--paper);line-height:1.5;margin-bottom:1rem">"Iyokan nan diurang, laluan nan diawak"</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.35);margin-bottom:1.25rem">Pepatah Minangkabau</div>
+        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300">Setujui apa yang orang lain minta — tapi tempuh jalanmu sendiri. Inilah yang terbaca dari cara masyarakat Minangkabau merespons sistem pendidikan kolonial: mereka <em style="color:var(--amber2)">tidak menolak</em>, mereka <em style="color:var(--amber2)">masuk ke dalam sistem</em> dan memanfaatkannya sebaik-baiknya.</p>
+      </div>
+      <div>
+        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300;margin-bottom:1rem">Belanda memberikan akses pendidikan kepada larashoofd dan datuk-datuk sebagai alat kontrol sosial. Namun anak-kemenakan mereka menyerap lebih dari yang diharapkan: bahasa Belanda, ilmu hitung, peta dunia, dan — paling penting — <strong style="color:var(--amber2)">kesadaran bahwa dunia lebih luas dari kampung halaman</strong>.</p>
+        <p style="font-size:.88rem;color:rgba(245,240,232,.65);line-height:1.8;font-weight:300">Kweekschool yang awalnya dirancang untuk mencetak juru tulis kolonial, justru menjadi persemaian: dari sana lahir guru-guru yang mengajar anak negeri, tokoh-tokoh yang mendirikan organisasi modern, dan pemikir-pemikir yang kelak mengguncang fondasi kolonialisme itu sendiri.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAJECTORY CARDS -->
+  <div id="trajektori" class="fade-in">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem">Trajectori: dari kweekschool menuju pergerakan</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem">
+
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-top:2px solid var(--teal)">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Datuk → Anggota Komisie Sekolah</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">1873–1912 · 43 entri terdokumentasi</div>
+        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Larashoofd dan datuk dengan gelar adat — <em>galar Datoe</em>, <em>galar Toeankoe</em> — masuk dalam Plaatselijke Inlandsche Schoolcommissie. Akses formal pertama penguasa lokal ke sistem pendidikan kolonial.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border)">Sumatra-courant, 1873–1882 · KB C 47</div>
+      </div>
+
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-top:2px solid var(--amber)">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Kweekeling → Onderwijzer → Guru Kweekschool</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Nawawi Soetan Makmoer · Sakin · Rinding · Salim</div>
+        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Lulusan kweekschool Fort de Kock diangkat sebagai onderwijzer kelas 1 dan ditempatkan di berbagai sekolah. Nawawi bahkan kembali ke kweekschool sebagai guru bahasa Melayu — mendidik generasi berikutnya.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border)">Directeur van Onderwijs — Benoemingen · Sumber sezaman</div>
+      </div>
+
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-top:2px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Guru → Pemimpin Organisasi Modern</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--rust);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Nawawi · Vereeniging Minangkabau 1907</div>
+        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Dari guru kweekschool menjadi ketua organisasi bumiputra pertama di Pantai Barat Sumatra — 700 anggota, majalah bulanan, jaringan nasional. Mendahului Budi Utomo di Sumatra.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border)">Delpher: Sumatra-courant Nov 1908; Batavia Okt 1908 · KB C 21</div>
+      </div>
+
+      <div style="background:var(--paper2);border:.5px solid var(--border);border-radius:3px;padding:1.25rem;border-top:2px solid #E24B4A">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Murid Sekolah → Tokoh Revolusioner</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#A32D2D;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Ibrahim · Hatta · Dahlan Abdoellah · G.H. Horensma</div>
+        <p style="font-size:.83rem;color:var(--ink3);line-height:1.65">Ibrahim diajar Horensma di Fort de Kock — kelak <strong>Tan Malaka</strong>. Hatta menempuh pendidikan awal di Fort de Kock. Dahlan Abdoellah lahir dari ekosistem yang sama. Inilah <em>pisau bermata dua</em> yang paling tajam dari seluruh sistem kolonial.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border)">Biografi Tan Malaka · Hatta · Sekolah FdK awal abad ke-20</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PENUTUP -->
+  <div id="penutup-box" class="fade-in" style="margin-top:3rem;padding:2rem;background:var(--paper2);border-radius:3px;border-left:3px solid var(--rust);max-width:700px">
+    <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.75;margin-bottom:.75rem">
+      "Sekolah yang dirancang untuk menghasilkan juru tulis bagi Belanda, justru menghasilkan juru bicara bagi bangsa sendiri."
+    </p>
+    <p style="font-size:.88rem;color:var(--ink3);line-height:1.75;font-weight:300">
+      Masyarakat Minangkabau tidak sekadar <em>menerima</em> pendidikan kolonial — mereka <em>mengolahnya</em>. Setiap larashoofd yang duduk dalam komisie sekolah, setiap kweekeling yang lulus ujian di Padang, setiap guru yang mengajar anak negeri — mereka adalah agen perubahan yang tidak terdeteksi oleh radar kolonial. Merunduk, bukan tunduk.
+    </p>
+  </div>
+
+</section>
+
+<!-- SOURCES -->
+<section id="sumber" style="padding:5rem 0">
+  <div class="section-header fade-in">
+    <div><span class="eyebrow">Bab VI · Aparatus Kritis</span><h2>Sumber &<br><em>Rujukan</em></h2></div>
+    <p class="section-desc">Seluruh data berbasis dokumen sumber primer berbahasa Belanda yang dapat diakses melalui arsip digital Delpher (Koninklijke Bibliotheek, Den Haag) dan dataset olahan dari microfilm Sumatra-courant.</p>
+  </div>
+  <div class="sources-grid fade-in">
+    <div class="source-item"><div class="src-name">Tijdschrift voor Neerland's Indië</div><div class="src-detail">Jrg 2 (1864) — "Iets over het schoolonderwijs"<br>Jrg 3 (1869) — § 3 "Scholen op Sumatra"<br>→ KB C 21 · Laporan Inspektur Pendidikan Pribumi</div></div>
+    <div class="source-item"><div class="src-name">Sumatra-courant</div><div class="src-detail">Jan 1870 — Onderwijs (slot)<br>Nov 1873 — Dep. Keuangan (Weide)<br>Feb 1874 — Verplaatsingen (Laats, Oostergetel)<br>→ KL MM03C-150161/170/181</div></div>
+    <div class="source-item"><div class="src-name">Benoemingen & Mutaties</div><div class="src-detail">Nawawi Soetan Makmoer: onderwijzer, guru Melayu<br>G.H. Horensma: hulponderwijzer FdK (1908)<br>Si Hamzah: Probolinggo · Sakin, Rinding, Salim: FdK<br>→ Bataviaasch Handelsblad · Java-bode · Javasche Courant</div></div>
+    <div class="source-item"><div class="src-name">Vereeniging Minangkabau</div><div class="src-detail">17 Okt 1907: pendirian<br>Okt–Nov 1908: 4 koran besar meliput<br>700 anggota · Nawawi voorzitter<br>→ KB C 21, C 64, C 96, C 226</div></div>
+    <div class="source-item"><div class="src-name">Schoolcommissie Besluiten</div><div class="src-detail">Des 1873: Fort van der Capellen<br>Nov 1874: Palembajan, Bondjol, Lintoe<br>Nov 1878: Loeboe Sikaping<br>→ KB C 47, KB 1640 C 1</div></div>
+    <div class="source-item"><div class="src-name">Staatsblad & Besluiten</div><div class="src-detail">1 April 1856 No. 13: pendirian percobaan<br>8 Feb 1858 No. 85: penetapan permanen<br>1874: Tanah-Batoe → Padang Sidempoean<br>→ Tijdschrift jrg 3, 1869</div></div>
+    <div class="source-item"><div class="src-name">Delpher Dataset</div><div class="src-detail">1.410 entri koran sezaman (1870–1914)<br>58 entri: "kweekschool"<br>868 entri: larashoofd + sekolah<br>→ delpher_larashoofd_processed_data.xls</div></div>
+    <div class="source-item"><div class="src-name">Paken Malam & Sosial</div><div class="src-detail">Juni 1906: Festival Fort de Kock<br>April 1899: Nawawi pemilik kuda balap<br>Kontrolir Barthélemy, Westenenk<br>→ Delpher KB C 64</div></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>Kweekschool Fort de Kock (Bukittinggi) · Riset Sejarah Pendidikan Kolonial Minangkabau<br>
+  Sumber: Delpher · Koninklijke Bibliotheek Den Haag · Sumatra-courant · Tijdschrift voor Neerland's Indië<br>
+  Periode: 1852–1912 · Data: 1.410 entri primer · Metodologi: distant reading + close reading sumber sezaman</p>
+  <div class="footer-actions">
+    <button class="footer-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+      Cetak Halaman
+    </button>
+    <button class="footer-btn" onclick="copyCitation()">
+      <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      Salin Sitasi Lengkap
+    </button>
+    <a class="footer-btn" href="#kelahiran">
+      <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+      Kembali ke Atas
+    </a>
+  </div>
+</footer>
+
+<script>
+// ─── INTRO SPLASH ───
+let introTimeout;
+function dismissIntro(){
+  const splash = document.getElementById('intro-splash');
+  const ink = document.getElementById('intro-ink');
+  ink.style.animation = 'inkSpread 1s cubic-bezier(.4,0,.2,1) forwards';
+  setTimeout(()=>{
+    splash.classList.add('hiding');
+    document.body.style.overflow = '';
+  }, 600);
+  setTimeout(()=>splash.remove(), 1500);
+  if(introTimeout) clearTimeout(introTimeout);
+}
+// Auto-dismiss after 5 seconds
+document.body.style.overflow = 'hidden';
+introTimeout = setTimeout(dismissIntro, 5000);
+// Also dismiss on scroll attempt or key press
+window.addEventListener('wheel', function onWheel(){dismissIntro();window.removeEventListener('wheel',onWheel);}, {once:true});
+window.addEventListener('keydown', function onKey(e){if(e.key==='Escape'||e.key===' '||e.key==='Enter'){dismissIntro();window.removeEventListener('keydown',onKey);}}, {once:true});
+
+// ─── READING PROGRESS BAR ───
+const progressBar = document.getElementById('reading-progress');
+function updateProgress(){
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+
+// ─── SCROLL TO TOP BUTTON ───
+const scrollTopBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', function(){
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+}, {passive:true});
+
+// ─── FOOTER CITATION COPY ───
+function copyCitation(){
+  const cite = 'Kweekschool Fort de Kock (Bukittinggi): Timeline & Network Mapping, 1852\u20131912. Riset Sejarah Pendidikan Kolonial Minangkabau. Sumber primer: Delpher (Koninklijke Bibliotheek, Den Haag), Sumatra-courant, Tijdschrift voor Neerland\'s Indi\u00eb. Dataset: 1.410 entri koran sezaman. Foto: Gedenkboek Kweekschool Fort de Kock / Kitab Peringatan Sekolah-Radja Boekit-Tinggi, 1873\u20131908. Arnhem: G. J. Thieme, 1908: 26.';
+  navigator.clipboard.writeText(cite).then(()=>{
+    const toast = document.getElementById('cite-toast');
+    if(toast){toast.textContent='Sitasi lengkap disalin ke clipboard';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
+  });
+}
+
+// ─── FADE IN ───
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);obs.unobserve(e.target)} });
+},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// ─── NAV ───
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navAs.forEach(a=>{a.classList.remove('active');a.style.color=''});
+      const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{threshold:.25}).observe(document.querySelector('#kelahiran'));
+secs.forEach(s=>new IntersectionObserver(entries=>{if(entries[0].isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:.25}).observe(s));
+
+// ─── TAB SWITCHER ───
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active',['pribumi','belanda','nusantara'][i]===id);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  setTimeout(()=>{
+    if(id==='pribumi')drawNetwork('pribumi');
+    if(id==='belanda')drawNetwork('belanda');
+    if(id==='nusantara')drawNusantara();
+  },50);
+}
+
+// ─── NETWORK DATA ───
+const PRIBUMI_NODES = [
+  {id:'fdk',x:.5,y:.08,r:26,col:'#888780',label:'Kweekschool\nFort de Kock',role:'Institusi Pusat',body:'Kweekschool untuk guru-guru bumiputra di Bukittinggi. Berdiri 1856. Melahirkan generasi guru dan tokoh masyarakat Minangkabau.',career:[]},
+  {id:'nawawi',x:.5,y:.35,r:22,col:'#8b3a1e',label:'Nawawi\nSoetan Makmoer',role:'Kweekeling → Onderwijzer → Ketua Org.',body:'Dari kweekeling Fort de Kock, lulus ujian hulponderwijzer di Padang, onderwijzer kelas 1, guru Melayu kweekschool. Ketua Vereeniging Minangkabau (1907).',career:['≈1880an: Kweekeling di FdK','≈1885: Lulus ujian hulponderwijzer Padang','≈1890an: Onderwijzer kelas 1, FdK','≈1895: Guru bahasa Melayu kweekschool FdK','1899: Figur sosial (pacuan kuda)','1906: Notabel Paken Malam','1907: Voorzitter Vereeniging Minangkabau']},
+  {id:'hamzah',x:.2,y:.35,r:16,col:'#d4962e',label:'Si Hamzah',role:'Kweekeling → Hulponderwijzer → Probolinggo',body:'Rekan seangkatan Nawawi dari Pantai Barat Sumatra. Lulus ujian hulponderwijzer bersama Nawawi di Padang. Ditempatkan di kweekschool Probolinggo — menghubungkan jaringan Sumatra-Jawa.',career:['≈1880an: Kweekeling FdK','Lulus ujian hulponderwijzer Padang','Hulponderwijzer kelas 1, Probolinggo']},
+  {id:'sakin',x:.75,y:.3,r:14,col:'#d4962e',label:'Sakin',role:'Kweekeling → Onderwijzer Koto Gadang',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Koto Gadang (Agam).',career:['Kweekeling FdK','Onderwijzer kelas 1, Koto Gadang (Agam)']},
+  {id:'rinding',x:.85,y:.45,r:13,col:'#d4962e',label:'Rinding',role:'Kweekeling → Onderwijzer Batahan',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Batahan (Tapanuli).',career:['Kweekeling FdK','Onderwijzer kelas 1, Batahan (Tapanuli)']},
+  {id:'salim',x:.65,y:.48,r:13,col:'#d4962e',label:'Salim',role:'Kweekeling → Onderwijzer Payakumbuh',body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di Payakumbuh (Padangsche Bovenlanden).',career:['Kweekeling FdK','Onderwijzer kelas 1, Payakumbuh']},
+  {id:'chorib',x:.15,y:.55,r:16,col:'#c0542a',label:'Si Mohamad Chorib\n(Datoe Bilang Sakotta)',role:'Larashoofd van Salimpawang',body:'Larashoofd van Salimpawang. Anggota pertama Plaatselijke Inlandsche Schoolcommissie Fort van der Capellen (1873). Tanda formal pertama integrasi larashoofd ke sistem pendidikan.',career:['Larashoofd van Salimpawang','1873: Anggota Schoolcommissie Fort van der Capellen']},
+  {id:'marahoesien',x:.38,y:.62,r:15,col:'#c0542a',label:'Si Marahoesien\n(Toekoe Maharadji)',role:'Larashoofd der VIII Kottas',body:'Larashoofd der VIII Kottas. Anggota Schoolkommissie Palembajan (1874). Mewakili ekspansi sistem ke sub-divisi lebih luas.',career:['Larashoofd der VIII Kottas','1874: Anggota Schoolkommissie Palembajan']},
+  {id:'brahrim',x:.25,y:.72,r:14,col:'#c0542a',label:'Si Djo Brahrim\n(Datoe Noear Hamat)',role:'Larashoofd van Lintoe',body:'Larashoofd van Lintoe. Anggota Schoolcommissie Boea (1874). Berpasangan dengan kontrolir D.P. Jentink.',career:['Larashoofd van Lintoe','1874: Anggota Schoolcommissie Boea']},
+  {id:'kns',x:.6,y:.65,r:17,col:'#c0542a',label:'Larashoofd\nKota nan Sadang',role:'Wakil Ketua Vereeniging Minangkabau',body:'Larashoofd Kota nan Sadang (Paje Koemboeh). Tweede voorzitter Vereeniging Minangkabau (1907). Transisi dari larashoofd sebagai alat kolonial menjadi agen gerakan intelektual.',career:['Larashoofd Kota nan Sadang (Paje Koemboeh)','1907: Tweede voorzitter Vereeniging Minangkabau']},
+  {id:'kiva',x:.78,y:.68,r:16,col:'#c0542a',label:'Larashoofd\nIV Kota (Agam)',role:'Sekretaris Vereeniging Minangkabau',body:'Larashoofd IV Kota, Agam. Secretaris Vereeniging Minangkabau. Bersama Nawawi dan larashoofd Kota nan Sadang, membentuk pimpinan organisasi modern bumiputra pertama Pantai Barat Sumatra.',career:['Larashoofd IV Kota, Agam','1907: Secretaris Vereeniging Minangkabau']},
+  {id:'vma',x:.5,y:.82,r:18,col:'#8b3a1e',label:'Vereeniging\nMinangkabau',role:'Organisasi Modern 1907',body:'Berdiri 17 Okt 1907 di Fort de Kock. Nawawi sebagai voorzitter, dibantu dua larashoofd dan dua guru kweekschool sebagai redaksi. 700 anggota. Majalah bulanan. Mendahului Budi Utomo di luar Jawa.',career:[]},
+  {id:'mantri',x:.3,y:.88,r:13,col:'#534AB7',label:'Mantri Soepajang',role:'Inisiator Vereeniging',body:'Para mantri (pengawas kebun kopi/teh) dari Soepajang menjadi inisiator awal Vereeniging, bekerja sama dengan kontrolir Barthélemy. Menunjukkan bahwa gerakan lahir dari lapisan menengah birokrasi.',career:['Mantri cultures, Soepajang','Inisiator Vereeniging Minangkabau']},
+  {id:'ibrahim',x:.18,y:.22,r:17,col:'#2a8c7e',label:'Ibrahim\n(Tan Malaka)',role:'Kweekeling FdK \u2192 Tokoh Pergerakan',body:'Kweekeling di kweekschool Fort de Kock (\u00b11908\u20131912). Murid G.H. Horensma. Kelak bergelar Tan Malaka \u2014 salah satu pemikir dan tokoh pergerakan kemerdekaan Indonesia terpenting abad ke-20.',career:['\u00b11908\u20131912: Kweekeling di kweekschool Fort de Kock','Murid G.H. Horensma','Kelak dikenal sebagai Tan Malaka','Pemikir \u0026 tokoh pergerakan nasional']},
+];
+
+const BELANDA_NODES = [
+  {id:'inst_fdk',x:.5,y:.06,r:24,col:'#888780',label:'Kweekschool\nFort de Kock',role:'Institusi',body:'Titik pusat seluruh jejaring. Van Ophuysen mendirikan, Spönhoff memimpin, Laats meneruskan, Oostergetel ditransfer keluar.',career:[]},
+  {id:'buddingh',x:.15,y:.25,r:14,col:'#2a8c7e',label:'Pendeta A. Buddingh',role:'Pencetus Ide (1855)',body:'Pendeta yang pertama kali mengusulkan kweekschool di Fort de Kock melalui surat 26 April 1855. Tanpa inisiatifnya, sekolah ini mungkin tidak pernah ada.',career:['Pendeta di Dataran Tinggi Padang','1855: Surat usulan kweekschool Fort de Kock (No. 149)']},
+  {id:'swieten',x:.3,y:.22,r:15,col:'#185FA5',label:'Letjen Van Swieten',role:'Gubernur Sumatra\'s Westkust',body:'Gubernur Pantai Barat Sumatra yang melakukan konsultasi dan mendukung pendirian kweekschool. Korespondesi dengan Buddingh dan van Ophuysen menjadi dasar Besluit 1856.',career:['Letjen, Gubernur Sumatra\'s Westkust','1855–56: Konsultasi pendirian kweekschool']},
+  {id:'ophuysen',x:.5,y:.28,r:20,col:'#185FA5',label:'J.A.W. van Ophuysen',role:'Asisten Residen · Direktur Pertama',body:'Figur terpenting dalam kelahiran kweekschool. Dinilai "bij uitnemendheid geschikt" (sangat cakap). Di bawah kepemimpinannya sekolah mencapai masa emas. Kepergiannya ≈1860–62 memulai kemerosotan.',career:['Asisten Residen Padangsche Bovenlanden','1856: Pemimpin percobaan kweekschool FdK','1856–≈1862: Direktur pertama kweekschool','Kepergiannya: awal kemerosotan institusi']},
+  {id:'couperus',x:.7,y:.2,r:13,col:'#185FA5',label:'Residen Couperus',role:'Residen Padangsche Bovenlanden',body:'Residen yang ikut berkorespondensi dalam proses pendirian kweekschool. Bersama Netscher mendukung usulan van Ophuysen kepada pemerintah pusat.',career:['Residen Padangsche Bovenlanden','1855–56: Konsultasi pendirian kweekschool']},
+  {id:'netscher',x:.83,y:.28,r:13,col:'#185FA5',label:'Residen Netscher',role:'Residen · Konsultan Pendirian',body:'Residen yang terlibat dalam korespondensi awal pendirian kweekschool 1855–56.',career:['Residen','1855–56: Korespondensi pendirian kweekschool']},
+  {id:'inspektur',x:.15,y:.45,r:16,col:'#2a8c7e',label:'Inspektur Pendidikan\nPribumi',role:'Inspektur · Pembuat Laporan 1869',body:'Pejabat yang menulis laporan kritis tentang kondisi kweekschool Fort de Kock (1869). Mendokumentasikan kegagalan: 49→12 lulusan, kondisi buruk, ruang sempit. Mengusulkan konsolidasi ke Padang.',career:['Inspektur van het inlandsch onderwijs','1868–69: Inspeksi kweekschool Fort de Kock','1869: Laporan kritis di Tijdschrift voor Neerland\'s Indië']},
+  {id:'sponhoff',x:.35,y:.5,r:15,col:'#d4962e',label:'Spönhoff',role:'Hoofdonderwijzer FdK → Mojokerto',body:'Kepala sekolah di Fort de Kock yang kemudian dipindahkan ke Mojokerto (Feb 1874). Rotasi normal pejabat kolonial.',career:['Hoofdonderwijzer, Fort de Kock','Feb 1874: Dipindah ke Mojokerto']},
+  {id:'laats',x:.5,y:.52,r:16,col:'#d4962e',label:'J.H.J. Laats',role:'Hoofdonderwijzer FdK (1874)',body:'Diangkat kepala sekolah Fort de Kock menggantikan Spönhoff (Feb 1874). Memimpin pada era pembenahan pascakemerosotan.',career:['Onderwijzer','Feb 1874: Hoofdonderwijzer, Fort de Kock']},
+  {id:'weide',x:.65,y:.5,r:14,col:'#c0542a',label:'W.F. Weide',role:'Guru Kedua FdK (1873)',body:'Asisten guru pertama dari sekolah dasar publik Batavia, ditugaskan sebagai guru kedua di kweekschool Fort de Kock (Nov 1873). Bagian dari pembenahan staf pasca-kemerosotan.',career:['Hulponderwijzer 1e kl., Sekolah dasar Batavia','Nov 1873: Guru kedua (waarneming), kweekschool FdK']},
+  {id:'oostergetel',x:.8,y:.52,r:14,col:'#c0542a',label:'Oostergetel',role:'Guru FdK → Transfer ke Tondano',body:'Guru di kweekschool Fort de Kock yang diperbantukan ke kweekschool Tondano (Feb 1874). Transfer pertama yang terdokumentasi antar-kweekschool — tanda integrasi jaringan mulai berjalan.',career:['Guru, kweekschool Fort de Kock','Feb 1874: Diperbantukan ke kweekschool Tondano']},
+  {id:'barthelemy',x:.2,y:.72,r:15,col:'#639922',label:'Kontrolir Barthélemy',role:'Kontrolir · Co-inisiator Vereeniging',body:'Kontrolir yang bekerja sama dengan para mantri Soepajang untuk menginisiasi Vereeniging Minangkabau. Hadir juga di Paken Malam 1906 sebagai bagian panitia.',career:['Kontrolir, Dataran Tinggi Padang','1906: Anggota panitia Paken Malam FdK','1907: Co-inisiator Vereeniging Minangkabau']},
+  {id:'westenenk',x:.38,y:.75,r:15,col:'#639922',label:'Kontrolir Westenenk',role:'Kontrolir · Penggerak Vereeniging',body:'Kontrolir yang bersama Barthélemy menggerakkan kepala-kepala Agam untuk bergabung dalam Vereeniging Minangkabau. Tercatat hadir di Paken Malam 1906.',career:['Kontrolir, Dataran Tinggi Padang','1906: Hadir di Paken Malam FdK','1907: Mendorong pembentukan Vereeniging']},
+  {id:'pruys',x:.6,y:.72,r:13,col:'#185FA5',label:'A. Pruys v. d. Hoeven',role:'Asisten Residen · Sponsor Iskander',body:'Asisten Residen yang memberi kesempatan kepada W. Iskander untuk membuka kweekschool Tanah-Batoe. Berkontribusi pada pembentukan jaringan kweekschool alternatif di Sumatra.',career:['Asisten Residen','Membuka peluang kweekschool Tanah-Batoe untuk Iskander']},
+  {id:'iskander',x:.78,y:.7,r:16,col:'#2a8c7e',label:'W. Iskander',role:'Guru Pribumi Lulusan Belanda',body:'Pribumi yang dididik menjadi guru di Belanda — satu-satunya pada eranya. Memimpin kweekschool Tanah-Batoe dengan hasil luar biasa. Inspektur memujinya habis-habisan: hampir semua lulusannya berhasil.',career:['Dididik sebagai guru di Belanda','Kepala kweekschool Tanah-Batoe (Tapanuli)','Inspektur: "Een uitmuntende geest heerscht onder hen"']},
+  {id:'horensma',x:.55,y:.68,r:15,col:'#d4962e',label:'G.H. Horensma',role:'Hulponderwijzer \u2192 Onderwijzer FdK',body:'Diangkat hulponderwijzer di Fort de Kock (Nov 1908, Javasche Courant). Tercatat sebagai onderwijzer di wilayah Padangsche Bovenlanden. Guru dari Ibrahim yang kelak bergelar Tan Malaka \u2014 tokoh pergerakan kemerdekaan Indonesia.',career:['Nov 1908: Diangkat hulponderwijzer, Fort de Kock','Onderwijzer di wilayah Padangsche Bovenlanden','Guru dari Ibrahim (Tan Malaka) di kweekschool FdK']},
+];
+
+// ─── DRAW NETWORK ───
+function drawNetwork(type) {
+  const canvasId = 'canvas-'+type;
+  const ttId = 'tt-'+type;
+  const nodes = type==='pribumi' ? PRIBUMI_NODES : BELANDA_NODES;
+  const canvas = document.getElementById(canvasId);
+  const tt = document.getElementById(ttId);
+  if(!canvas) return;
+  const W = canvas.offsetWidth; const H = parseInt(canvas.getAttribute('height'));
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = H * window.devicePixelRatio;
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+  // Resolve positions
+  const placed = nodes.map(n=>({...n, px: n.x*W, py: n.y*H}));
+
+  // Define edges
+  let edges = [];
+  if(type==='pribumi'){
+    edges=[
+      ['fdk','nawawi','trained'],['fdk','hamzah','trained'],['fdk','sakin','trained'],
+      ['fdk','rinding','trained'],['fdk','salim','trained'],
+      ['nawawi','vma','leads'],['kns','vma','leads'],['kiva','vma','leads'],['mantri','vma','init'],
+      ['fdk','chorib','commissie'],['fdk','marahoesien','commissie'],['fdk','brahrim','commissie'],
+      ['kns','nawawi','vma-link'],['kiva','nawawi','vma-link'],
+      ['hamzah','nawawi','peer'],
+      ['fdk','ibrahim','trained'],
+    ];
+  } else {
+    edges=[
+      ['buddingh','ophuysen','collab'],['buddingh','inst_fdk','proposed'],
+      ['swieten','inst_fdk','authorized'],['couperus','inst_fdk','consult'],['netscher','inst_fdk','consult'],
+      ['ophuysen','inst_fdk','founded'],
+      ['inspektur','inst_fdk','inspected'],
+      ['sponhoff','inst_fdk','led'],['laats','inst_fdk','led'],
+      ['weide','inst_fdk','taught'],['oostergetel','inst_fdk','taught'],
+      ['oostergetel','inst_fdk','transferred'],
+      ['barthelemy','inst_fdk','event'],['westenenk','inst_fdk','event'],
+      ['pruys','iskander','enabled'],
+      ['barthelemy','westenenk','collab'],
+      ['horensma','inst_fdk','taught'],
+    ];
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // draw bg grid
+    ctx.strokeStyle='rgba(245,240,232,.04)';
+    ctx.lineWidth=0.5;
+    for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+    // draw edges
+    edges.forEach(([a,b,type])=>{
+      const na=placed.find(n=>n.id===a), nb=placed.find(n=>n.id===b);
+      if(!na||!nb) return;
+      ctx.beginPath();
+      ctx.moveTo(na.px,na.py);
+      // curve
+      const mx=(na.px+nb.px)/2+(Math.random()-.5)*30;
+      const my=(na.py+nb.py)/2+(Math.random()-.5)*20;
+      ctx.quadraticCurveTo(mx,my,nb.px,nb.py);
+      if(type==='trained'){ctx.strokeStyle='rgba(42,140,126,.35)';ctx.setLineDash([4,3]);}
+      else if(type==='leads'){ctx.strokeStyle='rgba(192,84,42,.5)';ctx.setLineDash([]);}
+      else if(type==='commissie'){ctx.strokeStyle='rgba(176,120,40,.3)';ctx.setLineDash([2,4]);}
+      else if(type==='founded'){ctx.strokeStyle='rgba(24,95,165,.5)';ctx.setLineDash([]);}
+      else if(type==='peer'){ctx.strokeStyle='rgba(212,150,46,.3)';ctx.setLineDash([3,3]);}
+      else{ctx.strokeStyle='rgba(245,240,232,.15)';ctx.setLineDash([2,4]);}
+      ctx.lineWidth=type==='trained'||type==='leads'||type==='founded'?1.5:1;
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // draw nodes
+    placed.forEach(n=>{
+      // glow
+      const grad=ctx.createRadialGradient(n.px,n.py,0,n.px,n.py,n.r*2.5);
+      grad.addColorStop(0,n.col+'44');
+      grad.addColorStop(1,'transparent');
+      ctx.fillStyle=grad;
+      ctx.beginPath();ctx.arc(n.px,n.py,n.r*2.5,0,Math.PI*2);ctx.fill();
+
+      // circle
+      ctx.beginPath();ctx.arc(n.px,n.py,n.r,0,Math.PI*2);
+      ctx.fillStyle=n.col+'33';
+      ctx.fill();
+      ctx.strokeStyle=n.col;
+      ctx.lineWidth=1.5;
+      ctx.stroke();
+
+      // label
+      const lines=n.label.split('\n');
+      ctx.fillStyle='rgba(245,240,232,.88)';
+      ctx.font='500 10px "JetBrains Mono",monospace';
+      ctx.textAlign='center';
+      const ly=n.py+n.r+14;
+      lines.forEach((l,i)=>ctx.fillText(l,n.px,ly+i*13));
+    });
+  }
+  draw();
+
+  // Interaction
+  canvas.onmousemove=function(e){
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    let hit=null;
+    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+12)hit=n;});
+    if(hit){
+      canvas.style.cursor='pointer';
+      const career=hit.career&&hit.career.length>0?`<div class="tt-career"><div class="tt-career-title">Jalur Karir</div>${hit.career.map(c=>`<div class="career-step">${c}</div>`).join('')}</div>`:'';
+      tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.role}</div><div class="tt-body">${hit.body}</div>${career}`;
+      let lft=e.clientX-rect.left+16, top=e.clientY-rect.top-10;
+      if(lft+300>W)lft=mx-320;
+      if(top<0)top=0;
+      tt.style.left=lft+'px'; tt.style.top=top+'px';
+      tt.classList.add('visible');
+    } else {
+      canvas.style.cursor='default';
+      tt.classList.remove('visible');
+    }
+  };
+  canvas.onmouseleave=()=>tt.classList.remove('visible');
+}
+
+// ─── NUSANTARA NETWORK ───
+const KWS_NODES = [
+  {id:'soerakarta',label:'Surakarta',year:'1852',x:.18,y:.35,r:20,col:'#c0542a',desc:'Model pertama HB'},
+  {id:'magelang',label:'Magelang',year:'1874',x:.22,y:.55,r:16,col:'#d4962e',desc:'Pengganti Surakarta'},
+  {id:'djokjakarta',label:'Djokjakarta',year:'≈1880',x:.3,y:.48,r:15,col:'#d4962e',desc:'Kweekschool Vorstenlanden'},
+  {id:'bandoeng',label:'Bandoeng',year:'≈1875',x:.25,y:.65,r:16,col:'#d4962e',desc:'Preanger — gaji ƒ800'},
+  {id:'probolinggo',label:'Probolinggo',year:'≈1875',x:.42,y:.62,r:14,col:'#2a8c7e',desc:'Si Hamzah dari FdK'},
+  {id:'oengaran',label:'Oengaran',year:'≈1905',x:.35,y:.52,r:12,col:'#888780',desc:'Ekspansi abad ke-20'},
+  {id:'bandjermasin',label:'Bandjermasin',year:'≈1870',x:.38,y:.78,r:13,col:'#185FA5',desc:'Kalimantan Selatan'},
+  {id:'fdk',label:'Fort de Kock\n(Bukittinggi)',year:'1856',x:.15,y:.2,r:24,col:'#8b3a1e',desc:'Pusat jejaring Sumatra'},
+  {id:'tanahhbatoe',label:'Tanah-Batoe\n→ Pdg Sidempoean',year:'≈1864→1874',x:.08,y:.42,r:16,col:'#2a8c7e',desc:'W. Iskander — terbaik'},
+  {id:'tondano',label:'Tondano',year:'1873',x:.72,y:.25,r:17,col:'#2a8c7e',desc:'Sulawesi — paling awal'},
+  {id:'makassar',label:'Makassar\n(Opleiding)',year:'≈1905',x:.65,y:.52,r:15,col:'#534AB7',desc:'Ganda: opleiding+kweek'},
+  {id:'padang',label:'Padang Sidempoean',year:'1874',x:.08,y:.6,r:14,col:'#2a8c7e',desc:'Lanjutan Tanah-Batoe'},
+];
+const KWS_EDGES=[
+  ['soerakarta','fdk','model'],['soerakarta','magelang','moved'],['soerakarta','tondano','model'],
+  ['soerakarta','bandoeng','model'],['soerakarta','probolinggo','model'],
+  ['fdk','tondano','staff'],['fdk','probolinggo','hamzah'],
+  ['fdk','tanahhbatoe','proposal'],['tanahhbatoe','padang','moved'],
+  ['bandoeng','djokjakarta','staff'],['magelang','djokjakarta','link'],
+  ['tondano','makassar','region'],
+];
+
+function drawNusantara(){
+  const canvas=document.getElementById('canvas-nusantara');
+  const tt=document.getElementById('tt-nusantara');
+  if(!canvas)return;
+  const W=canvas.offsetWidth; const H=parseInt(canvas.getAttribute('height'));
+  canvas.width=W*window.devicePixelRatio; canvas.height=H*window.devicePixelRatio;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(window.devicePixelRatio,window.devicePixelRatio);
+  const placed=KWS_NODES.map(n=>({...n,px:n.x*W,py:n.y*H}));
+
+  ctx.clearRect(0,0,W,H);
+  // bg
+  ctx.fillStyle='rgba(255,255,255,.01)';
+  ctx.fillRect(0,0,W,H);
+
+  // Edges
+  KWS_EDGES.forEach(([a,b,t])=>{
+    const na=placed.find(n=>n.id===a),nb=placed.find(n=>n.id===b);
+    if(!na||!nb)return;
+    ctx.beginPath();
+    ctx.moveTo(na.px,na.py);
+    const mx=(na.px+nb.px)/2; const my=(na.py+nb.py)/2-20;
+    ctx.quadraticCurveTo(mx,my,nb.px,nb.py);
+    if(t==='model'){ctx.strokeStyle='rgba(192,84,42,.4)';ctx.setLineDash([5,4]);ctx.lineWidth=1.5;}
+    else if(t==='moved'){ctx.strokeStyle='rgba(212,150,46,.5)';ctx.setLineDash([]);ctx.lineWidth=1.5;}
+    else if(t==='staff'){ctx.strokeStyle='rgba(42,140,126,.6)';ctx.setLineDash([]);ctx.lineWidth=2;}
+    else if(t==='hamzah'){ctx.strokeStyle='rgba(42,140,126,.4)';ctx.setLineDash([3,3]);ctx.lineWidth=1.5;}
+    else{ctx.strokeStyle='rgba(245,240,232,.15)';ctx.setLineDash([2,5]);ctx.lineWidth=1;}
+    ctx.stroke(); ctx.setLineDash([]);
+  });
+
+  // Nodes
+  placed.forEach(n=>{
+    const g=ctx.createRadialGradient(n.px,n.py,0,n.px,n.py,n.r*2.5);
+    g.addColorStop(0,n.col+'55'); g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;
+    ctx.beginPath();ctx.arc(n.px,n.py,n.r*2.5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(n.px,n.py,n.r,0,Math.PI*2);
+    ctx.fillStyle=n.col+'44';ctx.fill();
+    ctx.strokeStyle=n.col;ctx.lineWidth=2;ctx.stroke();
+    const lines=n.label.split('\n');
+    ctx.fillStyle='rgba(245,240,232,.9)';
+    ctx.font='500 10px "JetBrains Mono",monospace';
+    ctx.textAlign='center';
+    lines.forEach((l,i)=>ctx.fillText(l,n.px,n.py+n.r+13+i*12));
+    ctx.fillStyle='rgba(212,150,46,.8)';
+    ctx.font='9px "JetBrains Mono",monospace';
+    ctx.fillText(n.year,n.px,n.py-n.r-5);
+  });
+
+  canvas.onmousemove=function(e){
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left,my=e.clientY-rect.top;
+    let hit=null;
+    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+14)hit=n;});
+    if(hit){
+      canvas.style.cursor='pointer';
+      tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.year}</div><div class="tt-body">${hit.desc}</div>`;
+      let lft=mx+16,top=my-10;
+      if(lft+280>W)lft=mx-290;
+      tt.style.left=lft+'px';tt.style.top=top+'px';
+      tt.classList.add('visible');
+    } else {canvas.style.cursor='default';tt.classList.remove('visible');}
+  };
+  canvas.onmouseleave=()=>tt.classList.remove('visible');
+}
+
+// ─── INIT ───
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    drawNetwork('pribumi');
+    // resize
+    window.addEventListener('resize',()=>{
+      const activeTab=document.querySelector('.tab-btn.active');
+      if(!activeTab)return;
+      const labels=['pribumi','belanda','nusantara'];
+      const idx=[...document.querySelectorAll('.tab-btn')].indexOf(activeTab);
+      if(labels[idx]==='nusantara')drawNusantara();
+      else drawNetwork(labels[idx]);
+    });
+  },200);
+});
+
+
+// ─── FEATURE 1: COUNTER ANIMATION ───
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const items = e.target.querySelectorAll('.kd-item');
+      items.forEach((item, i) => {
+        item.classList.add('animated');
+        const numEl = item.querySelector('.num');
+        if(!numEl) return;
+        const target = numEl.textContent.replace(/\./g,'');
+        const targetNum = parseInt(target);
+        if(isNaN(targetNum)) return;
+        const duration = 1500;
+        const start = performance.now();
+        const fmt = (n) => n.toLocaleString('id-ID');
+        function tick(now){
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          numEl.textContent = fmt(Math.round(targetNum * eased));
+          if(progress < 1) requestAnimationFrame(tick);
+        }
+        setTimeout(() => requestAnimationFrame(tick), i * 150);
+      });
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const statsGrid = document.querySelector('.kesimpulan-stats');
+if(statsGrid) counterObs.observe(statsGrid);
+
+// ─── FEATURE 2: TIMELINE FILTER ───
+function filterTimeline(sectionId, era){
+  const section = document.getElementById(sectionId);
+  if(!section) return;
+  // Update buttons
+  const bar = section.querySelector('.tl-filter-bar') || document.getElementById('filter-'+sectionId);
+  if(bar){
+    bar.querySelectorAll('.tl-filter-btn').forEach(b=>b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+  // Filter events
+  const events = section.querySelectorAll('.tl-event');
+  const eras = section.querySelectorAll('.tl-era');
+  if(era === 'all'){
+    events.forEach(ev=>{ev.classList.remove('tl-hidden');ev.style.opacity='';ev.style.transform='';});
+    eras.forEach(er=>er.classList.remove('tl-hidden'));
+  } else {
+    events.forEach((ev,i)=>{
+      const match = ev.classList.contains(era);
+      if(match){
+        ev.classList.remove('tl-hidden');
+        ev.style.opacity='1';ev.style.transform='';
+      } else {
+        ev.classList.add('tl-hidden');
+      }
+    });
+    eras.forEach(er=>{
+      const badge = er.querySelector('.era-badge');
+      if(badge && badge.classList.contains(era)){er.classList.remove('tl-hidden');}
+      else{er.classList.add('tl-hidden');}
+    });
+  }
+}
+
+// ─── FEATURE 3: CLICK-TO-PIN TOOLTIPS ───
+function setupPinnedTooltips(){
+  document.querySelectorAll('canvas[id^="canvas-"]').forEach(canvas=>{
+    canvas.addEventListener('click', function(e){
+      const ttId = 'tt-' + this.id.replace('canvas-','');
+      const tt = document.getElementById(ttId);
+      if(!tt) return;
+      if(tt.classList.contains('pinned')){
+        tt.classList.remove('pinned');
+        return;
+      }
+      if(tt.classList.contains('visible')){
+        tt.classList.add('pinned');
+        // Add close button if not present
+        if(!tt.querySelector('.tt-close')){
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'tt-close';
+          closeBtn.innerHTML = '\u00d7';
+          closeBtn.onclick = function(ev){
+            ev.stopPropagation();
+            tt.classList.remove('pinned','visible');
+          };
+          tt.prepend(closeBtn);
+        }
+      }
+    });
+  });
+}
+setupPinnedTooltips();
+
+// ─── FEATURE 4: CITATION COPY BUTTONS ───
+function setupCiteButtons(){
+  document.querySelectorAll('.src-block').forEach(srcBlock=>{
+    const card = srcBlock.closest('.tl-card');
+    if(!card) return;
+    // Get source text
+    const srcText = srcBlock.textContent.replace('Sumber','').trim();
+    const titleEl = card.querySelector('h3');
+    const title = titleEl ? titleEl.textContent : '';
+    const dateEl = card.closest('.tl-event');
+    const yearEl = dateEl ? dateEl.querySelector('.tl-date .year') : null;
+    const year = yearEl ? yearEl.textContent : '';
+    const monthEl = dateEl ? dateEl.querySelector('.tl-date .month') : null;
+    const month = monthEl ? monthEl.textContent : '';
+    
+    const btn = document.createElement('button');
+    btn.className = 'cite-btn';
+    btn.title = 'Salin sitasi';
+    btn.innerHTML = '\u201e';
+    btn.onclick = function(e){
+      e.stopPropagation();
+      const citation = `${srcText}. Dikutip dalam: "${title}" (${month ? month+' ' : ''}${year}). Kweekschool Fort de Kock — Riset Sejarah Pendidikan Kolonial.`;
+      navigator.clipboard.writeText(citation).then(()=>{
+        btn.classList.add('copied');
+        btn.innerHTML = '\u2713';
+        const toast = document.getElementById('cite-toast');
+        toast.classList.add('show');
+        setTimeout(()=>{toast.classList.remove('show');btn.classList.remove('copied');btn.innerHTML='\u201e';},2000);
+      });
+    };
+    card.appendChild(btn);
+  });
+}
+setupCiteButtons();
+
+// ─── FEATURE 6: GEOGRAPHIC MAP ───
+const GEO_PLACES = [
+  {id:'fdk',name:'Fort de Kock (Bukittinggi)',x:.52,y:.32,r:12,col:'#8b3a1e',detail:'Kweekschool (1856)\nPusat pendidikan guru'},
+  {id:'fvdc',name:'Fort van der Capellen (Batusangkar)',x:.58,y:.52,col:'#c0542a',r:9,detail:'Schoolcommissie pertama (1873)\nLarashoofd Salimpawang'},
+  {id:'kotogadang',name:'Koto Gadang',x:.48,y:.28,r:8,col:'#2a8c7e',detail:'Sekolah bumiputra\nOnderwijzer Sakin'},
+  {id:'payakumbuh',name:'Payakumbuh',x:.63,y:.38,r:8,col:'#2a8c7e',detail:'Sekolah bumiputra\nOnderwijzer Salim'},
+  {id:'padang',name:'Padang',x:.28,y:.72,r:10,col:'#185FA5',detail:'Ibukota karesidenan\nUjian hulponderwijzer'},
+  {id:'pdgpanjang',name:'Padang Panjang',x:.45,y:.48,r:8,col:'#d4962e',detail:'Jalur kereta api\nWilayah pendidikan'},
+  {id:'solok',name:'Solok',x:.48,y:.62,r:7,col:'#d4962e',detail:'Wilayah pendidikan\nPadangsche Bovenlanden'},
+  {id:'sawahlunto',name:'Sawahlunto',x:.58,y:.58,r:7,col:'#888780',detail:'Tambang batu bara\nWilayah pendidikan'},
+  {id:'palembajan',name:'Palembajan',x:.42,y:.42,r:7,col:'#c0542a',detail:'Schoolcommissie (1874)\nLarashoofd VIII Kottas'},
+  {id:'bondjol',name:'Bondjol',x:.38,y:.22,r:7,col:'#c0542a',detail:'Schoolcommissie\nLarashoofd Si Nailic'},
+  {id:'soepajang',name:'Soepajang',x:.52,y:.68,r:7,col:'#534AB7',detail:'Asal mantri inisiator\nVereeniging Minangkabau'},
+  {id:'boea',name:'Boea',x:.62,y:.48,r:7,col:'#c0542a',detail:'Schoolcommissie (1874)\nLarashoofd van Lintoe'},
+];
+const GEO_CONNECTIONS = [
+  ['fdk','fvdc'],['fdk','kotogadang'],['fdk','payakumbuh'],['fdk','padang'],
+  ['fdk','pdgpanjang'],['fdk','palembajan'],['fdk','bondjol'],
+  ['padang','solok'],['pdgpanjang','solok'],['solok','sawahlunto'],
+  ['fvdc','boea'],['soepajang','fdk'],
+];
+
+function drawGeoMap(){
+  const canvas = document.getElementById('canvas-geo');
+  const tt = document.getElementById('tt-geo');
+  if(!canvas) return;
+  const W = canvas.offsetWidth;
+  const H = parseInt(canvas.getAttribute('height'));
+  canvas.width = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const placed = GEO_PLACES.map(p=>({...p, px:p.x*W, py:p.y*H}));
+
+  // Background - terrain feel
+  const bg = ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#e8e0d0');bg.addColorStop(.5,'#ddd5c5');bg.addColorStop(1,'#d5cdb8');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  // Subtle topographic lines
+  ctx.strokeStyle='rgba(26,20,16,.06)';ctx.lineWidth=.5;
+  for(let i=0;i<12;i++){
+    ctx.beginPath();
+    const cy=H*(.15+i*.065), cx=W*(.48+Math.sin(i)*.08), rx=W*(.25+i*.02), ry=H*(.06+i*.015);
+    ctx.ellipse(cx,cy,rx,ry,Math.sin(i)*.2,0,Math.PI*2);
+    ctx.stroke();
+  }
+
+  // Mountain range hint
+  ctx.fillStyle='rgba(26,20,16,.04)';
+  ctx.beginPath();
+  ctx.moveTo(0,H*.6);
+  ctx.quadraticCurveTo(W*.2,H*.1,W*.5,H*.15);
+  ctx.quadraticCurveTo(W*.8,H*.2,W,H*.5);
+  ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+
+  // "Danau Singkarak" hint
+  ctx.fillStyle='rgba(26,92,82,.08)';
+  ctx.beginPath();ctx.ellipse(W*.5,H*.55,W*.06,H*.04,-.2,0,Math.PI*2);ctx.fill();
+  ctx.font='italic 8px "Source Serif 4",serif';ctx.fillStyle='rgba(26,92,82,.25)';ctx.textAlign='center';
+  ctx.fillText('Danau Singkarak',W*.5,H*.55+H*.06);
+
+  // "Danau Maninjau" hint
+  ctx.fillStyle='rgba(26,92,82,.06)';
+  ctx.beginPath();ctx.ellipse(W*.35,H*.32,W*.03,H*.05,.3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(26,92,82,.2)';
+  ctx.fillText('D. Maninjau',W*.35,H*.32+H*.07);
+
+  // Coast hint
+  ctx.fillStyle='rgba(26,61,110,.06)';
+  ctx.beginPath();ctx.moveTo(0,H*.5);ctx.quadraticCurveTo(W*.1,H*.6,W*.15,H*.9);
+  ctx.lineTo(0,H);ctx.fill();
+  ctx.fillStyle='rgba(26,61,110,.15)';ctx.font='italic 9px "Source Serif 4",serif';
+  ctx.fillText('Samudera Hindia',W*.08,H*.9);
+
+  // Connections
+  GEO_CONNECTIONS.forEach(([a,b])=>{
+    const na=placed.find(p=>p.id===a),nb=placed.find(p=>p.id===b);
+    if(!na||!nb)return;
+    ctx.beginPath();ctx.moveTo(na.px,na.py);
+    ctx.lineTo(nb.px,nb.py);
+    ctx.strokeStyle='rgba(139,58,30,.15)';ctx.lineWidth=1;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
+  });
+
+  // Places
+  placed.forEach(p=>{
+    // Glow
+    const g=ctx.createRadialGradient(p.px,p.py,0,p.px,p.py,p.r*3);
+    g.addColorStop(0,p.col+'30');g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.px,p.py,p.r*3,0,Math.PI*2);ctx.fill();
+    // Dot
+    ctx.beginPath();ctx.arc(p.px,p.py,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.col+'55';ctx.fill();
+    ctx.strokeStyle=p.col;ctx.lineWidth=1.5;ctx.stroke();
+    // Label
+    ctx.fillStyle='rgba(26,20,16,.75)';
+    ctx.font='600 9px "JetBrains Mono",monospace';
+    ctx.textAlign='center';
+    ctx.fillText(p.name, p.px, p.py+p.r+13);
+  });
+
+  // Title overlay
+  ctx.fillStyle='rgba(26,20,16,.5)';
+  ctx.font='italic 10px "Source Serif 4",serif';
+  ctx.textAlign='left';
+  ctx.fillText('Padangsche Bovenlanden (Dataran Tinggi Padang)',12,H-12);
+
+  // Interaction
+  canvas.onmousemove=function(e){
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    let hit=null;
+    placed.forEach(p=>{if(Math.hypot(mx-p.px,my-p.py)<p.r+10)hit=p;});
+    if(hit){
+      canvas.style.cursor='pointer';
+      tt.innerHTML='<div class="gt-name">'+hit.name+'</div><div class="gt-detail">'+hit.detail.replace(/\\n/g,'<br>').replace(/\n/g,'<br>')+'</div>';
+      let lft=mx+14,top=my-10;
+      if(lft+200>W)lft=mx-210;
+      if(top<0)top=0;
+      tt.style.left=lft+'px';tt.style.top=top+'px';
+      tt.classList.add('visible');
+    }else{canvas.style.cursor='default';tt.classList.remove('visible');}
+  };
+  canvas.onmouseleave=()=>tt.classList.remove('visible');
+}
+
+// Init geo map
+const geoObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){drawGeoMap();geoObs.unobserve(e.target);}});
+},{threshold:.1});
+const geoCanvas = document.getElementById('canvas-geo');
+if(geoCanvas) geoObs.observe(geoCanvas.parentElement);
+window.addEventListener('resize',()=>{if(document.getElementById('canvas-geo'))drawGeoMap();});
+
+</script>
+<div class="cite-toast" id="cite-toast">Sitasi disalin ke clipboard</div>
+</body>
+</html>

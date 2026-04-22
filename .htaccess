@@ -1,0 +1,17 @@
+# Matikan fitur directory listing (orang tidak bisa browsing isi folder)
+Options -Indexes
+
+# Menetapkan file utama yang akan dimuat saat folder diakses
+DirectoryIndex index.html
+
+# Mencegah akses langsung ke file-file source code/raw data (Python, Excel, Word)
+<FilesMatch "\.(py|xls|xlsx|docx|md|txt|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Mencegah akses ke file .htaccess ini sendiri
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
