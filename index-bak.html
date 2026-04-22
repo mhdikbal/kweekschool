@@ -8,28 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="img/Kweekschoollogo.png">
 <style>
-/* LANGUAGE ENGINE v3 — universal */
-.lang-en, .lang-nl { display: none !important; }
+/* LANGUAGE ENGINE v2 */
+.lang-en, .lang-nl { display: none; }
+body.en-mode span.lang-en { display: inline !important; }
+body.nl-mode span.lang-nl { display: inline !important; }
 
-/* EN mode: show EN, hide ID */
-body.en-mode .lang-en          { display: inline !important; }
-body.en-mode .lang-id          { display: none !important; }
-body.en-mode div.lang-en       { display: block !important; }
-body.en-mode p.lang-en         { display: block !important; }
-body.en-mode li.lang-en        { display: list-item !important; }
-body.en-mode h1.lang-en,
-body.en-mode h2.lang-en,
-body.en-mode h3.lang-en        { display: block !important; }
+body.en-mode .lang-id, body.nl-mode .lang-id { display: none !important; }
 
-/* NL mode: show NL, hide ID */
-body.nl-mode .lang-nl          { display: inline !important; }
-body.nl-mode .lang-id          { display: none !important; }
-body.nl-mode div.lang-nl       { display: block !important; }
-body.nl-mode p.lang-nl         { display: block !important; }
-body.nl-mode li.lang-nl        { display: list-item !important; }
-body.nl-mode h1.lang-nl,
-body.nl-mode h2.lang-nl,
-body.nl-mode h3.lang-nl        { display: block !important; }
+body.en-mode .lang-en { display: inline !important; }
+body.en-mode div.lang-en, body.en-mode p.lang-en, body.en-mode h1.lang-en, body.en-mode h2.lang-en { display: block !important; }
+
+body.nl-mode .lang-nl { display: inline !important; }
+body.nl-mode div.lang-nl, body.nl-mode p.lang-nl, body.nl-mode h1.lang-nl, body.nl-mode h2.lang-nl { display: block !important; }
 
 .nav-lang-btn.active { color: var(--rust2) !important; opacity: 1 !important; font-weight: bold !important; }
 
@@ -85,34 +75,11 @@ body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georg
 }
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:200;background:rgba(26,20,16,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:.5px solid rgba(245,240,232,.1);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav{position:sticky;top:0;z-index:200;background:rgba(26,20,16,.97);backdrop-filter:blur(10px);border-bottom:.5px solid rgba(245,240,232,.1);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
 .nav-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.4)}
 .nav-links{display:flex;gap:0;list-style:none;flex-wrap:wrap}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.35);text-decoration:none;padding:0 .85rem;height:52px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:rgba(245,240,232,.9);border-bottom-color:var(--rust2)}
-
-/* Hamburger button */
-.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;margin-left:.5rem}
-.nav-hamburger span{display:block;width:20px;height:1.5px;background:rgba(245,240,232,.6);border-radius:1px;transition:all .25s}
-.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-
-/* Mobile drawer */
-.nav-drawer{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(20,16,12,.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid rgba(245,240,232,.1);z-index:199;padding:.5rem 0;transform:translateY(-10px);opacity:0;pointer-events:none;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s}
-.nav-drawer.open{transform:translateY(0);opacity:1;pointer-events:all}
-.nav-drawer ul{list-style:none;padding:0}
-.nav-drawer ul li a{display:block;padding:.85rem 2rem;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.5);text-decoration:none;border-left:2px solid transparent;transition:all .15s}
-.nav-drawer ul li a:hover,.nav-drawer ul li a.active{color:rgba(245,240,232,.95);border-left-color:var(--rust2);background:rgba(245,240,232,.03)}
-.nav-drawer-lang{display:flex;gap:1rem;padding:.75rem 2rem 1rem;border-top:.5px solid rgba(245,240,232,.08);margin-top:.25rem}
-.nav-drawer-lang span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;cursor:pointer;color:rgba(245,240,232,.4);transition:all .15s}
-.nav-drawer-lang span.active{color:var(--rust2);font-weight:bold}
-
-@media(max-width:768px){
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  .nav-drawer{display:block}
-}
 /* COVER */
 .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;background:var(--ink);overflow:hidden}
 .cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(139,58,30,.2) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 20% 80%,rgba(26,92,82,.15) 0%,transparent 60%)}
@@ -521,28 +488,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
     <li><a href="#kesimpulan">VI. <span class="lang-id">Kesimpulan</span><span class="lang-en">Conclusion</span><span class="lang-nl">Conclusie</span></a></li>
     <li><a href="#sumber">VII. <span class="lang-id">Sumber</span><span class="lang-en">Sources</span><span class="lang-nl">Bronnen</span></a></li>
   </ul>
-  <!-- Hamburger (mobile only) -->
-  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE DRAWER -->
-<nav class="nav-drawer" id="nav-drawer">
-  <ul>
-    <li><a href="#kelahiran" onclick="closeMobileNav()">I. <span class="lang-id">Kelahiran</span><span class="lang-en">Birth</span><span class="lang-nl">Oprichting</span></a></li>
-    <li><a href="#merosot" onclick="closeMobileNav()">II. <span class="lang-id">Kemerosotan</span><span class="lang-en">Decline</span><span class="lang-nl">Achteruitgang</span></a></li>
-    <li><a href="#akses" onclick="closeMobileNav()">III. <span class="lang-id">Akses Pendidikan</span><span class="lang-en">Access to Education</span><span class="lang-nl">Toegang tot Onderwijs</span></a></li>
-    <li><a href="#nawawi" onclick="closeMobileNav()">IV. Nawawi</a></li>
-    <li><a href="larashoofd_network.html" style="color:var(--amber2)" onclick="closeMobileNav()">V. <span class="lang-id">Peta Jejaring</span><span class="lang-en">Network Map</span><span class="lang-nl">Netwerkkaart</span> ↗</a></li>
-    <li><a href="#kesimpulan" onclick="closeMobileNav()">VI. <span class="lang-id">Kesimpulan</span><span class="lang-en">Conclusion</span><span class="lang-nl">Conclusie</span></a></li>
-    <li><a href="#sumber" onclick="closeMobileNav()">VII. <span class="lang-id">Sumber</span><span class="lang-en">Sources</span><span class="lang-nl">Bronnen</span></a></li>
-  </ul>
-  <div class="nav-drawer-lang">
-    <span class="nav-lang-btn active" id="drawer-btn-id" onclick="setLang('id')">ID</span>
-    <span class="nav-lang-btn" id="drawer-btn-en" onclick="setLang('en')" style="opacity:0.5">EN</span>
-    <span class="nav-lang-btn" id="drawer-btn-nl" onclick="setLang('nl')" style="opacity:0.5">NL</span>
-  </div>
 </nav>
 
 <main>
@@ -1447,42 +1392,16 @@ function setLang(lang) {
     if (lang !== 'id') {
         document.body.classList.add(lang + '-mode');
     }
-    // Update all lang buttons (nav + drawer)
     document.querySelectorAll('.nav-lang-btn').forEach(b => {
         b.classList.remove('active');
         b.style.opacity = '0.5';
     });
-    // Highlight active in both navbar and drawer
-    ['btn-', 'drawer-btn-'].forEach(prefix => {
-        const el = document.getElementById(prefix + lang);
-        if(el) { el.classList.add('active'); el.style.opacity = '1'; }
-    });
-}
-
-// ─── MOBILE NAV ───
-function toggleMobileNav() {
-    const drawer = document.getElementById('nav-drawer');
-    const btn = document.getElementById('nav-hamburger');
-    const isOpen = drawer.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    // Close on outside click
-    if(isOpen) {
-        setTimeout(() => document.addEventListener('click', outsideNavClose, {once:true}), 10);
+    const activeBtn = document.getElementById('btn-' + lang);
+    if(activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.style.opacity = '1';
     }
 }
-function closeMobileNav() {
-    document.getElementById('nav-drawer').classList.remove('open');
-    document.getElementById('nav-hamburger').classList.remove('open');
-}
-function outsideNavClose(e) {
-    if(!e.target.closest('.nav-drawer') && !e.target.closest('#nav-hamburger')) {
-        closeMobileNav();
-    }
-}
-// Close drawer on scroll (good UX)
-window.addEventListener('scroll', () => {
-    if(document.getElementById('nav-drawer').classList.contains('open')) closeMobileNav();
-}, {passive:true});
 
 // ─── INTRO SPLASH ───
 let introTimeout;
@@ -2183,246 +2102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-// ─── TRANSLATION ENGINE ───
-// Translates all hardcoded ID content (cards, badges, filters, headings, etc.)
-// Strategy: data-i18n="key" lookup → innerHTML swap on lang change
-
-const I18N = {
-  // ── GLOBAL UI ──
-  'src-label':        { id:'Sumber', en:'Source', nl:'Bron' },
-  'cite-toast':       { id:'Sitasi disalin ke clipboard', en:'Citation copied to clipboard', nl:'Citaat gekopieerd naar klembord' },
-
-  // ── FILTER BUTTONS ──
-  'filter-all':       { id:'Semua', en:'All', nl:'Alles' },
-  'filter-pendirian': { id:'Pendirian', en:'Founding', nl:'Oprichting' },
-  'filter-kemerosotan': { id:'Kemerosotan', en:'Decline', nl:'Achteruitgang' },
-  'filter-reformasi': { id:'Reformasi', en:'Reform', nl:'Hervorming' },
-  'filter-akses':     { id:'Akses', en:'Access', nl:'Toegang' },
-  'filter-karir':     { id:'Karir & Jejak', en:'Career & Traces', nl:'Loopbaan & Sporen' },
-
-  // ── ERA BADGES ──
-  'era-percobaan':    { id:'▸ Percobaan & Pendirian', en:'▸ Trial & Founding', nl:'▸ Proef & Oprichting' },
-  'era-merosot':      { id:'▸ Masa Kemerosotan (≈1860–1869)', en:'▸ Period of Decline (≈1860–1869)', nl:'▸ Periode van Achteruitgang (≈1860–1869)' },
-  'era-reformasi':    { id:'▸ Usulan Reformasi & Pembenahan Staf', en:'▸ Reform Proposals & Staff Restructuring', nl:'▸ Hervormingsvoorstellen & Personeelsherstructurering' },
-  'era-integrasi':    { id:'▸ Integrasi Larashoofd ke Sistem Pendidikan', en:'▸ Larashoofd Integration into the Education System', nl:'▸ Integratie van Larashoofd in het Onderwijssysteem' },
-  'era-nawawi':       { id:'▸ Karir & Jejak Nawawi', en:'▸ Nawawi\'s Career & Traces', nl:'▸ Loopbaan & Sporen van Nawawi' },
-
-  // ── TBADGES ──
-  'badge-fondasi':    { id:'Fondasi', en:'Foundation', nl:'Fundament' },
-  'badge-inisiatif':  { id:'Inisiatif', en:'Initiative', nl:'Initiatief' },
-  'badge-resmi':      { id:'Resmi Berdiri', en:'Officially Established', nl:'Officieel Opgericht' },
-  'badge-permanen':   { id:'Permanen', en:'Permanent', nl:'Permanent' },
-  'badge-krisis':     { id:'Kemerosotan', en:'Decline', nl:'Achteruitgang' },
-  'badge-audit':      { id:'Audit Kritis', en:'Critical Audit', nl:'Kritische Audit' },
-  'badge-debat':      { id:'Debat Kebijakan', en:'Policy Debate', nl:'Beleidsdebat' },
-  'badge-staf':       { id:'Staf Baru', en:'New Staff', nl:'Nieuw Personeel' },
-  'badge-pimpinan':   { id:'Pergantian Pimpinan', en:'Change of Leadership', nl:'Leiderschapswisseling' },
-  'badge-komisie':    { id:'Komisie Pertama', en:'First Commission', nl:'Eerste Commissie' },
-  'badge-ekspansi':   { id:'Ekspansi', en:'Expansion', nl:'Uitbreiding' },
-  'badge-perkembangan': { id:'Perkembangan', en:'Development', nl:'Ontwikkeling' },
-  'badge-infra':      { id:'Infrastruktur Baru', en:'New Infrastructure', nl:'Nieuwe Infrastructuur' },
-  'badge-gedung':     { id:'Gedung Baru Dibuka', en:'New Building Opened', nl:'Nieuw Gebouw Geopend' },
-  'badge-kweekeling': { id:'Kweekeling', en:'Kweekeling', nl:'Kweekeling' },
-  'badge-guru':       { id:'Guru Resmi', en:'Official Teacher', nl:'Officiële Leraar' },
-  'badge-gurukweek':  { id:'Guru Kweekschool', en:'Kweekschool Teacher', nl:'Kweekschool Leraar' },
-  'badge-figur':      { id:'Figur Sosial', en:'Social Figure', nl:'Sociale Figuur' },
-  'badge-peran':      { id:'Peran Sosial', en:'Social Role', nl:'Sociale Rol' },
-  'badge-tonggak':    { id:'Tonggak Sejarah', en:'Historical Milestone', nl:'Historische Mijlpaal' },
-
-  // ── SECTION III FEATURE BOX ──
-  'feat-eyebrow':     { id:'Konteks Struktural', en:'Structural Context', nl:'Structurele Context' },
-  'feat-h3':          { id:'Sekolah sebagai <em>Alat Administrasi</em> Kolonial', en:'Schools as Colonial <em>Administrative Tools</em>', nl:'Scholen als Koloniale <em>Bestuursinstrumenten</em>' },
-  'feat-p':           { id:'Plaatselijke Inlandsche Schoolcommissie terdiri dari seorang kontrolir Eropa berpasangan dengan <span class="glossary-term" data-term="larashoofd">larashoofd</span> setempat. Larashoofd adalah produk sekaligus penjamin sistem — mereka diangkat ke komisie sekolah karena jabatannya, dan jabatan mereka tergantung pada kemampuan melek aksara yang diajarkan di sekolah yang mereka awasi.',
-                        en:'The Plaatselijke Inlandsche Schoolcommissie consisted of a European controller paired with a local <span class="glossary-term" data-term="larashoofd">larashoofd</span>. The larashoofd was both a product and guarantor of the system — appointed to the school commission because of their position, and their position depended on the literacy skills taught in the schools they oversaw.',
-                        nl:'De Plaatselijke Inlandsche Schoolcommissie bestond uit een Europese controleur in combinatie met een lokale <span class="glossary-term" data-term="larashoofd">larashoofd</span>. De larashoofd was zowel een product als een garantie van het systeem — benoemd in de schoolcommissie vanwege zijn positie, en zijn positie hing af van de geletterdheid die onderwezen werd in de scholen die hij bewaakte.' },
-
-  // ── SECTION III Eyebrow ──
-  'bab3-eyebrow':     { id:'Bab III · 1870an–1885', en:'Chapter III · 1870s–1885', nl:'Hoofdstuk III · 1870s–1885' },
-  'bab3-h2':          { id:'Larashoofd &<br><em>Akses Pendidikan</em>', en:'Larashoofd &<br><em>Access to Education</em>', nl:'Larashoofd &<br><em>Toegang tot Onderwijs</em>' },
-
-  // ── SECTION IV ──
-  'bab4-eyebrow':     { id:'Bab IV · 1899–1908', en:'Chapter IV · 1899–1908', nl:'Hoofdstuk IV · 1899–1908' },
-  'geo-title':        { id:'Peta Dataran Tinggi Minangkabau', en:'Map of the Minangkabau Highlands', nl:'Kaart van de Minangkabause Hooglanden' },
-  'geo-subtitle':     { id:'Lokasi-lokasi kunci dalam jaringan pendidikan kolonial 1856–1912', en:'Key locations in the colonial education network 1856–1912', nl:'Sleutellocaties in het koloniale onderwijsnetwerk 1856–1912' },
-
-  // ── SECTION V (Network) ──
-  'net-eyebrow':      { id:'Bab V · Network Mapping', en:'Chapter V · Network Mapping', nl:'Hoofdstuk V · Netwerkkaart' },
-  'net-h2':           { id:'Jejaring Orang &<br><em>Kweekschool Nusantara</em>', en:'People Networks &<br><em>Archipelago Kweekschools</em>', nl:'Personennetwerken &<br><em>Archipel Kweekscholen</em>' },
-  'net-desc':         { id:'Tiga peta jaringan interaktif: (1) karir tokoh-tokoh pribumi yang terafiliasi Fort de Kock, (2) karir para pegawai Belanda, dan (3) jejaring kweekschool di seluruh Nusantara. Klik setiap node untuk detail.',
-                        en:'Three interactive network maps: (1) careers of indigenous figures affiliated with Fort de Kock, (2) careers of Dutch staff, and (3) the kweekschool network across the Archipelago. Click each node for details.',
-                        nl:'Drie interactieve netwerkkaarten: (1) loopbanen van inheemse figuren verbonden met Fort de Kock, (2) loopbanen van Nederlands personeel, en (3) het kweekschoolnetwerk door de Archipel. Klik op elk knooppunt voor details.' },
-  'tab-pribumi':      { id:'Jaringan Pribumi', en:'Indigenous Network', nl:'Inheems Netwerk' },
-  'tab-belanda':      { id:'Jaringan Belanda', en:'Dutch Network', nl:'Nederlands Netwerk' },
-  'tab-nusantara':    { id:'Jejaring Kweekschool Nusantara', en:'Archipelago Kweekschool Network', nl:'Archipel Kweekschoolnetwerk' },
-  'canvas-hint-pribumi': { id:'Klik node untuk detail · Seret untuk geser · Zoom dengan scroll mouse', en:'Click node for details · Drag to pan · Scroll to zoom', nl:'Klik op knooppunt voor details · Slepen om te pannen · Scrollen om te zoomen' },
-  'canvas-hint-belanda': { id:'Klik node untuk detail karir', en:'Click node for career details', nl:'Klik op knooppunt voor loopbaandetails' },
-  'nusantara-h3':     { id:'Kweekschool di Seluruh Hindia Belanda', en:'Kweekschools Across Dutch East Indies', nl:'Kweekscholen door Heel Nederlands-Indië' },
-  'nusantara-p':      { id:'Jaringan 11+ kweekschool yang terhubung melalui transfer staf, lulusan, dan kebijakan — berbasis data primer 1852–1912',
-                        en:'Network of 11+ kweekschools connected through staff transfers, graduates, and policy — based on primary data 1852–1912',
-                        nl:'Netwerk van 11+ kweekscholen verbonden via personeelsoverdrachten, afgestudeerden en beleid — gebaseerd op primaire gegevens 1852–1912' },
-
-  // ── SECTION VI (Kesimpulan) ──
-  'kes-eyebrow':      { id:'Bab V · Analisis & Sintesis', en:'Chapter V · Analysis & Synthesis', nl:'Hoofdstuk V · Analyse & Synthese' },
-  'kes-h2':           { id:'<em>Merunduk</em><br>Bukan Tunduk', en:'<em>Bending</em><br>Not Surrendering', nl:'<em>Buigen</em><br>Niet Bukken' },
-  'kes-desc':         { id:'"Iyokan nan diurang, laluan nan diawak" — setujui yang diminta orang, tapi jalankan caramu sendiri. Sebuah pembacaan tentang adaptasi masyarakat Minangkabau dalam menghadapi sistem pendidikan kolonial, 1856–1915.',
-                        en:'"Iyokan nan diurang, laluan nan diawak" — agree to what others ask, but walk your own path. A reading of Minangkabau society\'s adaptation to the colonial education system, 1856–1915.',
-                        nl:'"Iyokan nan diurang, laluan nan diawak" — stem in met wat anderen vragen, maar bewandel je eigen pad. Een lezing over de aanpassing van de Minangkabause samenleving aan het koloniale onderwijssysteem, 1856–1915.' },
-  'timeline-puncak-label': { id:'Timeline Puncak · Perjalanan Kweekschool Fort de Kock 1856–1915', en:'Key Timeline · The Journey of Kweekschool Fort de Kock 1856–1915', nl:'Hoogtepuntentijdlijn · De Reis van Kweekschool Fort de Kock 1856–1915' },
-  'drag-hint':        { id:'← Geser untuk melihat seluruh timeline →', en:'← Scroll to view full timeline →', nl:'← Schuif om de volledige tijdlijn te bekijken →' },
-  'traj-label':       { id:'Trajectori: dari kweekschool menuju pergerakan', en:'Trajectory: from kweekschool to the movement', nl:'Traject: van kweekschool naar de beweging' },
-
-  // ── ERA DETAIL CARDS (Timeline Puncak) ──
-  'era-card-1-title': { id:'Perintisan', en:'Pioneering', nl:'Pionieren' },
-  'era-card-2-title': { id:'Kemunduran', en:'Decline', nl:'Achteruitgang' },
-  'era-card-3-title': { id:'Kebangkitan', en:'Revival', nl:'Heropleving' },
-  'era-card-4-title': { id:'Nawawi & Kebangkitan', en:'Nawawi & Rise', nl:'Nawawi & Opkomst' },
-  'era-card-5-title': { id:'Tokoh Pergerakan', en:'Movement Figures', nl:'Bewegingsfiguren' },
-
-  // ── CAREER PATH ──
-  'career-title':     { id:'Jalur Karir Nawawi Soetan Makmoer', en:'Career Path of Nawawi Soetan Makmoer', nl:'Loopbaanpad van Nawawi Soetan Makmoer' },
-  'cs-kweekeling':    { id:'Kweekeling', en:'Kweekeling', nl:'Kweekeling' },
-  'cs-lulus':         { id:'Lulus Ujian', en:'Passed Exam', nl:'Geslaagd voor Examen' },
-  'cs-onderwijzer':   { id:'Onderwijzer', en:'Teacher', nl:'Onderwijzer' },
-  'cs-guru-melayu':   { id:'Guru Melayu', en:'Malay Teacher', nl:'Maleise Leraar' },
-  'cs-figur':         { id:'Figur Sosial', en:'Social Figure', nl:'Sociale Figuur' },
-  'cs-paken':         { id:'Paken Malam', en:'Paken Malam', nl:'Paken Malam' },
-  'cs-voorzitter':    { id:'Voorzitter', en:'Chairman', nl:'Voorzitter' },
-
-  // ── FOOTER ──
-  'footer-1':         { id:'Kweekschool Fort de Kock · Riset Sejarah Pendidikan Kolonial', en:'Kweekschool Fort de Kock · Colonial Education History Research', nl:'Kweekschool Fort de Kock · Onderzoek Koloniale Onderwijsgeschiedenis' },
-  'footer-2':         { id:'Dataset: Delpher · Koninklijke Bibliotheek · 1.410 dokumen sezaman · 1859–1915', en:'Dataset: Delpher · Koninklijke Bibliotheek · 1,410 contemporary documents · 1859–1915', nl:'Dataset: Delpher · Koninklijke Bibliotheek · 1.410 tijdgenootse documenten · 1859–1915' },
-};
-
-// Attach data-i18n keys to all target elements
-function attachI18nKeys() {
-  // Filter buttons
-  const filterBtns = document.querySelectorAll('.tl-filter-btn');
-  filterBtns.forEach(btn => {
-    const t = btn.textContent.trim();
-    const map = { 'Semua':'filter-all','Pendirian':'filter-pendirian','Kemerosotan':'filter-kemerosotan','Reformasi':'filter-reformasi','Akses':'filter-akses','Karir & Jejak':'filter-karir' };
-    if(map[t]) btn.setAttribute('data-i18n', map[t]);
-  });
-
-  // Era badges
-  document.querySelectorAll('.era-badge').forEach(el => {
-    const t = el.textContent.trim();
-    if(t.includes('Percobaan')) el.setAttribute('data-i18n','era-percobaan');
-    else if(t.includes('Kemerosotan') && t.includes('1860')) el.setAttribute('data-i18n','era-merosot');
-    else if(t.includes('Reformasi') && t.includes('Usulan')) el.setAttribute('data-i18n','era-reformasi');
-    else if(t.includes('Integrasi')) el.setAttribute('data-i18n','era-integrasi');
-    else if(t.includes('Karir') && t.includes('Nawawi')) el.setAttribute('data-i18n','era-nawawi');
-  });
-
-  // Tbadges
-  document.querySelectorAll('.tbadge').forEach(el => {
-    const t = el.textContent.trim();
-    const map = {
-      'Fondasi':'badge-fondasi','Inisiatif':'badge-inisiatif','Resmi Berdiri':'badge-resmi',
-      'Permanen':'badge-permanen','Kemerosotan':'badge-krisis','Audit Kritis':'badge-audit',
-      'Debat Kebijakan':'badge-debat','Staf Baru':'badge-staf','Pergantian Pimpinan':'badge-pimpinan',
-      'Komisie Pertama':'badge-komisie','Ekspansi':'badge-ekspansi','Perkembangan':'badge-perkembangan',
-      'Infrastruktur Baru':'badge-infra','Gedung Baru Dibuka':'badge-gedung','Kweekeling':'badge-kweekeling',
-      'Guru Resmi':'badge-guru','Guru Kweekschool':'badge-gurukweek','Figur Sosial':'badge-figur',
-      'Peran Sosial':'badge-peran','Tonggak Sejarah':'badge-tonggak'
-    };
-    if(map[t]) el.setAttribute('data-i18n', map[t]);
-  });
-
-  // Source label spans inside src-block
-  document.querySelectorAll('.src-block > span:first-child').forEach(el => {
-    if(el.textContent.trim() === 'Sumber') el.setAttribute('data-i18n','src-label');
-  });
-
-  // cite-toast
-  const toast = document.getElementById('cite-toast');
-  if(toast) toast.setAttribute('data-i18n','cite-toast');
-
-  // Network section
-  const netEyebrow = document.querySelector('.network-eyebrow');
-  if(netEyebrow) netEyebrow.setAttribute('data-i18n','net-eyebrow');
-  const netTitle = document.querySelector('.network-title');
-  if(netTitle) netTitle.setAttribute('data-i18n','net-h2');
-  const netDesc = document.querySelector('.network-desc');
-  if(netDesc) netDesc.setAttribute('data-i18n','net-desc');
-
-  // Tab buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    const t = btn.textContent.trim();
-    if(t === 'Jaringan Pribumi') btn.setAttribute('data-i18n','tab-pribumi');
-    else if(t === 'Jaringan Belanda') btn.setAttribute('data-i18n','tab-belanda');
-    else if(t.includes('Nusantara')) btn.setAttribute('data-i18n','tab-nusantara');
-  });
-
-  // Canvas hints
-  document.querySelectorAll('#tab-pribumi p, #tab-belanda p').forEach(p => {
-    const t = p.textContent.trim();
-    if(t.includes('Klik node untuk detail ·')) p.setAttribute('data-i18n','canvas-hint-pribumi');
-    else if(t.includes('Klik node untuk detail karir')) p.setAttribute('data-i18n','canvas-hint-belanda');
-  });
-
-  // Nusantara heading & desc
-  document.querySelectorAll('#tab-nusantara h3').forEach(h => {
-    if(h.textContent.includes('Seluruh Hindia')) h.setAttribute('data-i18n','nusantara-h3');
-  });
-  document.querySelectorAll('#tab-nusantara p').forEach(p => {
-    if(p.textContent.includes('11+')) p.setAttribute('data-i18n','nusantara-p');
-  });
-
-  // Geo map title/subtitle
-  document.querySelectorAll('.geo-title').forEach(el => el.setAttribute('data-i18n','geo-title'));
-  document.querySelectorAll('.geo-subtitle').forEach(el => el.setAttribute('data-i18n','geo-subtitle'));
-
-  // Drag hint
-  document.querySelectorAll('.drag-hint').forEach(el => el.setAttribute('data-i18n','drag-hint'));
-
-  // Career path title
-  document.querySelectorAll('.career-path-title').forEach(el => el.setAttribute('data-i18n','career-title'));
-
-  // Career step labels
-  document.querySelectorAll('.cs-label').forEach(el => {
-    const t = el.textContent.trim();
-    const map = { 'Kweekeling':'cs-kweekeling','Lulus Ujian':'cs-lulus','Onderwijzer':'cs-onderwijzer','Guru Melayu':'cs-guru-melayu','Figur Sosial':'cs-figur','Paken Malam':'cs-paken','Voorzitter':'cs-voorzitter' };
-    if(map[t]) el.setAttribute('data-i18n', map[t]);
-  });
-
-  // Trajectori label
-  document.querySelectorAll('#trajektori > div:first-child').forEach(el => {
-    if(el.textContent.includes('Trajectori')) el.setAttribute('data-i18n','traj-label');
-  });
-
-  // Footer
-  const footerPs = document.querySelectorAll('footer p');
-  if(footerPs[0]) footerPs[0].setAttribute('data-i18n','footer-1');
-  if(footerPs[1]) footerPs[1].setAttribute('data-i18n','footer-2');
-}
-
-// Apply translations to all data-i18n elements
-function applyI18n(lang) {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if(I18N[key] && I18N[key][lang]) {
-      el.innerHTML = I18N[key][lang];
-    }
-  });
-}
-
-// Patch setLang to also call applyI18n
-const _origSetLang = setLang;
-function setLang(lang) {
-  _origSetLang(lang);
-  applyI18n(lang === 'id' ? 'id' : lang === 'en' ? 'en' : 'nl');
-}
-
-// Init on load
-document.addEventListener('DOMContentLoaded', () => {
-  attachI18nKeys();
-  // Apply default (ID) to ensure initial state is consistent
-  applyI18n('id');
-});
-
 </script>
-<div class="cite-toast" id="cite-toast" data-i18n="cite-toast">Sitasi disalin ke clipboard</div>
+<div class="cite-toast" id="cite-toast">Sitasi disalin ke clipboard</div>
 </body>
 </html>
 
