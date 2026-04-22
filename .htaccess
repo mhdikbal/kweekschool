@@ -1,10 +1,31 @@
-# Matikan fitur directory listing (orang tidak bisa browsing isi folder)
+# Matikan fitur directory listing
 Options -Indexes
 
-# Menetapkan file utama yang akan dimuat saat folder diakses
+# Menetapkan file utama
 DirectoryIndex index.html
 
-# Mencegah akses langsung ke file-file source code/raw data (Python, Excel, Word)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1. Hilangkan index.html dari URL (Redirect ke folder root)
+    # Contoh: domain.com/index.html -> domain.com/
+    RewriteCond %{THE_REQUEST} /index\.html [NC]
+    RewriteRule ^(.*)index\.html$ /$1 [L,R=301]
+
+    # 2. Hilangkan ekstensi .html dari URL jika diketik manual (Redirect)
+    # Contoh: domain.com/konten.html -> domain.com/konten
+    RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+    RewriteRule ^ /%1 [L,R=301]
+
+    # 3. Mapping URL tanpa ekstensi ke file .html asli (Internal Rewrite)
+    # Contoh: User akses domain.com/konten -> Server membaca konten.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Mencegah akses langsung ke file-file source code/raw data
 <FilesMatch "\.(py|xls|xlsx|docx|md|txt|json)$">
     Order allow,deny
     Deny from all
