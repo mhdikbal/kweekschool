@@ -6,6 +6,7 @@
 <title>Kweekschool Bukittinggi — Timeline & Network Mapping 1852–1912</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="Kweekschoollogo.png">
 <style>
 :root{--ink:#1a1410;--ink2:#3d3228;--ink3:#7a6a5a;--paper:#f5f0e8;--paper2:#ede6d8;--paper3:#e4dccf;--rust:#8b3a1e;--rust2:#c0542a;--teal:#1a5c52;--teal2:#2a8c7e;--amber:#b07828;--amber2:#d4962e;--blue:#1a3d6e;--blue2:#2a5fa5;--border:rgba(26,20,16,.15);--shadow:rgba(26,20,16,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +66,7 @@ main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
 .tl-date{padding-right:2rem;padding-top:14px;text-align:right}
 .tl-date .year{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink2);display:block;line-height:1}
 .tl-date .month{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-top:3px}
-.tl-card{background:var(--paper);border:.5px solid var(--border);border-radius:3px;padding:1.25rem 1.5rem;margin-left:1.5rem;transition:all .2s;position:relative;overflow:hidden}
+.tl-card{transition:all 0.4s ease;background:var(--paper);border:.5px solid var(--border);border-radius:3px;padding:1.25rem 1.5rem;margin-left:1.5rem;transition:all .2s;position:relative;overflow:hidden}
 .tl-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
 .tl-event.lahir .tl-card::before{background:var(--teal)}
 .tl-event.merosot .tl-card::before{background:var(--amber)}
@@ -299,6 +300,42 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 #trajektori::after{content:'';position:absolute;top:-20px;right:-20px;bottom:-20px;width:600px;background:url('murid2-kweekschool-fort-de-kock-1888-nawawi-kramer-1908-p-26.webp') center 20%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.85) 0%,transparent 100%);pointer-events:none;filter:grayscale(1) sepia(0.2) contrast(1.2);z-index:0;}
 #trajektori > *{position:relative;z-index:1}
 
+
+/* SCROLL-TELLING LAYOUT */
+.scroll-telling-wrapper {
+  display: block;
+}
+@media (min-width: 1024px) {
+  .scroll-telling-wrapper {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+  .scroll-text-col {
+    flex: 1.1;
+    padding-right: 2rem;
+  }
+  .scroll-visual-col {
+    flex: 0.9;
+    position: sticky;
+    top: 5vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .scroll-visual-col .geo-section {
+    padding: 0;
+    margin: 0;
+    border-top: none;
+  }
+  /* Give the map a more aesthetic floating look */
+  .scroll-visual-col .geo-canvas-wrap {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    background: var(--paper);
+  }
+}
+
 /* RESPONSIVE TEXT GRIDS */
 .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .grid-2col.gap-3 { gap: 3rem; }
@@ -324,6 +361,15 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 
 </head>
 <body>
+
+<!-- LANGUAGE TOGGLE -->
+<button class="lang-toggle" onclick="toggleLanguage()">
+    <span class="lang-option active" id="lang-id-opt">ID</span>
+    <span style="opacity:0.3">|</span>
+    <span class="lang-option" id="lang-en-opt">EN</span>
+</button>
+
+
 
 <!-- INTRO SPLASH -->
 <div class="intro-splash" id="intro-splash">
@@ -381,8 +427,8 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 <!-- BAB I -->
 <section id="kelahiran">
   <div class="section-header fade-in">
-    <div><span class="eyebrow">Bab I · 1852–1858</span><h2>Kelahiran<br><em>Sebuah Institusi</em></h2></div>
-    <p class="section-desc">Fort de Kock (Bukittinggi) menjadi titik temu ambisi kolonial dan kebutuhan administratif. Kweekschool yang lahir di sana bukan hanya sekolah guru — ia adalah mesin produksi kepala daerah yang melek baca-tulis dan tunduk pada sistem Belanda, dimulai dari satu orang visioner.</p>
+    <div><span class="eyebrow"><span class="lang-id">Bab I</span><span class="lang-en">Chapter I</span> · 1852–1858</span><h2><span class="lang-id">Kelahiran<br><em>Sebuah Institusi</em></span><span class="lang-en">Birth of<br><em>An Institution</em></span></h2></div>
+    <p class="section-desc"><span class="lang-id">Fort de Kock (Bukittinggi) menjadi titik temu ambisi kolonial dan kebutuhan administratif. Kweekschool yang lahir di sana bukan hanya sekolah guru — ia adalah mesin produksi kepala daerah yang melek baca-tulis dan tunduk pada sistem Belanda, dimulai dari satu orang visioner.</span><span class="lang-en">Fort de Kock (Bukittinggi) became the intersection of colonial ambition and administrative needs. The Kweekschool born there was not just a teachers' college — it was a production machine for literate regional heads subservient to the Dutch system, starting with one visionary.</span></p>
   </div>
 
   <div class="timeline">
@@ -621,6 +667,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 
 <!-- BAB IV -->
 <section id="nawawi">
+  <div class="scroll-telling-wrapper">
+    <div class="scroll-text-col">
+
   <div class="section-header fade-in">
     <div><span class="eyebrow">Bab IV · 1899–1908</span><h2><em>Nawawi</em><br>Soetan Makmoer</h2></div>
     <p class="section-desc">Dari kweekeling yang lulus ujian di Fort de Kock, menjadi guru kelas 1, guru bahasa Melayu di kweekschool — hingga ketua organisasi modern bumiputra pertama di Pantai Barat Sumatra. Nawawi Soetan Makmoer adalah produk sekaligus melampaui sistem yang melahirkannya.</p>
@@ -763,12 +812,18 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   </div>
   </div>
 
-  <div class="geo-section fade-in">
+  
+    </div>
+    <div class="scroll-visual-col">
+<div class="geo-section fade-in">
     <div class="geo-title">Peta Dataran Tinggi Minangkabau</div>
     <div class="geo-subtitle">Lokasi-lokasi kunci dalam jaringan pendidikan kolonial 1856–1912</div>
     <div class="geo-canvas-wrap">
       <canvas id="canvas-geo" height="400"></canvas>
       <div class="geo-tooltip" id="tt-geo"></div>
+    </div>
+  </div>
+
     </div>
   </div>
 </section>
@@ -1254,7 +1309,14 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
   </div>
 </footer>
 
+
 <script>
+function toggleLanguage() {
+    const isEn = document.body.classList.toggle('en-mode');
+    document.getElementById('lang-id-opt').classList.toggle('active', !isEn);
+    document.getElementById('lang-en-opt').classList.toggle('active', isEn);
+}
+
 // ─── INTRO SPLASH ───
 let introTimeout;
 function dismissIntro(){
@@ -1870,6 +1932,45 @@ const geoObs = new IntersectionObserver(entries=>{
 const geoCanvas = document.getElementById('canvas-geo');
 if(geoCanvas) geoObs.observe(geoCanvas.parentElement);
 window.addEventListener('resize',()=>{if(document.getElementById('canvas-geo'))drawGeoMap();});
+
+
+// SCROLL TELLING OBSERVER
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '-30% 0px -50% 0px', // Trigger when card is vertically centered
+        threshold: 0
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Dim all cards
+                document.querySelectorAll('.scroll-text-col .tl-card').forEach(c => {
+                    c.style.opacity = '0.3';
+                    c.style.transform = 'scale(0.98)';
+                });
+                
+                // Highlight the active card
+                const activeCard = entry.target.querySelector('.tl-card');
+                if (activeCard) {
+                    activeCard.style.opacity = '1';
+                    activeCard.style.transform = 'scale(1.02)';
+                    activeCard.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                }
+
+                // If this is Nawawi career cards, we can do map logic here later
+                if (window.drawGeoMap && document.getElementById('canvas-geo')) {
+                     // slight visual feedback on map optionally
+                }
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-text-col .tl-event').forEach(el => {
+        scrollObserver.observe(el);
+    });
+});
 
 </script>
 <div class="cite-toast" id="cite-toast">Sitasi disalin ke clipboard</div>
