@@ -1368,7 +1368,7 @@ function drawNetwork(type) {
   const canvas = document.getElementById(canvasId);
   const tt = document.getElementById(ttId);
   if(!canvas) return;
-  const W = canvas.offsetWidth; const H = parseInt(canvas.getAttribute('height'));
+  const W = canvas.offsetWidth; let H = W < 600 ? Math.max(450, W * 1.1) : parseInt(canvas.getAttribute('height'));
   canvas.width = W * window.devicePixelRatio;
   canvas.height = H * window.devicePixelRatio;
   canvas.style.width = W+'px'; canvas.style.height = H+'px';
@@ -1514,7 +1514,7 @@ function drawNusantara(){
   const canvas=document.getElementById('canvas-nusantara');
   const tt=document.getElementById('tt-nusantara');
   if(!canvas)return;
-  const W=canvas.offsetWidth; const H=parseInt(canvas.getAttribute('height'));
+  const W=canvas.offsetWidth; let H = W < 600 ? Math.max(400, W * 1) : parseInt(canvas.getAttribute('height'));
   canvas.width=W*window.devicePixelRatio; canvas.height=H*window.devicePixelRatio;
   canvas.style.width=W+'px'; canvas.style.height=H+'px';
   const ctx=canvas.getContext('2d');
@@ -1752,7 +1752,7 @@ function drawGeoMap(){
   const tt = document.getElementById('tt-geo');
   if(!canvas) return;
   const W = canvas.offsetWidth;
-  const H = parseInt(canvas.getAttribute('height'));
+  let H = W < 600 ? Math.max(300, W * 0.8) : parseInt(canvas.getAttribute('height'));
   canvas.width = W * devicePixelRatio;
   canvas.height = H * devicePixelRatio;
   canvas.style.width = W+'px'; canvas.style.height = H+'px';
