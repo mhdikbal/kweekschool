@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onerror = function(msg, url, line, col, error) {
+   document.body.innerHTML += "<br><b style='color:red'>TOP ERROR: " + msg + " at " + line + "</b>";
+};
+</script>
+</head>
+<body>
+<h1>Test Runner</h1>
+<div id="log"></div>
+<iframe id="test-frame" src="larashoofd_network.html" style="width:100px; height:100px;"></iframe>
+<script>
+document.getElementById('test-frame').onload = function() {
+    try {
+        const win = this.contentWindow;
+        win.onerror = function(msg, url, line, col, error) {
+           document.getElementById('log').innerHTML += "<br><b style='color:red'>IFRAME ERROR: " + msg + " at line " + line + "</b>";
+        };
+        // Override console.error
+        const oldErr = win.console.error;
+        win.console.error = function() {
+            document.getElementById('log').innerHTML += "<br><b style='color:red'>CONSOLE.ERROR: " + Array.from(arguments).join(" ") + "</b>";
+            oldErr.apply(win.console, arguments);
+        };
+        setTimeout(() => {
+           if (win.RAW_DATA) {
+               document.getElementById('log').innerHTML += "<br><b>Graph Loaded OK! nodes: " + win.RAW_DATA.nodes.length + "</b>";
+           } else {
+               document.getElementById('log').innerHTML += "<br><b style='color:red'>RAW_DATA is undefined!</b>";
+           }
+        }, 1000);
+    } catch(err) {
+        document.getElementById('log').innerHTML += "<br>Could not hook iframe: " + err;
+    }
+}
+</script>
+</body>
+</html>
