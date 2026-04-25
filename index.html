@@ -35,8 +35,8 @@ body.nl-mode h3.lang-nl        { display: block !important; }
 
 :root{--ink:#1a1410;--ink2:#3d3228;--ink3:#7a6a5a;--paper:#f5f0e8;--paper2:#ede6d8;--paper3:#e4dccf;--rust:#8b3a1e;--rust2:#c0542a;--teal:#1a5c52;--teal2:#2a8c7e;--amber:#b07828;--amber2:#d4962e;--blue:#1a3d6e;--blue2:#2a5fa5;--border:rgba(26,20,16,.15);--shadow:rgba(26,20,16,.08)}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.75}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.75;overflow-x:hidden}
 /* GLOSSARY TOOLTIP SYSTEM */
 .glossary-term {
     border-bottom: 1.5px dashed var(--amber2);
@@ -127,7 +127,8 @@ body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georg
 .scroll-hint::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,rgba(245,240,232,.3),transparent)}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 /* MAIN */
-main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+main{max-width:1100px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+@media(max-width:768px){main{padding:0 1rem}}
 /* MAP BACKGROUND */
 .map-bg-wrap{position:relative;background-image:url('img/NL-HaNA_4.MIKO_1372.1-groot.jpg');background-attachment:fixed;background-position:55% 15%;background-size:130%;background-repeat:no-repeat}
 .map-bg-wrap>*{position:relative;z-index:2}
@@ -259,6 +260,35 @@ canvas{display:block;width:100%;cursor:pointer;min-height:300px}
 footer{background:var(--ink);color:rgba(245,240,232,.4);padding:4rem 2rem;text-align:center;position:relative;z-index:1}
 footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;line-height:2}
 @media(max-width:768px){.tl-line{left:70px}.tl-event{grid-template-columns:70px 1fr}.tl-event::before{left:64px}.era-badge{margin-left:90px}.section-header{grid-template-columns:1fr;gap:1rem}.feature-box{grid-template-columns:1fr}.nav-links{display:none}}
+
+/* ── Small phone fixes (≤480px) ── */
+@media(max-width:480px){
+  main{padding:0 .75rem}
+  .section-header{padding:2.5rem 0 1.5rem}
+  .section-header h2{font-size:1.5rem}
+  .tl-line{left:52px}
+  .tl-event{grid-template-columns:52px 1fr;margin-bottom:1.25rem}
+  .tl-event::before{left:46px;width:11px;height:11px}
+  .tl-date{padding-right:1rem;padding-top:12px}
+  .tl-date .year{font-size:1rem}
+  .tl-date .month{font-size:8px}
+  .tl-card{padding:.85rem 1rem;margin-left:1rem}
+  .tl-card h3{font-size:.92rem}
+  .tl-card-body{font-size:.85rem;line-height:1.65}
+  .era-badge{margin-left:68px;font-size:.7rem;padding:.3rem .7rem}
+  .tl-filter-bar{gap:.35rem;flex-wrap:wrap}
+  .tl-filter-btn{font-size:8px;padding:.35rem .6rem}
+  .cover{padding:3rem 1.25rem}
+  .cover h1{font-size:1.8rem}
+  .network-page{padding:2rem .75rem}
+  .network-canvas-wrap{padding:.5rem}
+  .kesimpulan-section{padding:3rem 1rem}
+  .kesimpulan-inner{padding:0}
+  footer{padding:2.5rem 1rem}
+  .quote-block{padding:.75rem 1rem;font-size:.88rem}
+  .src-block{font-size:.75rem}
+  .feature-box{padding:1.5rem 1rem}
+}
 @media(max-width:768px){
   .network-page{padding:3rem 1rem}
   .network-canvas-wrap{padding:.75rem}
@@ -272,6 +302,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
 /* NAWAWI BG */
 #nawawi .section-header{position:relative;overflow:hidden}
 #nawawi .section-header::after{content:'';position:absolute;top:-10px;right:-10px;bottom:-10px;width:340px;background:url('img/Engku-Nawawi--IST_ratio-16x9.jpg') center top/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);pointer-events:none;filter:sepia(.3) contrast(1.1)}
+@media(max-width:600px){#nawawi .section-header::after,#trajektori::after{display:none}}
 /* KESIMPULAN */
 .kesimpulan-section{background:var(--ink);color:var(--paper);padding:5rem 2rem;position:relative;overflow:hidden}
 .kesimpulan-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(176,120,40,.12) 0%,transparent 70%)}
