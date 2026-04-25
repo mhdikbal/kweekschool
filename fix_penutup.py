@@ -7,7 +7,7 @@ with open('kweekschool_v3_final.html', 'r', encoding='utf-8') as f:
 css = """
 /* PENUTUP OVERLAY */
 #penutup-box{position:relative;overflow:hidden;z-index:1;}
-#penutup-box::after{content:'';position:absolute;top:0;right:0;bottom:0;width:350px;background:url('img/Tan_Malaka.png') center 10%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);pointer-events:none;filter:grayscale(100%) sepia(.2) contrast(1.1);z-index:0;}
+#penutup-box::after{content:'';position:absolute;top:0;right:0;bottom:0;width:350px;background:url('img/Tan_Malaka.png?v=1.1') center 10%/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 40%,transparent 100%);pointer-events:none;filter:grayscale(100%) sepia(.2) contrast(1.1);z-index:0;}
 #penutup-box > *{position:relative;z-index:1}
 """
 
