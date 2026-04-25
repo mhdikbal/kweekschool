@@ -219,13 +219,15 @@ main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 /* NETWORK CANVAS */
-.network-canvas-wrap{background:rgba(255,255,255,.03);border:.5px solid rgba(245,240,232,.08);border-radius:4px;padding:1.5rem;position:relative;overflow:hidden}
+.network-canvas-wrap{background:rgba(255,255,255,.03);border:.5px solid rgba(245,240,232,.08);border-radius:4px;padding:1.5rem;position:relative;overflow:visible}
 .network-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
 .leg-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.4)}
 .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 canvas{display:block;width:100%;cursor:pointer}
 /* TOOLTIP */
-.net-tooltip{position:absolute;background:rgba(26,20,16,.95);border:.5px solid rgba(245,240,232,.15);border-radius:3px;padding:1rem 1.25rem;pointer-events:none;z-index:50;max-width:300px;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
+.net-tooltip{position:absolute;background:rgba(26,20,16,.95);border:.5px solid rgba(245,240,232,.15);border-radius:3px;padding:1rem 1.25rem;pointer-events:none;z-index:5000;max-width:300px;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
+.net-tooltip.pinned{pointer-events:auto}
+@media(max-width:768px){.net-tooltip{position:fixed;left:50%!important;top:auto!important;bottom:1rem!important;transform:translateX(-50%);max-width:calc(100vw - 2rem);width:calc(100vw - 2rem);z-index:5000;border:.5px solid rgba(245,240,232,.25)}}
 .net-tooltip.visible{opacity:1}
 .net-tooltip .tt-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--paper);margin-bottom:4px}
 .net-tooltip .tt-role{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust2);margin-bottom:.5rem}
@@ -235,7 +237,7 @@ canvas{display:block;width:100%;cursor:pointer}
 .net-tooltip .career-step{font-size:.8rem;color:rgba(245,240,232,.55);line-height:1.6;padding-left:.75rem;border-left:1px solid rgba(245,240,232,.1);margin-bottom:3px}
 /* NUSANTARA MAP */
 .nusantara-wrap{position:relative;background:rgba(255,255,255,.02);border:.5px solid rgba(245,240,232,.08);border-radius:4px;padding:1.5rem}
-.kweek-node-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:2rem}
+.kweek-node-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1rem;margin-top:2rem}
 .kweek-node-card{background:rgba(255,255,255,.04);border:.5px solid rgba(245,240,232,.1);border-radius:3px;padding:1.1rem 1.25rem;transition:all .2s;cursor:default}
 .kweek-node-card:hover{background:rgba(255,255,255,.07);border-color:rgba(245,240,232,.2)}
 .kn-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.5rem}
@@ -256,6 +258,16 @@ canvas{display:block;width:100%;cursor:pointer}
 footer{background:var(--ink);color:rgba(245,240,232,.4);padding:4rem 2rem;text-align:center;position:relative;z-index:1}
 footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;line-height:2}
 @media(max-width:768px){.tl-line{left:70px}.tl-event{grid-template-columns:70px 1fr}.tl-event::before{left:64px}.era-badge{margin-left:90px}.section-header{grid-template-columns:1fr;gap:1rem}.feature-box{grid-template-columns:1fr}.nav-links{display:none}}
+@media(max-width:768px){
+  .network-page{padding:3rem 1rem}
+  .network-canvas-wrap{padding:.75rem}
+  .tab-bar{gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;padding-bottom:2px}
+  .tab-btn{padding:.6rem .9rem;font-size:8px;white-space:nowrap;flex-shrink:0}
+  .network-legend{gap:.5rem}
+  .leg-item{font-size:10px}
+  .kweek-node-list{grid-template-columns:1fr}
+  canvas{touch-action:none}
+}
 /* NAWAWI BG */
 #nawawi .section-header{position:relative;overflow:hidden}
 #nawawi .section-header::after{content:'';position:absolute;top:-10px;right:-10px;bottom:-10px;width:340px;background:url('img/Engku-Nawawi--IST_ratio-16x9.jpg') center top/cover no-repeat;opacity:.4;mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.85) 20%,transparent 90%);pointer-events:none;filter:sepia(.3) contrast(1.1)}
@@ -990,7 +1002,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
         <canvas id="canvas-pribumi" height="580"></canvas>
         <div class="net-tooltip" id="tt-pribumi"></div>
       </div>
-      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Klik node untuk detail · Seret untuk geser · Zoom dengan scroll mouse</p>
+      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em" class="lang-id">Klik node untuk detail · Scroll/zoom dengan mouse <span style="display:inline" id="touch-hint-pribumi"></span></p>
     </div>
 
     <!-- TAB 2: BELANDA -->
@@ -1548,6 +1560,25 @@ new IntersectionObserver(entries => {
 },{threshold:.25}).observe(document.querySelector('#kelahiran'));
 secs.forEach(s=>new IntersectionObserver(entries=>{if(entries[0].isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:.25}).observe(s));
 
+// ─── TOUCH DEVICE HINT ───
+(function(){
+  const isTouchDev = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouchDev){
+    document.querySelectorAll('[id^="touch-hint-"]').forEach(el=>{
+      el.textContent = '· Ketuk node untuk info';
+    });
+    // Tap outside tooltip to close on mobile
+    document.addEventListener('touchstart', function(e){
+      document.querySelectorAll('.net-tooltip.visible').forEach(tt=>{
+        if(!tt.contains(e.target) && !e.target.closest('canvas')){
+          tt.classList.remove('visible');
+          tt.dataset.hitId='';
+        }
+      });
+    });
+  }
+})();
+
 // ─── TAB SWITCHER ───
 function switchTab(id){
   document.querySelectorAll('.tab-btn').forEach((b,i)=>{
@@ -1607,7 +1638,7 @@ function drawNetwork(type) {
   const canvas = document.getElementById(canvasId);
   const tt = document.getElementById(ttId);
   if(!canvas) return;
-  const W = canvas.offsetWidth; let H = W < 600 ? Math.max(450, W * 1.1) : parseInt(canvas.getAttribute('height'));
+  const W = canvas.offsetWidth; let H = W < 480 ? Math.max(520, W * 1.3) : W < 600 ? Math.max(480, W * 1.1) : parseInt(canvas.getAttribute('height'));
   canvas.width = W * window.devicePixelRatio;
   canvas.height = H * window.devicePixelRatio;
   canvas.style.width = W+'px'; canvas.style.height = H+'px';
@@ -1702,27 +1733,52 @@ function drawNetwork(type) {
   }
   draw();
 
-  // Interaction
-  canvas.onmousemove=function(e){
-    const rect=canvas.getBoundingClientRect();
-    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
-    let hit=null;
-    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+12)hit=n;});
-    if(hit){
-      canvas.style.cursor='pointer';
-      const career=hit.career&&hit.career.length>0?`<div class="tt-career"><div class="tt-career-title">Jalur Karir</div>${hit.career.map(c=>`<div class="career-step">${c}</div>`).join('')}</div>`:'';
-      tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.role}</div><div class="tt-body">${hit.body}</div>${career}`;
-      let lft=e.clientX-rect.left+16, top=e.clientY-rect.top-10;
-      if(lft+300>W)lft=mx-320;
-      if(top<0)top=0;
-      tt.style.left=lft+'px'; tt.style.top=top+'px';
-      tt.classList.add('visible');
-    } else {
-      canvas.style.cursor='default';
-      tt.classList.remove('visible');
+  // ── Shared hit-test & tooltip logic ──
+  function getHit(mx, my){ let h=null; placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+12)h=n;}); return h; }
+  function showTT(hit, clientX, clientY, canvasRect){
+    const career = hit.career&&hit.career.length>0
+      ? `<div class="tt-career"><div class="tt-career-title">Jalur Karir</div>${hit.career.map(c=>`<div class="career-step">${c}</div>`).join('')}</div>` : '';
+    tt.innerHTML = `<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.role}</div><div class="tt-body">${hit.body}</div>${career}`;
+    // Desktop: position near cursor. Mobile: CSS handles it (fixed bottom-center)
+    const isMobile = window.innerWidth <= 768;
+    if(!isMobile){
+      const mx = clientX - canvasRect.left, my = clientY - canvasRect.top;
+      let lft = mx + 16, top = my - 10;
+      if(lft + 300 > W) lft = mx - 320;
+      if(top < 0) top = 0;
+      tt.style.left = lft+'px'; tt.style.top = top+'px';
     }
+    tt.classList.add('visible');
+  }
+
+  // Mouse
+  canvas.onmousemove = function(e){
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX-rect.left, my = e.clientY-rect.top;
+    const hit = getHit(mx, my);
+    if(hit){ canvas.style.cursor='pointer'; showTT(hit, e.clientX, e.clientY, rect); }
+    else { canvas.style.cursor='default'; if(!tt.classList.contains('pinned')) tt.classList.remove('visible'); }
   };
-  canvas.onmouseleave=()=>tt.classList.remove('visible');
+  canvas.onmouseleave = ()=>{ if(!tt.classList.contains('pinned')) tt.classList.remove('visible'); };
+
+  // Touch
+  canvas.addEventListener('touchstart', function(e){
+    const t = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const mx = t.clientX - rect.left, my = t.clientY - rect.top;
+    const hit = getHit(mx, my);
+    if(hit){
+      e.preventDefault();
+      if(tt.classList.contains('visible') && tt.dataset.hitId === hit.id){
+        tt.classList.remove('visible'); tt.dataset.hitId='';
+      } else {
+        tt.dataset.hitId = hit.id;
+        showTT(hit, t.clientX, t.clientY, rect);
+      }
+    } else {
+      tt.classList.remove('visible'); tt.dataset.hitId='';
+    }
+  },{passive:false});
 }
 
 // ─── NUSANTARA NETWORK ───
@@ -1753,7 +1809,7 @@ function drawNusantara(){
   const canvas=document.getElementById('canvas-nusantara');
   const tt=document.getElementById('tt-nusantara');
   if(!canvas)return;
-  const W=canvas.offsetWidth; let H = W < 600 ? Math.max(400, W * 1) : parseInt(canvas.getAttribute('height'));
+  const W=canvas.offsetWidth; let H = W < 480 ? Math.max(460, W * 1.2) : W < 600 ? Math.max(420, W * 1.05) : parseInt(canvas.getAttribute('height'));
   canvas.width=W*window.devicePixelRatio; canvas.height=H*window.devicePixelRatio;
   canvas.style.width=W+'px'; canvas.style.height=H+'px';
   const ctx=canvas.getContext('2d');
@@ -1808,13 +1864,35 @@ function drawNusantara(){
     if(hit){
       canvas.style.cursor='pointer';
       tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.year}</div><div class="tt-body">${hit.desc}</div>`;
-      let lft=mx+16,top=my-10;
-      if(lft+280>W)lft=mx-290;
-      tt.style.left=lft+'px';tt.style.top=top+'px';
+      const isMobile = window.innerWidth <= 768;
+      if(!isMobile){
+        let lft=mx+16,top=my-10;
+        if(lft+280>W)lft=mx-290;
+        tt.style.left=lft+'px';tt.style.top=top+'px';
+      }
       tt.classList.add('visible');
     } else {canvas.style.cursor='default';tt.classList.remove('visible');}
   };
   canvas.onmouseleave=()=>tt.classList.remove('visible');
+
+  // Touch
+  canvas.addEventListener('touchstart',function(e){
+    const t=e.touches[0];
+    const rect=canvas.getBoundingClientRect();
+    const mx=t.clientX-rect.left,my=t.clientY-rect.top;
+    let hit=null;
+    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+18)hit=n;});
+    if(hit){
+      e.preventDefault();
+      if(tt.classList.contains('visible')&&tt.dataset.hitId===hit.id){
+        tt.classList.remove('visible');tt.dataset.hitId='';
+      } else {
+        tt.dataset.hitId=hit.id;
+        tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.year}</div><div class="tt-body">${hit.desc}</div>`;
+        tt.classList.add('visible');
+      }
+    } else {tt.classList.remove('visible');tt.dataset.hitId='';}
+  },{passive:false});
 }
 
 // ─── INIT ───
@@ -1901,6 +1979,8 @@ function filterTimeline(sectionId, era){
 
 // ─── FEATURE 3: CLICK-TO-PIN TOOLTIPS ───
 function setupPinnedTooltips(){
+  const isTouchDev = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouchDev) return; // Touch devices use tap-toggle in drawNetwork/drawNusantara
   document.querySelectorAll('canvas[id^="canvas-"]').forEach(canvas=>{
     canvas.addEventListener('click', function(e){
       const ttId = 'tt-' + this.id.replace('canvas-','');
@@ -2081,14 +2161,34 @@ function drawGeoMap(){
     if(hit){
       canvas.style.cursor='pointer';
       tt.innerHTML='<div class="gt-name">'+hit.name+'</div><div class="gt-detail">'+hit.detail.replace(/\\n/g,'<br>').replace(/\n/g,'<br>')+'</div>';
-      let lft=mx+14,top=my-10;
-      if(lft+200>W)lft=mx-210;
-      if(top<0)top=0;
-      tt.style.left=lft+'px';tt.style.top=top+'px';
+      const isMobile = window.innerWidth <= 768;
+      if(!isMobile){
+        let lft=mx+14,top=my-10;
+        if(lft+200>W)lft=mx-210;
+        if(top<0)top=0;
+        tt.style.left=lft+'px';tt.style.top=top+'px';
+      }
       tt.classList.add('visible');
     }else{canvas.style.cursor='default';tt.classList.remove('visible');}
   };
   canvas.onmouseleave=()=>tt.classList.remove('visible');
+  canvas.addEventListener('touchstart',function(e){
+    const t=e.touches[0];
+    const rect=canvas.getBoundingClientRect();
+    const mx=t.clientX-rect.left,my=t.clientY-rect.top;
+    let hit=null;
+    placed.forEach(p=>{if(Math.hypot(mx-p.px,my-p.py)<p.r+14)hit=p;});
+    if(hit){
+      e.preventDefault();
+      if(tt.classList.contains('visible')&&tt.dataset.hitId===hit.name){
+        tt.classList.remove('visible');tt.dataset.hitId='';
+      } else {
+        tt.dataset.hitId=hit.name;
+        tt.innerHTML='<div class="gt-name">'+hit.name+'</div><div class="gt-detail">'+hit.detail.replace(/\\n/g,'<br>').replace(/\n/g,'<br>')+'</div>';
+        tt.classList.add('visible');
+      }
+    } else {tt.classList.remove('visible');tt.dataset.hitId='';}
+  },{passive:false});
 }
 
 // Init geo map
