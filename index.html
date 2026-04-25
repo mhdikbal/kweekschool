@@ -224,7 +224,7 @@ main{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
 .leg-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.4)}
 .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 canvas{display:block;width:100%;cursor:pointer;min-height:300px}
-#canvas-pribumi,#canvas-belanda,#canvas-nusantara{width:100%;min-height:420px;display:block}
+/* SVG network: no canvas rules needed */
 /* TOOLTIP */
 .net-tooltip{position:absolute;background:rgba(26,20,16,.95);border:.5px solid rgba(245,240,232,.15);border-radius:3px;padding:1rem 1.25rem;pointer-events:none;z-index:5000;max-width:300px;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
 .net-tooltip.pinned{pointer-events:auto}
@@ -1000,10 +1000,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
           <div class="leg-item"><div class="leg-dot" style="background:#534AB7"></div>Panghoeloe / Mantri</div>
           <div class="leg-item"><div class="leg-dot" style="background:#888780"></div>Sekolah / Institusi</div>
         </div>
-        <canvas id="canvas-pribumi" height="580"></canvas>
-        <div class="net-tooltip" id="tt-pribumi"></div>
+        <div id="svg-pribumi" style="width:100%;min-height:400px"></div>
       </div>
-      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em" class="lang-id">Klik node untuk detail · Scroll/zoom dengan mouse <span style="display:inline" id="touch-hint-pribumi"></span></p>
+      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Ketuk / klik node untuk detail</p>
     </div>
 
     <!-- TAB 2: BELANDA -->
@@ -1017,10 +1016,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
           <div class="leg-item"><div class="leg-dot" style="background:#639922"></div>Kontrolir</div>
           <div class="leg-item"><div class="leg-dot" style="background:#888780"></div>Institusi</div>
         </div>
-        <canvas id="canvas-belanda" height="580"></canvas>
-        <div class="net-tooltip" id="tt-belanda"></div>
+        <div id="svg-belanda" style="width:100%;min-height:400px"></div>
       </div>
-      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Klik node untuk detail karir</p>
+      <p style="font-size:.8rem;color:rgba(245,240,232,.3);font-family:'JetBrains Mono',monospace;margin-top:.75rem;letter-spacing:.05em">Ketuk / klik node untuk detail karir</p>
     </div>
 
     <!-- TAB 3: NUSANTARA -->
@@ -1031,8 +1029,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08
           <p style="font-size:.85rem;color:rgba(245,240,232,.45);font-style:italic">Jaringan 11+ kweekschool yang terhubung melalui transfer staf, lulusan, dan kebijakan — berbasis data primer 1852–1912</p>
         </div>
         <div class="network-canvas-wrap" style="padding:1rem">
-          <canvas id="canvas-nusantara" height="500"></canvas>
-          <div class="net-tooltip" id="tt-nusantara"></div>
+          <div id="svg-nusantara" style="width:100%;min-height:380px"></div>
         </div>
         <div class="kweek-node-list">
 
@@ -1567,262 +1564,77 @@ new IntersectionObserver(entries => {
 },{threshold:.25}).observe(document.querySelector('#kelahiran'));
 secs.forEach(s=>new IntersectionObserver(entries=>{if(entries[0].isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:.25}).observe(s));
 
-// ─── TOUCH DEVICE HINT ───
-(function(){
-  const isTouchDev = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  if(isTouchDev){
-    document.querySelectorAll('[id^="touch-hint-"]').forEach(el=>{
-      el.textContent = '· Ketuk node untuk info';
-    });
-    // Tap outside tooltip to close on mobile
-    document.addEventListener('touchstart', function(e){
-      document.querySelectorAll('.net-tooltip.visible').forEach(tt=>{
-        if(!tt.contains(e.target) && !e.target.closest('canvas')){
-          tt.classList.remove('visible');
-          tt.dataset.hitId='';
-        }
-      });
-    });
-  }
-})();
+// ─── NETWORK: SVG-BASED, TABLET-SAFE ───
+// No canvas, no offsetWidth issues. Pure SVG rendered into DOM.
 
-// ─── TAB SWITCHER ───
-function switchTab(id){
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
-    b.classList.toggle('active',['pribumi','belanda','nusantara'][i]===id);
-  });
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  // Wait for panel to become visible (display:block) before measuring canvas
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      const canvas = document.getElementById('canvas-'+id);
-      if(canvas) canvas.style.width = ''; // reset forced width so measurement is fresh
-      if(id==='nusantara') drawNusantara();
-      else drawNetwork(id);
-    });
-  });
-}
-
-// ─── NETWORK DATA ───
 const PRIBUMI_NODES = [
-  {id:'fdk',x:.5,y:.08,r:26,col:'#888780',label:'Kweekschool\nFort de Kock',role:'Institusi Pusat',body:'Kweekschool untuk guru-guru bumiputra di Bukittinggi. Berdiri 1856. Melahirkan generasi guru dan tokoh masyarakat Minangkabau.',career:[]},
-  {id:'nawawi',x:.5,y:.35,r:22,col:'#8b3a1e',label:'Nawawi\nSoetan Makmoer',role:'Kweekeling → Onderwijzer → Ketua Org.',body:'Dari <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock, lulus ujian hulponderwijzer di Padang, onderwijzer kelas 1, guru Melayu kweekschool. Ketua Vereeniging Minangkabau (1907).',career:['≈1880an: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> di FdK','≈1885: Lulus ujian hulponderwijzer Padang','≈1890an: Onderwijzer kelas 1, FdK','≈1895: Guru bahasa Melayu kweekschool FdK','1899: Figur sosial (pacuan kuda)','1906: Notabel Paken Malam','1907: Voorzitter Vereeniging Minangkabau']},
-  {id:'hamzah',x:.2,y:.35,r:16,col:'#d4962e',label:'Si Hamzah',role:'Kweekeling → Hulponderwijzer → Probolinggo',body:'Rekan seangkatan Nawawi dari Pantai Barat Sumatra. Lulus ujian hulponderwijzer bersama Nawawi di Padang. Ditempatkan di kweekschool Probolinggo — menghubungkan jaringan Sumatra-Jawa.',career:['≈1880an: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> FdK','Lulus ujian hulponderwijzer Padang','Hulponderwijzer kelas 1, Probolinggo']},
-  {id:'sakin',x:.75,y:.3,r:14,col:'#d4962e',label:'Sakin',role:'Kweekeling → Onderwijzer Koto Gadang',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Koto Gadang (Agam).',career:['Kweekeling FdK','Onderwijzer kelas 1, Koto Gadang (Agam)']},
-  {id:'rinding',x:.85,y:.45,r:13,col:'#d4962e',label:'Rinding',role:'Kweekeling → Onderwijzer Batahan',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di sekolah bumiputra Batahan (Tapanuli).',career:['Kweekeling FdK','Onderwijzer kelas 1, Batahan (Tapanuli)']},
-  {id:'salim',x:.65,y:.48,r:13,col:'#d4962e',label:'Salim',role:'Kweekeling → Onderwijzer Payakumbuh',body:'Mantan <span class="glossary-term" data-term="kweekeling">kweekeling</span> Fort de Kock. Diangkat onderwijzer kelas 1 di Payakumbuh (Padangsche Bovenlanden).',career:['Kweekeling FdK','Onderwijzer kelas 1, Payakumbuh']},
-  {id:'chorib',x:.15,y:.55,r:16,col:'#c0542a',label:'Si Mohamad Chorib\n(Datoe Bilang Sakotta)',role:'Larashoofd van Salimpawang',body:'Larashoofd van Salimpawang. Anggota pertama <span class="glossary-term" data-term="schoolcommissie">Plaatselijke Inlandsche Schoolcommissie</span> Fort van der Capellen (1873). Tanda formal pertama integrasi <span class="glossary-term" data-term="larashoofd">larashoofd</span> ke sistem pendidikan.',career:['Larashoofd van Salimpawang','1873: Anggota Schoolcommissie Fort van der Capellen']},
-  {id:'marahoesien',x:.38,y:.62,r:15,col:'#c0542a',label:'Si Marahoesien\n(Toekoe Maharadji)',role:'Larashoofd der VIII Kottas',body:'Larashoofd der VIII Kottas. Anggota Schoolkommissie Palembajan (1874). Mewakili ekspansi sistem ke sub-divisi lebih luas.',career:['Larashoofd der VIII Kottas','1874: Anggota Schoolkommissie Palembajan']},
-  {id:'brahrim',x:.25,y:.72,r:14,col:'#c0542a',label:'Si Djo Brahrim\n(Datoe Noear Hamat)',role:'Larashoofd van Lintoe',body:'Larashoofd van Lintoe. Anggota Schoolcommissie Boea (1874). Berpasangan dengan kontrolir D.P. Jentink.',career:['Larashoofd van Lintoe','1874: Anggota Schoolcommissie Boea']},
-  {id:'kns',x:.6,y:.65,r:17,col:'#c0542a',label:'Larashoofd\nKota nan Sadang',role:'Wakil Ketua Vereeniging Minangkabau',body:'Larashoofd Kota nan Sadang (Paje Koemboeh). Tweede voorzitter Vereeniging Minangkabau (1907). Transisi dari <span class="glossary-term" data-term="larashoofd">larashoofd</span> sebagai alat kolonial menjadi agen gerakan intelektual.',career:['Larashoofd Kota nan Sadang (Paje Koemboeh)','1907: Tweede voorzitter Vereeniging Minangkabau']},
-  {id:'kiva',x:.78,y:.68,r:16,col:'#c0542a',label:'Larashoofd\nIV Kota (Agam)',role:'Sekretaris Vereeniging Minangkabau',body:'Larashoofd IV Kota, Agam. Secretaris Vereeniging Minangkabau. Bersama Nawawi dan <span class="glossary-term" data-term="larashoofd">larashoofd</span> Kota nan Sadang, membentuk pimpinan organisasi modern bumiputra pertama Pantai Barat Sumatra.',career:['Larashoofd IV Kota, Agam','1907: Secretaris Vereeniging Minangkabau']},
-  {id:'vma',x:.5,y:.82,r:18,col:'#8b3a1e',label:'Vereeniging\nMinangkabau',role:'Organisasi Modern 1907',body:'Berdiri 17 Okt 1907 di Fort de Kock. Nawawi sebagai voorzitter, dibantu dua <span class="glossary-term" data-term="larashoofd">larashoofd</span> dan dua guru kweekschool sebagai redaksi. 700 anggota. Majalah bulanan. Mendahului Budi Utomo di luar Jawa.',career:[]},
-  {id:'mantri',x:.3,y:.88,r:13,col:'#534AB7',label:'Mantri Soepajang',role:'Inisiator Vereeniging',body:'Para <span class="glossary-term" data-term="mantri">mantri</span> (pengawas kebun kopi/teh) dari Soepajang menjadi inisiator awal Vereeniging, bekerja sama dengan kontrolir Barthélemy. Menunjukkan bahwa gerakan lahir dari lapisan menengah birokrasi.',career:['Mantri cultures, Soepajang','Inisiator Vereeniging Minangkabau']},
-  {id:'ibrahim',x:.18,y:.22,r:17,col:'#2a8c7e',label:'Ibrahim\n(Tan Malaka)',role:'Kweekeling FdK \u2192 Tokoh Pergerakan',body:'Kweekeling di kweekschool Fort de Kock (\u00b11908\u20131912). Murid G.H. Horensma. Kelak bergelar Tan Malaka \u2014 salah satu pemikir dan tokoh pergerakan kemerdekaan Indonesia terpenting abad ke-20.',career:['\u00b11908\u20131912: <span class="glossary-term" data-term="kweekeling">Kweekeling</span> di kweekschool Fort de Kock','Murid G.H. Horensma','Kelak dikenal sebagai Tan Malaka','Pemikir \u0026 tokoh pergerakan nasional']},
+  {id:'fdk',      x:.50,y:.08,r:26,col:'#888780',label:'Kweekschool\nFort de Kock',      role:'Institusi Pusat',                   body:'Kweekschool untuk guru-guru bumiputra di Bukittinggi. Berdiri 1856. Melahirkan generasi guru dan tokoh masyarakat Minangkabau.',career:[]},
+  {id:'nawawi',   x:.50,y:.35,r:22,col:'#8b3a1e',label:'Nawawi\nSoetan Makmoer',         role:'Kweekeling → Onderwijzer → Ketua Org.', body:'Dari kweekeling Fort de Kock, lulus ujian hulponderwijzer di Padang, onderwijzer kelas 1, guru Melayu kweekschool. Ketua Vereeniging Minangkabau (1907).',career:['≈1880an: Kweekeling di FdK','≈1885: Lulus ujian hulponderwijzer Padang','≈1890an: Onderwijzer kelas 1, FdK','≈1895: Guru bahasa Melayu kweekschool FdK','1907: Voorzitter Vereeniging Minangkabau']},
+  {id:'ibrahim',  x:.18,y:.22,r:17,col:'#2a8c7e',label:'Ibrahim\n(Tan Malaka)',           role:'Kweekeling FdK → Tokoh Pergerakan',  body:'Kweekeling di kweekschool Fort de Kock (±1908–1912). Murid G.H. Horensma. Kelak bergelar Tan Malaka — tokoh pergerakan kemerdekaan Indonesia.',career:['±1908–1912: Kweekeling di FdK','Murid G.H. Horensma','Kelak dikenal sebagai Tan Malaka']},
+  {id:'hamzah',   x:.20,y:.38,r:16,col:'#d4962e',label:'Si Hamzah',                       role:'Kweekeling → Hulponderwijzer Probolinggo',body:'Rekan seangkatan Nawawi dari Pantai Barat Sumatra. Ditempatkan di kweekschool Probolinggo.',career:['Kweekeling FdK','Lulus ujian hulponderwijzer Padang','Hulponderwijzer kelas 1, Probolinggo']},
+  {id:'sakin',    x:.76,y:.30,r:14,col:'#d4962e',label:'Sakin',                            role:'Kweekeling → Onderwijzer Koto Gadang', body:'Mantan kweekeling Fort de Kock. Diangkat onderwijzer kelas 1 di Koto Gadang (Agam).',career:['Kweekeling FdK','Onderwijzer kelas 1, Koto Gadang']},
+  {id:'rinding',  x:.84,y:.44,r:13,col:'#d4962e',label:'Rinding',                         role:'Kweekeling → Onderwijzer Batahan',    body:'Diangkat onderwijzer kelas 1 di sekolah bumiputra Batahan (Tapanuli).',career:['Kweekeling FdK','Onderwijzer kelas 1, Batahan']},
+  {id:'salim',    x:.65,y:.46,r:13,col:'#d4962e',label:'Salim',                            role:'Kweekeling → Onderwijzer Payakumbuh', body:'Diangkat onderwijzer kelas 1 di Payakumbuh.',career:['Kweekeling FdK','Onderwijzer kelas 1, Payakumbuh']},
+  {id:'chorib',   x:.14,y:.55,r:16,col:'#c0542a',label:'Si Mohamad Chorib\n(Datoe Bilang)',role:'Larashoofd van Salimpawang',          body:'Anggota pertama Plaatselijke Inlandsche Schoolcommissie Fort van der Capellen (1873).',career:['Larashoofd van Salimpawang','1873: Anggota Schoolcommissie']},
+  {id:'marahoesien',x:.38,y:.62,r:15,col:'#c0542a',label:'Si Marahoesien\n(Toekoe Maharadji)',role:'Larashoofd der VIII Kottas',       body:'Anggota Schoolkommissie Palembajan (1874).',career:['Larashoofd der VIII Kottas','1874: Anggota Schoolkommissie Palembajan']},
+  {id:'brahrim',  x:.25,y:.72,r:14,col:'#c0542a',label:'Si Djo Brahrim\n(Datoe Noear)',   role:'Larashoofd van Lintoe',               body:'Anggota Schoolcommissie Boea (1874).',career:['Larashoofd van Lintoe','1874: Anggota Schoolcommissie Boea']},
+  {id:'kns',      x:.60,y:.64,r:17,col:'#c0542a',label:'Larashoofd\nKota nan Sadang',     role:'Wakil Ketua Vereeniging Minangkabau', body:'Tweede voorzitter Vereeniging Minangkabau (1907).',career:['Larashoofd Kota nan Sadang','1907: Tweede voorzitter Vereeniging']},
+  {id:'kiva',     x:.78,y:.66,r:16,col:'#c0542a',label:'Larashoofd\nIV Kota (Agam)',     role:'Sekretaris Vereeniging Minangkabau',  body:'Secretaris Vereeniging Minangkabau.',career:['Larashoofd IV Kota, Agam','1907: Secretaris Vereeniging']},
+  {id:'vma',      x:.50,y:.84,r:18,col:'#8b3a1e',label:'Vereeniging\nMinangkabau',        role:'Organisasi Modern 1907',              body:'Berdiri 17 Okt 1907. Nawawi sebagai voorzitter. 700 anggota. Mendahului Budi Utomo di luar Jawa.',career:[]},
+  {id:'mantri',   x:.30,y:.88,r:13,col:'#534AB7',label:'Mantri\nSoepajang',               role:'Inisiator Vereeniging',               body:'Para mantri dari Soepajang menjadi inisiator awal Vereeniging, bekerja sama dengan kontrolir Barthélemy.',career:['Mantri cultures, Soepajang','Inisiator Vereeniging Minangkabau']},
+];
+
+const PRIBUMI_EDGES = [
+  ['fdk','nawawi','trained'],['fdk','hamzah','trained'],['fdk','sakin','trained'],
+  ['fdk','rinding','trained'],['fdk','salim','trained'],['fdk','ibrahim','trained'],
+  ['nawawi','vma','leads'],['kns','vma','leads'],['kiva','vma','leads'],['mantri','vma','init'],
+  ['fdk','chorib','commissie'],['fdk','marahoesien','commissie'],['fdk','brahrim','commissie'],
+  ['hamzah','nawawi','peer'],
 ];
 
 const BELANDA_NODES = [
-  {id:'inst_fdk',x:.5,y:.06,r:24,col:'#888780',label:'Kweekschool\nFort de Kock',role:'Institusi',body:'Titik pusat seluruh jejaring. Van Ophuysen mendirikan, Spönhoff memimpin, Laats meneruskan, Oostergetel ditransfer keluar.',career:[]},
-  {id:'buddingh',x:.15,y:.25,r:14,col:'#2a8c7e',label:'Pendeta A. Buddingh',role:'Pencetus Ide (1855)',body:'Pendeta yang pertama kali mengusulkan kweekschool di Fort de Kock melalui surat 26 April 1855. Tanpa inisiatifnya, sekolah ini mungkin tidak pernah ada.',career:['Pendeta di Dataran Tinggi Padang','1855: Surat usulan kweekschool Fort de Kock (No. 149)']},
-  {id:'swieten',x:.3,y:.22,r:15,col:'#185FA5',label:'Letjen Van Swieten',role:'Gubernur Sumatra\'s Westkust',body:'Gubernur Pantai Barat Sumatra yang melakukan konsultasi dan mendukung pendirian kweekschool. Korespondesi dengan Buddingh dan van Ophuysen menjadi dasar Besluit 1856.',career:['Letjen, Gubernur Sumatra\'s Westkust','1855–56: Konsultasi pendirian kweekschool']},
-  {id:'ophuysen',x:.5,y:.28,r:20,col:'#185FA5',label:'J.A.W. van Ophuysen',role:'Asisten Residen · Direktur Pertama',body:'Figur terpenting dalam kelahiran kweekschool. Dinilai "bij uitnemendheid geschikt" (sangat cakap). Di bawah kepemimpinannya sekolah mencapai masa emas. Kepergiannya ≈1860–62 memulai kemerosotan.',career:['Asisten Residen Padangsche Bovenlanden','1856: Pemimpin percobaan kweekschool FdK','1856–≈1862: Direktur pertama kweekschool','Kepergiannya: awal kemerosotan institusi']},
-  {id:'couperus',x:.7,y:.2,r:13,col:'#185FA5',label:'Residen Couperus',role:'Residen Padangsche Bovenlanden',body:'Residen yang ikut berkorespondensi dalam proses pendirian kweekschool. Bersama Netscher mendukung usulan van Ophuysen kepada pemerintah pusat.',career:['Residen Padangsche Bovenlanden','1855–56: Konsultasi pendirian kweekschool']},
-  {id:'netscher',x:.83,y:.28,r:13,col:'#185FA5',label:'Residen Netscher',role:'Residen · Konsultan Pendirian',body:'Residen yang terlibat dalam korespondensi awal pendirian kweekschool 1855–56.',career:['Residen','1855–56: Korespondensi pendirian kweekschool']},
-  {id:'inspektur',x:.15,y:.45,r:16,col:'#2a8c7e',label:'Inspektur Pendidikan\nPribumi',role:'Inspektur · Pembuat Laporan 1869',body:'Pejabat yang menulis laporan kritis tentang kondisi kweekschool Fort de Kock (1869). Mendokumentasikan kegagalan: 49→12 lulusan, kondisi buruk, ruang sempit. Mengusulkan konsolidasi ke Padang.',career:['Inspektur van het inlandsch onderwijs','1868–69: Inspeksi kweekschool Fort de Kock','1869: Laporan kritis di Tijdschrift voor Neerland\'s Indië']},
-  {id:'sponhoff',x:.35,y:.5,r:15,col:'#d4962e',label:'Spönhoff',role:'Hoofdonderwijzer FdK → Mojokerto',body:'Kepala sekolah di Fort de Kock yang kemudian dipindahkan ke Mojokerto (Feb 1874). Rotasi normal pejabat kolonial.',career:['Hoofdonderwijzer, Fort de Kock','Feb 1874: Dipindah ke Mojokerto']},
-  {id:'laats',x:.5,y:.52,r:16,col:'#d4962e',label:'J.H.J. Laats',role:'Hoofdonderwijzer FdK (1874)',body:'Diangkat kepala sekolah Fort de Kock menggantikan Spönhoff (Feb 1874). Memimpin pada era pembenahan pascakemerosotan.',career:['Onderwijzer','Feb 1874: Hoofdonderwijzer, Fort de Kock']},
-  {id:'weide',x:.65,y:.5,r:14,col:'#c0542a',label:'W.F. Weide',role:'Guru Kedua FdK (1873)',body:'Asisten guru pertama dari sekolah dasar publik Batavia, ditugaskan sebagai guru kedua di kweekschool Fort de Kock (Nov 1873). Bagian dari pembenahan staf pasca-kemerosotan.',career:['Hulponderwijzer 1e kl., Sekolah dasar Batavia','Nov 1873: Guru kedua (waarneming), kweekschool FdK']},
-  {id:'oostergetel',x:.8,y:.52,r:14,col:'#c0542a',label:'Oostergetel',role:'Guru FdK → Transfer ke Tondano',body:'Guru di kweekschool Fort de Kock yang diperbantukan ke kweekschool Tondano (Feb 1874). Transfer pertama yang terdokumentasi antar-kweekschool — tanda integrasi jaringan mulai berjalan.',career:['Guru, kweekschool Fort de Kock','Feb 1874: Diperbantukan ke kweekschool Tondano']},
-  {id:'barthelemy',x:.2,y:.72,r:15,col:'#639922',label:'Kontrolir Barthélemy',role:'Kontrolir · Co-inisiator Vereeniging',body:'Kontrolir yang bekerja sama dengan para <span class="glossary-term" data-term="mantri">mantri</span> Soepajang untuk menginisiasi Vereeniging Minangkabau. Hadir juga di Paken Malam 1906 sebagai bagian panitia.',career:['Kontrolir, Dataran Tinggi Padang','1906: Anggota panitia Paken Malam FdK','1907: Co-inisiator Vereeniging Minangkabau']},
-  {id:'westenenk',x:.38,y:.75,r:15,col:'#639922',label:'Kontrolir Westenenk',role:'Kontrolir · Penggerak Vereeniging',body:'Kontrolir yang bersama Barthélemy menggerakkan kepala-kepala Agam untuk bergabung dalam Vereeniging Minangkabau. Tercatat hadir di Paken Malam 1906.',career:['Kontrolir, Dataran Tinggi Padang','1906: Hadir di Paken Malam FdK','1907: Mendorong pembentukan Vereeniging']},
-  {id:'pruys',x:.6,y:.72,r:13,col:'#185FA5',label:'A. Pruys v. d. Hoeven',role:'Asisten Residen · Sponsor Iskander',body:'Asisten Residen yang memberi kesempatan kepada W. Iskander untuk membuka kweekschool Tanah-Batoe. Berkontribusi pada pembentukan jaringan kweekschool alternatif di Sumatra.',career:['Asisten Residen','Membuka peluang kweekschool Tanah-Batoe untuk Iskander']},
-  {id:'iskander',x:.78,y:.7,r:16,col:'#2a8c7e',label:'W. Iskander',role:'Guru Pribumi Lulusan Belanda',body:'Pribumi yang dididik menjadi guru di Belanda — satu-satunya pada eranya. Memimpin kweekschool Tanah-Batoe dengan hasil luar biasa. Inspektur memujinya habis-habisan: hampir semua lulusannya berhasil.',career:['Dididik sebagai guru di Belanda','Kepala kweekschool Tanah-Batoe (Tapanuli)','Inspektur: "Een uitmuntende geest heerscht onder hen"']},
-  {id:'horensma',x:.55,y:.68,r:15,col:'#d4962e',label:'G.H. Horensma',role:'Hulponderwijzer \u2192 Onderwijzer FdK',body:'Diangkat hulponderwijzer di Fort de Kock (Nov 1908, Javasche Courant). Tercatat sebagai onderwijzer di wilayah Padangsche Bovenlanden. Guru dari Ibrahim yang kelak bergelar Tan Malaka \u2014 tokoh pergerakan kemerdekaan Indonesia.',career:['Nov 1908: Diangkat hulponderwijzer, Fort de Kock','Onderwijzer di wilayah Padangsche Bovenlanden','Guru dari Ibrahim (Tan Malaka) di kweekschool FdK']},
+  {id:'inst_fdk',   x:.50,y:.06,r:24,col:'#888780',label:'Kweekschool\nFort de Kock',       role:'Institusi',                          body:'Titik pusat seluruh jejaring. Van Ophuysen mendirikan, Spönhoff memimpin, Laats meneruskan.',career:[]},
+  {id:'buddingh',   x:.15,y:.24,r:14,col:'#2a8c7e',label:'Pendeta A.\nBuddingh',             role:'Pencetus Ide (1855)',                 body:'Mengusulkan kweekschool di Fort de Kock melalui surat 26 April 1855.',career:['Pendeta di Dataran Tinggi Padang','1855: Surat usulan kweekschool FdK']},
+  {id:'swieten',    x:.30,y:.21,r:15,col:'#185FA5',label:'Letjen\nVan Swieten',              role:'Gubernur Sumatra\'s Westkust',         body:'Mendukung pendirian kweekschool melalui korespondensi dengan Buddingh.',career:['Gubernur Sumatra\'s Westkust','1855–56: Konsultasi pendirian kweekschool']},
+  {id:'ophuysen',   x:.50,y:.28,r:20,col:'#185FA5',label:'J.A.W. van\nOphuysen',             role:'Asisten Residen · Direktur Pertama',  body:'Dinilai "bij uitnemendheid geschikt". Di bawah kepemimpinannya sekolah mencapai masa emas.',career:['Asisten Residen Padangsche Bovenlanden','1856: Direktur pertama kweekschool FdK']},
+  {id:'couperus',   x:.70,y:.20,r:13,col:'#185FA5',label:'Residen\nCouperus',                role:'Residen Padangsche Bovenlanden',      body:'Ikut berkorespondensi dalam proses pendirian kweekschool.',career:['Residen Padangsche Bovenlanden','1855–56: Konsultasi pendirian kweekschool']},
+  {id:'netscher',   x:.83,y:.28,r:13,col:'#185FA5',label:'Residen\nNetscher',                role:'Residen · Konsultan Pendirian',       body:'Terlibat dalam korespondensi awal pendirian kweekschool 1855–56.',career:['Residen','1855–56: Korespondensi pendirian']},
+  {id:'inspektur',  x:.15,y:.45,r:16,col:'#2a8c7e',label:'Inspektur\nPendidikan Pribumi',    role:'Inspektur · Laporan Kritis 1869',    body:'Menulis laporan kritis 1869: 49→12 lulusan. Mengusulkan konsolidasi ke Padang.',career:['Inspektur van het inlandsch onderwijs','1869: Laporan kritis di Tijdschrift']},
+  {id:'sponhoff',   x:.35,y:.50,r:15,col:'#d4962e',label:'Spönhoff',                         role:'Hoofdonderwijzer FdK → Mojokerto',    body:'Kepala sekolah Fort de Kock, dipindahkan ke Mojokerto (Feb 1874).',career:['Hoofdonderwijzer, FdK','Feb 1874: Dipindah ke Mojokerto']},
+  {id:'laats',      x:.50,y:.52,r:16,col:'#d4962e',label:'J.H.J. Laats',                     role:'Hoofdonderwijzer FdK (1874)',         body:'Diangkat kepala sekolah menggantikan Spönhoff (Feb 1874).',career:['Feb 1874: Hoofdonderwijzer, FdK']},
+  {id:'weide',      x:.65,y:.50,r:14,col:'#c0542a',label:'W.F. Weide',                       role:'Guru Kedua FdK (1873)',               body:'Asisten guru pertama dari Batavia, ditugaskan sebagai guru kedua di FdK (Nov 1873).',career:['Hulponderwijzer 1e kl., Batavia','Nov 1873: Guru kedua, kweekschool FdK']},
+  {id:'oostergetel',x:.80,y:.52,r:14,col:'#c0542a',label:'Oostergetel',                      role:'Guru FdK → Transfer ke Tondano',     body:'Transfer pertama yang terdokumentasi antar-kweekschool (Feb 1874).',career:['Guru, kweekschool FdK','Feb 1874: Diperbantukan ke Tondano']},
+  {id:'barthelemy', x:.20,y:.72,r:15,col:'#639922',label:'Kontrolir\nBarthélemy',            role:'Kontrolir · Co-inisiator Vereeniging',body:'Bekerja sama dengan para mantri Soepajang untuk menginisiasi Vereeniging Minangkabau.',career:['Kontrolir, Dataran Tinggi Padang','1907: Co-inisiator Vereeniging']},
+  {id:'westenenk',  x:.38,y:.75,r:15,col:'#639922',label:'Kontrolir\nWestenenk',             role:'Kontrolir · Penggerak Vereeniging',   body:'Bersama Barthélemy menggerakkan kepala-kepala Agam untuk bergabung dalam Vereeniging.',career:['Kontrolir, Dataran Tinggi Padang','1907: Mendorong pembentukan Vereeniging']},
+  {id:'iskander',   x:.78,y:.70,r:16,col:'#2a8c7e',label:'W. Iskander',                      role:'Guru Pribumi Lulusan Belanda',        body:'Pribumi yang dididik menjadi guru di Belanda. Memimpin kweekschool Tanah-Batoe dengan hasil luar biasa.',career:['Dididik sebagai guru di Belanda','Kepala kweekschool Tanah-Batoe']},
+  {id:'horensma',   x:.55,y:.68,r:15,col:'#d4962e',label:'G.H. Horensma',                    role:'Hulponderwijzer → Onderwijzer FdK',   body:'Diangkat hulponderwijzer di Fort de Kock (Nov 1908). Guru dari Ibrahim yang kelak bergelar Tan Malaka.',career:['Nov 1908: Diangkat hulponderwijzer, FdK','Guru dari Ibrahim (Tan Malaka)']},
 ];
 
-// ─── DRAW NETWORK ───
-function drawNetwork(type) {
-  const canvasId = 'canvas-'+type;
-  const ttId = 'tt-'+type;
-  const nodes = type==='pribumi' ? PRIBUMI_NODES : BELANDA_NODES;
-  const canvas = document.getElementById(canvasId);
-  const tt = document.getElementById(ttId);
-  if(!canvas) return;
-  // Safe width: canvas may be inside display:none panel
-  let W = canvas.offsetWidth;
-  if (!W || W < 10) {
-    // Try parent containers
-    let el = canvas.parentElement;
-    while (el) {
-      if (el.offsetWidth > 0) {
-        const s = getComputedStyle(el);
-        W = el.offsetWidth - parseFloat(s.paddingLeft||0) - parseFloat(s.paddingRight||0);
-        break;
-      }
-      el = el.parentElement;
-    }
-    if (!W || W < 10) W = Math.max(window.innerWidth - 64, 200);
-  }
-  let H = W < 480 ? Math.max(520, W * 1.3) : W < 600 ? Math.max(480, W * 1.1) : parseInt(canvas.getAttribute('height'));
-  canvas.width = W * window.devicePixelRatio;
-  canvas.height = H * window.devicePixelRatio;
-  canvas.style.width = W+'px'; canvas.style.height = H+'px';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+const BELANDA_EDGES = [
+  ['buddingh','ophuysen','collab'],['buddingh','inst_fdk','proposed'],
+  ['swieten','inst_fdk','authorized'],['couperus','inst_fdk','consult'],['netscher','inst_fdk','consult'],
+  ['ophuysen','inst_fdk','founded'],['inspektur','inst_fdk','inspected'],
+  ['sponhoff','inst_fdk','led'],['laats','inst_fdk','led'],
+  ['weide','inst_fdk','taught'],['oostergetel','inst_fdk','taught'],
+  ['barthelemy','westenenk','collab'],['horensma','inst_fdk','taught'],
+];
 
-  // Resolve positions
-  const placed = nodes.map(n=>({...n, px: n.x*W, py: n.y*H}));
-
-  // Define edges
-  let edges = [];
-  if(type==='pribumi'){
-    edges=[
-      ['fdk','nawawi','trained'],['fdk','hamzah','trained'],['fdk','sakin','trained'],
-      ['fdk','rinding','trained'],['fdk','salim','trained'],
-      ['nawawi','vma','leads'],['kns','vma','leads'],['kiva','vma','leads'],['mantri','vma','init'],
-      ['fdk','chorib','commissie'],['fdk','marahoesien','commissie'],['fdk','brahrim','commissie'],
-      ['kns','nawawi','vma-link'],['kiva','nawawi','vma-link'],
-      ['hamzah','nawawi','peer'],
-      ['fdk','ibrahim','trained'],
-    ];
-  } else {
-    edges=[
-      ['buddingh','ophuysen','collab'],['buddingh','inst_fdk','proposed'],
-      ['swieten','inst_fdk','authorized'],['couperus','inst_fdk','consult'],['netscher','inst_fdk','consult'],
-      ['ophuysen','inst_fdk','founded'],
-      ['inspektur','inst_fdk','inspected'],
-      ['sponhoff','inst_fdk','led'],['laats','inst_fdk','led'],
-      ['weide','inst_fdk','taught'],['oostergetel','inst_fdk','taught'],
-      ['oostergetel','inst_fdk','transferred'],
-      ['barthelemy','inst_fdk','event'],['westenenk','inst_fdk','event'],
-      ['pruys','iskander','enabled'],
-      ['barthelemy','westenenk','collab'],
-      ['horensma','inst_fdk','taught'],
-    ];
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    // draw bg grid
-    ctx.strokeStyle='rgba(245,240,232,.04)';
-    ctx.lineWidth=0.5;
-    for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-
-    // draw edges
-    edges.forEach(([a,b,type])=>{
-      const na=placed.find(n=>n.id===a), nb=placed.find(n=>n.id===b);
-      if(!na||!nb) return;
-      ctx.beginPath();
-      ctx.moveTo(na.px,na.py);
-      // curve
-      const mx=(na.px+nb.px)/2+(na.id.charCodeAt(0)-nb.id.charCodeAt(0))*3;
-      const my=(na.py+nb.py)/2-20;
-      ctx.quadraticCurveTo(mx,my,nb.px,nb.py);
-      if(type==='trained'){ctx.strokeStyle='rgba(42,140,126,.35)';ctx.setLineDash([4,3]);}
-      else if(type==='leads'){ctx.strokeStyle='rgba(192,84,42,.5)';ctx.setLineDash([]);}
-      else if(type==='commissie'){ctx.strokeStyle='rgba(176,120,40,.3)';ctx.setLineDash([2,4]);}
-      else if(type==='founded'){ctx.strokeStyle='rgba(24,95,165,.5)';ctx.setLineDash([]);}
-      else if(type==='peer'){ctx.strokeStyle='rgba(212,150,46,.3)';ctx.setLineDash([3,3]);}
-      else{ctx.strokeStyle='rgba(245,240,232,.15)';ctx.setLineDash([2,4]);}
-      ctx.lineWidth=type==='trained'||type==='leads'||type==='founded'?1.5:1;
-      ctx.stroke();
-      ctx.setLineDash([]);
-    });
-
-    // draw nodes
-    placed.forEach(n=>{
-      // glow
-      const grad=ctx.createRadialGradient(n.px,n.py,0,n.px,n.py,n.r*2.5);
-      grad.addColorStop(0,n.col+'44');
-      grad.addColorStop(1,'transparent');
-      ctx.fillStyle=grad;
-      ctx.beginPath();ctx.arc(n.px,n.py,n.r*2.5,0,Math.PI*2);ctx.fill();
-
-      // circle
-      ctx.beginPath();ctx.arc(n.px,n.py,n.r,0,Math.PI*2);
-      ctx.fillStyle=n.col+'33';
-      ctx.fill();
-      ctx.strokeStyle=n.col;
-      ctx.lineWidth=1.5;
-      ctx.stroke();
-
-      // label
-      const lines=n.label.split('\n');
-      ctx.fillStyle='rgba(245,240,232,.88)';
-      ctx.font='500 10px "JetBrains Mono",monospace';
-      ctx.textAlign='center';
-      const ly=n.py+n.r+14;
-      lines.forEach((l,i)=>ctx.fillText(l,n.px,ly+i*13));
-    });
-  }
-  draw();
-
-  // ── Shared hit-test & tooltip logic ──
-  function getHit(mx, my){ let h=null; placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+12)h=n;}); return h; }
-  function showTT(hit, clientX, clientY, canvasRect){
-    const career = hit.career&&hit.career.length>0
-      ? `<div class="tt-career"><div class="tt-career-title">Jalur Karir</div>${hit.career.map(c=>`<div class="career-step">${c}</div>`).join('')}</div>` : '';
-    tt.innerHTML = `<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.role}</div><div class="tt-body">${hit.body}</div>${career}`;
-    // Desktop: position near cursor. Mobile: CSS handles it (fixed bottom-center)
-    const isMobile = window.innerWidth <= 768;
-    if(!isMobile){
-      const mx = clientX - canvasRect.left, my = clientY - canvasRect.top;
-      let lft = mx + 16, top = my - 10;
-      if(lft + 300 > W) lft = mx - 320;
-      if(top < 0) top = 0;
-      tt.style.left = lft+'px'; tt.style.top = top+'px';
-    }
-    tt.classList.add('visible');
-  }
-
-  // Mouse
-  canvas.onmousemove = function(e){
-    const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX-rect.left, my = e.clientY-rect.top;
-    const hit = getHit(mx, my);
-    if(hit){ canvas.style.cursor='pointer'; showTT(hit, e.clientX, e.clientY, rect); }
-    else { canvas.style.cursor='default'; if(!tt.classList.contains('pinned')) tt.classList.remove('visible'); }
-  };
-  canvas.onmouseleave = ()=>{ if(!tt.classList.contains('pinned')) tt.classList.remove('visible'); };
-
-  // Touch
-  canvas.addEventListener('touchstart', function(e){
-    const t = e.touches[0];
-    const rect = canvas.getBoundingClientRect();
-    const mx = t.clientX - rect.left, my = t.clientY - rect.top;
-    const hit = getHit(mx, my);
-    if(hit){
-      e.preventDefault();
-      if(tt.classList.contains('visible') && tt.dataset.hitId === hit.id){
-        tt.classList.remove('visible'); tt.dataset.hitId='';
-      } else {
-        tt.dataset.hitId = hit.id;
-        showTT(hit, t.clientX, t.clientY, rect);
-      }
-    } else {
-      tt.classList.remove('visible'); tt.dataset.hitId='';
-    }
-  },{passive:false});
-}
-
-// ─── NUSANTARA NETWORK ───
 const KWS_NODES = [
-  {id:'soerakarta',label:'Surakarta',year:'1852',x:.18,y:.35,r:20,col:'#c0542a',desc:'Model pertama HB'},
-  {id:'magelang',label:'Magelang',year:'1874',x:.22,y:.55,r:16,col:'#d4962e',desc:'Pengganti Surakarta'},
-  {id:'djokjakarta',label:'Djokjakarta',year:'≈1880',x:.3,y:.48,r:15,col:'#d4962e',desc:'Kweekschool Vorstenlanden'},
-  {id:'bandoeng',label:'Bandoeng',year:'≈1875',x:.25,y:.65,r:16,col:'#d4962e',desc:'Preanger — gaji ƒ800'},
-  {id:'probolinggo',label:'Probolinggo',year:'≈1875',x:.42,y:.62,r:14,col:'#2a8c7e',desc:'Si Hamzah dari FdK'},
-  {id:'oengaran',label:'Oengaran',year:'≈1905',x:.35,y:.52,r:12,col:'#888780',desc:'Ekspansi abad ke-20'},
-  {id:'bandjermasin',label:'Bandjermasin',year:'≈1870',x:.38,y:.78,r:13,col:'#185FA5',desc:'Kalimantan Selatan'},
-  {id:'fdk',label:'Fort de Kock\n(Bukittinggi)',year:'1856',x:.15,y:.2,r:24,col:'#8b3a1e',desc:'Pusat jejaring Sumatra'},
-  {id:'tanahhbatoe',label:'Tanah-Batoe\n→ Pdg Sidempoean',year:'≈1864→1874',x:.08,y:.42,r:16,col:'#2a8c7e',desc:'W. Iskander — terbaik'},
-  {id:'tondano',label:'Tondano',year:'1873',x:.72,y:.25,r:17,col:'#2a8c7e',desc:'Sulawesi — paling awal'},
-  {id:'makassar',label:'Makassar\n(Opleiding)',year:'≈1905',x:.65,y:.52,r:15,col:'#534AB7',desc:'Ganda: opleiding+kweek'},
-  {id:'padang',label:'Padang Sidempoean',year:'1874',x:.08,y:.6,r:14,col:'#2a8c7e',desc:'Lanjutan Tanah-Batoe'},
+  {id:'soerakarta',  label:'Surakarta',              year:'1852',       x:.18,y:.35,r:20,col:'#c0542a',desc:'Model pertama kweekschool HB'},
+  {id:'magelang',    label:'Magelang',               year:'1874',       x:.22,y:.55,r:16,col:'#d4962e',desc:'Pengganti Surakarta'},
+  {id:'djokjakarta', label:'Djokjakarta',             year:'≈1880',      x:.30,y:.48,r:15,col:'#d4962e',desc:'Kweekschool Vorstenlanden'},
+  {id:'bandoeng',    label:'Bandoeng',                year:'≈1875',      x:.25,y:.65,r:16,col:'#d4962e',desc:'Preanger — gaji ƒ800'},
+  {id:'probolinggo', label:'Probolinggo',             year:'≈1875',      x:.42,y:.62,r:14,col:'#2a8c7e',desc:'Si Hamzah dari FdK'},
+  {id:'oengaran',    label:'Oengaran',                year:'≈1905',      x:.35,y:.52,r:12,col:'#888780',desc:'Ekspansi abad ke-20'},
+  {id:'bandjermasin',label:'Bandjermasin',            year:'≈1870',      x:.38,y:.78,r:13,col:'#185FA5',desc:'Kalimantan Selatan'},
+  {id:'fdk',         label:'Fort de Kock\n(Bukittinggi)',year:'1856',   x:.15,y:.20,r:24,col:'#8b3a1e',desc:'Pusat jejaring Sumatra'},
+  {id:'tanahhbatoe', label:'Tanah-Batoe\n→Pdg Sidempoean',year:'≈1864→1874',x:.08,y:.42,r:16,col:'#2a8c7e',desc:'W. Iskander — terbaik'},
+  {id:'tondano',     label:'Tondano',                 year:'1873',       x:.72,y:.25,r:17,col:'#2a8c7e',desc:'Sulawesi — paling awal'},
+  {id:'makassar',    label:'Makassar\n(Opleiding)',   year:'≈1905',      x:.65,y:.52,r:15,col:'#534AB7',desc:'Ganda: opleiding+kweek'},
+  {id:'padang',      label:'Padang Sidempoean',       year:'1874',       x:.08,y:.60,r:14,col:'#2a8c7e',desc:'Lanjutan Tanah-Batoe'},
 ];
-const KWS_EDGES=[
+
+const KWS_EDGES = [
   ['soerakarta','fdk','model'],['soerakarta','magelang','moved'],['soerakarta','tondano','model'],
   ['soerakarta','bandoeng','model'],['soerakarta','probolinggo','model'],
   ['fdk','tondano','staff'],['fdk','probolinggo','hamzah'],
@@ -1831,181 +1643,243 @@ const KWS_EDGES=[
   ['tondano','makassar','region'],
 ];
 
-function drawNusantara(){
-  const canvas=document.getElementById('canvas-nusantara');
-  const tt=document.getElementById('tt-nusantara');
-  if(!canvas)return;
-  let W = canvas.offsetWidth;
-  if (!W || W < 10) {
-    let el = canvas.parentElement;
-    while (el) {
-      if (el.offsetWidth > 0) {
-        const s = getComputedStyle(el);
-        W = el.offsetWidth - parseFloat(s.paddingLeft||0) - parseFloat(s.paddingRight||0);
-        break;
-      }
-      el = el.parentElement;
-    }
-    if (!W || W < 10) W = Math.max(window.innerWidth - 64, 200);
+// ─── SVG NETWORK RENDERER ───
+function buildSVG(containerId, nodes, edges, opts) {
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+
+  // Determine SVG dimensions based on container actual width
+  const W = wrap.getBoundingClientRect().width || wrap.offsetWidth || wrap.parentElement.offsetWidth || window.innerWidth - 48;
+  const isMobile = W < 600;
+  const H = isMobile ? Math.round(W * 1.25) : (opts.h || 560);
+  const scale = isMobile ? W / 700 : 1; // scale node positions & radii for small screens
+
+  // Clear previous
+  wrap.innerHTML = '';
+
+  // Tooltip div (fixed at bottom on mobile, absolute on desktop)
+  const ttDiv = document.createElement('div');
+  ttDiv.className = 'net-tooltip';
+  ttDiv.id = 'tt-' + containerId;
+  document.body.appendChild(ttDiv); // append to body so it's never clipped
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  svg.style.display = 'block';
+  svg.style.overflow = 'visible';
+
+  // Place nodes
+  const placed = nodes.map(n => ({
+    ...n,
+    px: Math.round(n.x * W),
+    py: Math.round(n.y * H),
+    rr: Math.max(isMobile ? Math.round(n.r * 0.85) : n.r, 9)
+  }));
+
+  // Background grid
+  const grid = document.createElementNS(NS, 'g');
+  grid.setAttribute('stroke', 'rgba(245,240,232,.04)');
+  grid.setAttribute('stroke-width', '0.5');
+  for (let x = 0; x < W; x += 60) {
+    const l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', x); l.setAttribute('y1', 0); l.setAttribute('x2', x); l.setAttribute('y2', H);
+    grid.appendChild(l);
   }
-  let H = W < 480 ? Math.max(460, W * 1.2) : W < 600 ? Math.max(420, W * 1.05) : parseInt(canvas.getAttribute('height'));
-  canvas.width=W*window.devicePixelRatio; canvas.height=H*window.devicePixelRatio;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  const ctx=canvas.getContext('2d');
-  ctx.scale(window.devicePixelRatio,window.devicePixelRatio);
-  const placed=KWS_NODES.map(n=>({...n,px:n.x*W,py:n.y*H}));
+  for (let y = 0; y < H; y += 60) {
+    const l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', 0); l.setAttribute('y1', y); l.setAttribute('x2', W); l.setAttribute('y2', y);
+    grid.appendChild(l);
+  }
+  svg.appendChild(grid);
 
-  ctx.clearRect(0,0,W,H);
-  // bg
-  ctx.fillStyle='rgba(255,255,255,.01)';
-  ctx.fillRect(0,0,W,H);
-
-  // Edges
-  KWS_EDGES.forEach(([a,b,t])=>{
-    const na=placed.find(n=>n.id===a),nb=placed.find(n=>n.id===b);
-    if(!na||!nb)return;
-    ctx.beginPath();
-    ctx.moveTo(na.px,na.py);
-    const mx=(na.px+nb.px)/2; const my=(na.py+nb.py)/2-20;
-    ctx.quadraticCurveTo(mx,my,nb.px,nb.py);
-    if(t==='model'){ctx.strokeStyle='rgba(192,84,42,.4)';ctx.setLineDash([5,4]);ctx.lineWidth=1.5;}
-    else if(t==='moved'){ctx.strokeStyle='rgba(212,150,46,.5)';ctx.setLineDash([]);ctx.lineWidth=1.5;}
-    else if(t==='staff'){ctx.strokeStyle='rgba(42,140,126,.6)';ctx.setLineDash([]);ctx.lineWidth=2;}
-    else if(t==='hamzah'){ctx.strokeStyle='rgba(42,140,126,.4)';ctx.setLineDash([3,3]);ctx.lineWidth=1.5;}
-    else{ctx.strokeStyle='rgba(245,240,232,.15)';ctx.setLineDash([2,5]);ctx.lineWidth=1;}
-    ctx.stroke(); ctx.setLineDash([]);
-  });
-
-  // Nodes
-  placed.forEach(n=>{
-    const g=ctx.createRadialGradient(n.px,n.py,0,n.px,n.py,n.r*2.5);
-    g.addColorStop(0,n.col+'55'); g.addColorStop(1,'transparent');
-    ctx.fillStyle=g;
-    ctx.beginPath();ctx.arc(n.px,n.py,n.r*2.5,0,Math.PI*2);ctx.fill();
-    ctx.beginPath();ctx.arc(n.px,n.py,n.r,0,Math.PI*2);
-    ctx.fillStyle=n.col+'44';ctx.fill();
-    ctx.strokeStyle=n.col;ctx.lineWidth=2;ctx.stroke();
-    const lines=n.label.split('\n');
-    ctx.fillStyle='rgba(245,240,232,.9)';
-    ctx.font='500 10px "JetBrains Mono",monospace';
-    ctx.textAlign='center';
-    lines.forEach((l,i)=>ctx.fillText(l,n.px,n.py+n.r+13+i*12));
-    ctx.fillStyle='rgba(212,150,46,.8)';
-    ctx.font='9px "JetBrains Mono",monospace';
-    ctx.fillText(n.year,n.px,n.py-n.r-5);
-  });
-
-  canvas.onmousemove=function(e){
-    const rect=canvas.getBoundingClientRect();
-    const mx=e.clientX-rect.left,my=e.clientY-rect.top;
-    let hit=null;
-    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+14)hit=n;});
-    if(hit){
-      canvas.style.cursor='pointer';
-      tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.year}</div><div class="tt-body">${hit.desc}</div>`;
-      const isMobile = window.innerWidth <= 768;
-      if(!isMobile){
-        let lft=mx+16,top=my-10;
-        if(lft+280>W)lft=mx-290;
-        tt.style.left=lft+'px';tt.style.top=top+'px';
-      }
-      tt.classList.add('visible');
-    } else {canvas.style.cursor='default';tt.classList.remove('visible');}
+  // Edge color map
+  const edgeColors = {
+    trained:'rgba(42,140,126,.45)',leads:'rgba(192,84,42,.6)',commissie:'rgba(176,120,40,.35)',
+    founded:'rgba(24,95,165,.55)',peer:'rgba(212,150,46,.35)',collab:'rgba(245,240,232,.2)',
+    model:'rgba(192,84,42,.4)',moved:'rgba(212,150,46,.55)',staff:'rgba(42,140,126,.65)',
+    hamzah:'rgba(42,140,126,.4)',authorized:'rgba(24,95,165,.4)',proposed:'rgba(42,140,126,.3)',
+    consult:'rgba(245,240,232,.15)',inspected:'rgba(212,150,46,.3)',led:'rgba(212,150,46,.45)',
+    taught:'rgba(192,84,42,.35)',init:'rgba(83,74,183,.5)',region:'rgba(245,240,232,.2)',
+    proposal:'rgba(245,240,232,.15)',link:'rgba(245,240,232,.15)',
   };
-  canvas.onmouseleave=()=>tt.classList.remove('visible');
+  const edgeDash = {
+    trained:'4 3',commissie:'2 4',peer:'3 3',consult:'2 4',proposal:'2 5',
+    hamzah:'3 3',link:'2 5',model:'5 4',
+  };
+  const edgeWidth = {leads:2,founded:2,staff:2,moved:2,trained:1.5};
 
-  // Touch
-  canvas.addEventListener('touchstart',function(e){
-    const t=e.touches[0];
-    const rect=canvas.getBoundingClientRect();
-    const mx=t.clientX-rect.left,my=t.clientY-rect.top;
-    let hit=null;
-    placed.forEach(n=>{if(Math.hypot(mx-n.px,my-n.py)<n.r+18)hit=n;});
-    if(hit){
-      e.preventDefault();
-      if(tt.classList.contains('visible')&&tt.dataset.hitId===hit.id){
-        tt.classList.remove('visible');tt.dataset.hitId='';
-      } else {
-        tt.dataset.hitId=hit.id;
-        tt.innerHTML=`<div class="tt-name">${hit.label.replace('\n',' ')}</div><div class="tt-role">${hit.year}</div><div class="tt-body">${hit.desc}</div>`;
-        tt.classList.add('visible');
+  // Draw edges
+  edges.forEach(([a, b, type]) => {
+    const na = placed.find(n => n.id === a);
+    const nb = placed.find(n => n.id === b);
+    if (!na || !nb) return;
+    const mx = (na.px + nb.px) / 2 + (na.id.charCodeAt(0) - nb.id.charCodeAt(0)) * 2;
+    const my = (na.py + nb.py) / 2 - 18;
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', `M${na.px},${na.py} Q${mx},${my} ${nb.px},${nb.py}`);
+    path.setAttribute('stroke', edgeColors[type] || 'rgba(245,240,232,.12)');
+    path.setAttribute('stroke-width', edgeWidth[type] || 1);
+    path.setAttribute('fill', 'none');
+    if (edgeDash[type]) path.setAttribute('stroke-dasharray', edgeDash[type]);
+    svg.appendChild(path);
+  });
+
+  // Draw nodes
+  placed.forEach(n => {
+    const g = document.createElementNS(NS, 'g');
+    g.style.cursor = 'pointer';
+
+    // Glow
+    const glow = document.createElementNS(NS, 'circle');
+    glow.setAttribute('cx', n.px); glow.setAttribute('cy', n.py);
+    glow.setAttribute('r', n.rr * 2.4);
+    glow.setAttribute('fill', n.col + '22');
+    g.appendChild(glow);
+
+    // Circle
+    const circle = document.createElementNS(NS, 'circle');
+    circle.setAttribute('cx', n.px); circle.setAttribute('cy', n.py);
+    circle.setAttribute('r', n.rr);
+    circle.setAttribute('fill', n.col + '30');
+    circle.setAttribute('stroke', n.col);
+    circle.setAttribute('stroke-width', '1.5');
+    g.appendChild(circle);
+
+    // Label
+    const lines = n.label.split('\n');
+    const labelY = n.py + n.rr + 13;
+    lines.forEach((line, i) => {
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', n.px);
+      t.setAttribute('y', labelY + i * 12);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('font-size', isMobile ? '9' : '10');
+      t.setAttribute('font-family', '"JetBrains Mono", monospace');
+      t.setAttribute('font-weight', '500');
+      t.setAttribute('fill', 'rgba(245,240,232,.88)');
+      t.textContent = line;
+      g.appendChild(t);
+    });
+
+    // Year label (for nusantara)
+    if (n.year) {
+      const yr = document.createElementNS(NS, 'text');
+      yr.setAttribute('x', n.px);
+      yr.setAttribute('y', n.py - n.rr - 5);
+      yr.setAttribute('text-anchor', 'middle');
+      yr.setAttribute('font-size', '9');
+      yr.setAttribute('font-family', '"JetBrains Mono", monospace');
+      yr.setAttribute('fill', 'rgba(212,150,46,.8)');
+      yr.textContent = n.year;
+      g.appendChild(yr);
+    }
+
+    // Tooltip interactions
+    function showNodeTT(clientX, clientY) {
+      const career = (n.career && n.career.length)
+        ? `<div class="tt-career"><div class="tt-career-title">Jalur Karir</div>${n.career.map(c=>`<div class="career-step">${c}</div>`).join('')}</div>` : '';
+      const name = n.label.replace('\n',' ');
+      const role = n.role || n.year || '';
+      const body = n.body || n.desc || '';
+      ttDiv.innerHTML = `<div class="tt-name">${name}</div><div class="tt-role">${role}</div><div class="tt-body">${body}</div>${career}`;
+      ttDiv.classList.add('visible');
+      // Position: desktop follow cursor, mobile CSS handles it (fixed bottom)
+      if (window.innerWidth > 768) {
+        const vw = window.innerWidth;
+        let left = clientX + 16;
+        let top  = clientY - 10 + window.scrollY;
+        if (left + 310 > vw) left = clientX - 320;
+        if (top < window.scrollY) top = window.scrollY + 8;
+        ttDiv.style.position = 'absolute';
+        ttDiv.style.left = left + 'px';
+        ttDiv.style.top  = top + 'px';
       }
-    } else {tt.classList.remove('visible');tt.dataset.hitId='';}
-  },{passive:false});
+    }
+
+    // Mouse
+    g.addEventListener('mouseenter', e => showNodeTT(e.clientX, e.clientY));
+    g.addEventListener('mousemove',  e => { if(window.innerWidth>768) showNodeTT(e.clientX, e.clientY); });
+    g.addEventListener('mouseleave', () => { ttDiv.classList.remove('visible'); });
+
+    // Touch: tap to toggle
+    g.addEventListener('touchstart', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const t = e.touches[0];
+      if (ttDiv.classList.contains('visible') && ttDiv.dataset.nodeId === n.id) {
+        ttDiv.classList.remove('visible');
+        ttDiv.dataset.nodeId = '';
+      } else {
+        ttDiv.dataset.nodeId = n.id;
+        showNodeTT(t.clientX, t.clientY);
+      }
+    }, { passive: false });
+
+    svg.appendChild(g);
+  });
+
+  wrap.appendChild(svg);
+
+  // Tap outside to close tooltip on mobile
+  svg.addEventListener('touchstart', e => {
+    if (!e.target.closest('g')) {
+      ttDiv.classList.remove('visible');
+      ttDiv.dataset.nodeId = '';
+    }
+  }, { passive: true });
+}
+
+// ─── TAB SWITCHER ───
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['pribumi','belanda','nusantara'][i] === id);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('tab-' + id);
+  if (panel) panel.classList.add('active');
+  // Render after panel is visible
+  requestAnimationFrame(() => requestAnimationFrame(() => renderTab(id)));
+}
+
+function renderTab(id) {
+  if (id === 'pribumi')   buildSVG('svg-pribumi',   PRIBUMI_NODES, PRIBUMI_EDGES, {h:580});
+  if (id === 'belanda')   buildSVG('svg-belanda',   BELANDA_NODES, BELANDA_EDGES, {h:580});
+  if (id === 'nusantara') buildSVG('svg-nusantara', KWS_NODES,     KWS_EDGES,     {h:500});
 }
 
 // ─── INIT ───
 (function(){
-  let networkInitialized = false;
-
-  function getCanvasWidth(canvas) {
-    // If canvas or its parents are hidden, measure via parent container
-    if (canvas.offsetWidth > 0) return canvas.offsetWidth;
-    // Walk up to find a visible ancestor and use its width minus padding
-    let el = canvas.parentElement;
-    while (el) {
-      if (el.offsetWidth > 0) {
-        const style = getComputedStyle(el);
-        const pad = parseFloat(style.paddingLeft||0) + parseFloat(style.paddingRight||0);
-        return Math.max(el.offsetWidth - pad, 200);
-      }
-      el = el.parentElement;
-    }
-    return Math.max(window.innerWidth - 64, 200);
+  let done = false;
+  function init() {
+    if (done) return;
+    done = true;
+    renderTab('pribumi');
   }
-
-  function safeDraw(type) {
-    const canvas = document.getElementById('canvas-' + type);
-    if (!canvas) return;
-    // Force a reflow measurement via the network-inner container
-    const container = canvas.closest('.network-inner') || canvas.closest('.network-canvas-wrap') || canvas.parentElement;
-    const w = getCanvasWidth(canvas);
-    // Temporarily set canvas style width so offsetWidth works on next call
-    canvas.style.width = w + 'px';
-    if (type === 'nusantara') drawNusantara();
-    else drawNetwork(type);
-  }
-
-  function initNetworks() {
-    if (networkInitialized) return;
-    networkInitialized = true;
-    // Small delay to ensure layout is computed
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        safeDraw('pribumi');
-      });
-    });
-  }
-
-  // Use IntersectionObserver to draw when section enters viewport
-  const networkSection = document.getElementById('network');
-  if (networkSection) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { initNetworks(); io.disconnect(); }
-      });
+  // On intersection with section
+  const sec = document.getElementById('network');
+  if (sec && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { init(); io.disconnect(); }
     }, { threshold: 0.01 });
-    io.observe(networkSection);
+    io.observe(sec);
   }
-
-  // Also draw on load as fallback
-  window.addEventListener('load', () => {
-    setTimeout(initNetworks, 300);
-  });
-
+  window.addEventListener('load', () => setTimeout(init, 200));
   // Redraw on resize
-  let resizeTimer;
+  let rt;
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const activeTab = document.querySelector('.tab-btn.active');
-      if (!activeTab) return;
-      const labels = ['pribumi','belanda','nusantara'];
-      const idx = [...document.querySelectorAll('.tab-btn')].indexOf(activeTab);
-      if (idx >= 0) safeDraw(labels[idx]);
-    }, 150);
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      const active = document.querySelector('.tab-btn.active');
+      if (!active) return;
+      const idx = [...document.querySelectorAll('.tab-btn')].indexOf(active);
+      renderTab(['pribumi','belanda','nusantara'][idx]);
+    }, 200);
   });
 })();
+
+
 
 
 
